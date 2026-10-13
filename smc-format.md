@@ -1,6 +1,7 @@
 # SMC 文件格式（第一阶段，初步）
 
 > 状态：**帧结构（framing）已由静态分析恢复，并用 `tools/smc_walk.py` 在全部 8451 个样本上验证：每个文件的主体都被逐字节恰好消耗完，尾部恰好 4 字节。** 绝大多数字段的语义仍未知。
+> 第二阶段补充：韩文文本编码（§8）与歌词消息 0x19 已恢复，见 `encoding.md` 与 `lyrics.md`。
 >
 > 记号：`[E]` = 直接证据（反编译/字节观察）；`[I]` = 推断；`[?]` = 未知。所有整数均为小端（x86）。`s16/u16/u32/i32` 为有/无符号整数。
 > 除特别注明外，函数地址均指 engine.dll（基址 0x10000000）。MusicBook.exe 的地址为 0x4xxxxx 形式。
@@ -143,12 +144,12 @@ type==0x01 且 headLen≠12 时会把 head 规整为 12 字节 [E]。
 | type | 计数 | 线索 | 推断 |
 |---|---|---|---|
 | 0x01 | 652338 | head 12 字节；在 Meas 中挂到 up/down 数组 | 音符/和弦音 [I] |
-| 0x19 | 625967 | head 18 字节，含双字节文本 | **歌词音节** [I，强] |
+| 0x19 | 625967 | head = 0x10 + 文本字节数；`CSMLyricMsg` | **歌词音节单元**（第二阶段确认，见 `lyrics.md`）[E] |
 | 0x45 | 177909 | 带 ChordExtra，CChordSymbol | 和弦记号 [E] |
 | 0x46 | 177909 | CFretBoard 设置的类型 | 和弦的吉他指板图 [E] |
 | 0x0a / 0x09 / 0x12 | 62202/26295/1786 | 带 +0x18、+0x70 键引用并重映射 | 连接型记号（连音线/圆滑线/…）[I] |
 | 0x14 / 0x25 | 54238/433 | 可带子消息；空则删除；挂到 up/down 数组 | 音符组/和弦组？[I] |
-| 0x06 | 42031 | head 是 TLV 风格结构 + 文本 | 文本框（曲名、作者等）[I] |
+| 0x06 | 42031 | head 是 TLV 结构 + 文本 | 文本框（曲名、作者、速度、後斂等）[E 结构；见 `lyrics.md` §6] |
 | 0x47 | 12716 | 带 CRhythm/CRtmData | 节奏型/伴奏型 [I] |
 | 0x49 | 5865 | Staff 中查找，缺失时由 SetStaffNameToMsg 生成 | 谱表名 [E] |
 | 0x3f, 0x40 | 各 8451 | 每个文件 1 次，文档级 | ? |
@@ -231,10 +232,11 @@ Block = 一个排版行/系统行（乐谱的一行）[I]。样本有 3 页、22
 - 没有找到 MIDI 数据块。播放用的 MIDI 事件很可能由音符 Msg 实时生成（exe 导入了 midiStream*；engine 中有 `CSMMsg::GetMidiKey`）[I]。
 - 图片：exe 通过 SHDrawJpeg.dll 的 `LOAD_JPEG_File` / `DRAW_JPEG_File` 从**文件**加载 JPEG。语料中未发现嵌入的 JPEG（`FF D8 FF` 命中都是坐标值的误报），也没有图像文件名字符串 [E 观察]。图片在 SMC 中如何引用，目前未知 [?]。
 
-## 8. 文本编码（初步）
+## 8. 文本编码（第二阶段已恢复）
 
-- 曲名、文本框、歌词使用 Shift-JIS 字节空间中的双字节码：引导字节 0x88–0x9F、0xE0–0xFC（包括 SJIS 用户自定义区 0xF0–0xF9）[E 观察]。
-- 程序目录中的码表文件名与 SJIS 的分区起点一致：`889F.cod`（SJIS 汉字起点 0x889F）、`F040a/b/c.cod`（用户自定义区起点 0xF040）、`B0A1.cod`（KS X 1001 / KPS 9566 韩文起点 0xB0A1）、`KS.cod`、`KorCode.cod` [E]。
-- `CKCConv::Open(id 1..6, path)` 0x10030b10 加载码表（“Can't open Korean Code File!”）；`CKCConv::Convert/ToUnicode/FromUnicode` 负责转换 [E]。
-- 推断：韩文被映射到 SJIS 码位，再用专用 WK 字体渲染（Wkgothic.ttf 等）[I]。具体映射需要分析 `.cod` 文件和 CKCConv。
+SMC 文本使用 code id 1 = **"889F Code"**（`889F.cod`），即以 Shift-JIS 双字节码位为索引的自定义映射表；转换入口 `MyDrawTextOutW` 明确调用 `CKCConv::ToUnicode(1,…)` [E]。完整说明见 `encoding.md`，程序工具 `tools/smc_text.py`。
+
+- `< 0x80` 单字节透传；其余按双字节码位查表。
+- 未映射码位原样保留（由字体自身字形渲染）。
+- 码位区段以 0x88–0x9F、0xE0–0xFC 为主，另含 SJIS 用户定义区 0xF000–0xF300。
 - 字体名本身是标准 Shift-JIS 日文（如“ＭＳ Ｐゴシック”）[E]。

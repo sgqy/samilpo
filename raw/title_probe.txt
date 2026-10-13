@@ -1,0 +1,40 @@
+== 150ALS-03DA-0012.smc
+   raw 8a 7d 96 60 8c da 92 99 8e ae 96 5b 20 8a 4c 88 9f 20 8b ea 96 59 8b ac
+    8a7d -> 889F:b2e4다 B0a1:8a7d詽 Ks:8a7d詽 F040:7b20笠
+    9660 -> 889F:c74c음 B0a1:9660陠 Ks:9660陠 F040:5192冒
+    8cda -> 889F:bc88번 B0a1:8cda賚 Ks:8cda賚 F040:9867顧
+    9299 -> 889F:d654화 B0a1:9299銙 Ks:9299銙 F040:8caf貯
+    8eae -> 889F:c810점 B0a1:8eae躮 Ks:8eae躮 F040:8eae躮
+    965b -> 889F:c740은 B0a1:965b陛 Ks:965b陛 F040:623f房
+    20 -> ASCII ' '
+    8a4c -> 889F:b0b4내 B0a1:8a4c詌 Ks:8a4c詌 F040:8c9d貝
+    889f -> 889F:ac00가 B0a1:889f袟 Ks:889f袟 F040:889f袟
+    20 -> ASCII ' '
+    8bea -> 889F:b9c9막 B0a1:8bea诪 Ks:8bea诪 F040:82e6苦
+    9659 -> 889F:c73c으 B0a1:9659陙 Ks:9659陙 F040:5fd8忘
+    8bac -> 889F:b9ac리 B0a1:8bac讬 Ks:8bac讬 F040:8bac讬
+   889F.cod  decode='다음번화점은 내가 막으리'
+   B0a1.cod  decode='詽陠賚銙躮陛 詌袟 诪陙讬'
+   Ks.cod    decode='詽陠賚銙躮陛 詌袟 诪陙讬'
+   F040a.cod decode='笠冒顧貯躮房 貝袟 苦忘讬'
+== 212OPS-0012.smc
+   raw 96 bf 89 d4 8a c7 96 a7 20 92 56 89 6a 8b a4 20 8d 41 8d c4 20 8c d8 8b ac 8e 94
+    96bf -> 889F:c65c왜 B0a1:96bf隿 Ks:96bf隿 F040:76df盟
+    89d4 -> 889F:b188놈 B0a1:89d4觔 Ks:89d4觔 F040:82b1花
+    8ac7 -> 889F:b4e4들 B0a1:8ac7談 Ks:8ac7談 F040:7ba1管
+    96a7 -> 889F:c758의 B0a1:96a7隧 Ks:96a7隧 F040:5bc6密
+    20 -> ASCII ' '
+    9256 -> 889F:d749흉 B0a1:9256鉖 Ks:9256鉖 F040:6b4e歎
+    896a -> 889F:acc4계 B0a1:896a襪 Ks:896a襪 F040:6cf3泳
+    8ba4 -> 889F:b97c를 B0a1:8ba4认 Ks:8ba4认 F040:5171共
+    20 -> ASCII ' '
+    8d41 -> 889F:bd80부 B0a1:8d41赁 Ks:8d41赁 F040:5589喉
+    8dc4 -> 889F:c154셔 B0a1:8dc4跄 Ks:8dc4跄 F040:518d再
+    20 -> ASCII ' '
+    8cd8 -> 889F:bc84버 B0a1:8cd8賘 Ks:8cd8賘 F040:8cd8賘
+    8bac -> 889F:b9ac리 B0a1:8bac讬 Ks:8bac讬 F040:8bac讬
+    8e94 -> 889F:c790자 B0a1:8e94躔 Ks:8e94躔 F040:98fc飼
+   889F.cod  decode='왜놈들의 흉계를 부셔 버리자'
+   B0a1.cod  decode='隿觔談隧 鉖襪认 赁跄 賘讬躔'
+   Ks.cod    decode='隿觔談隧 鉖襪认 赁跄 賘讬躔'
+   F040a.cod decode='盟花管密 歎泳共 喉再 賘讬飼'
