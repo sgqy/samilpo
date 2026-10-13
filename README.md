@@ -2,6 +2,14 @@
 
 > Use AI Translation to convert this readme to your native language.
 
+## 使用工具
+
+IDE：https://github.com/anomalyco/opencode
+
+Skill：https://github.com/morluto/rea
+
+以及各种神秘的API中转站
+
 ## 软件下载
 
 https://archive.org/details/samilpo-2
