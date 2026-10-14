@@ -26,6 +26,8 @@ https://archive.org/details/samilpo-2
 
 可能有变体，因为 Music Score Viewer 打开的东西显示乱码。
 
+乱码原因是要加载码表，总之RDFM。
+
 可用的下载链接在这里。
 
 https://web.archive.org/web/20160211201306/https://www.silverstar.co.jp/music/product/trial.html
