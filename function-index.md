@@ -75,6 +75,79 @@ Ghidra 12.1.4，通过 REA 分析。名称来自 DLL 导出的修饰名（可靠
 | 0x100c3bf0 | CSMTextMsg::RichTextLineOut | 逐行富文本输出（含 MyDrawTextOutW 调用） |
 | 0x100c40c0 | CSMTextMsg::AnalizeText | TLV 文本分析 |
 
+## engine.dll — 消息类型与音乐字段（第三阶段）
+
+| 地址 | 名称 | 作用 |
+|---|---|---|
+| 0x1004aa00 | CScoreView::SMDrawMsg | **按 type 分派的唯一 switch**（40+ 类型） |
+| 0x1004ec70 | CScoreView::DrawNote | 音符绘制（读缩放/声部/标志/音高）；字体 "KayakumA" |
+| 0x1004faf0 | CScoreView::DrawHead | 符头/附点/括号绘制（`+0x5C` 符头类型） |
+| 0x10051320 | CScoreView::DrawBeam | 连梁 |
+| 0x10054160 | CScoreView::DrawTimeSig | 拍号绘制 |
+| 0x10055430 | CScoreView::DrawMeasClef | 小节谱号 |
+| 0x10055910 | CScoreView::DrawMeasKey | 小节调号 |
+| 0x10056910 | CScoreView::DrawRest | 休止符 |
+| 0x100571f0 | CScoreView::DrawKeysign | 调号（`codeAcci[+0x5E]`） |
+| 0x10057410 | CScoreView::DrawClef | 谱号 |
+| 0x10057f90 | CScoreView::DrawSingle_Msg | 单字符记号（type 0x11/0x2a/0x2f/0x30/0x34..0x3e） |
+| 0x100595b0 | CScoreView::DrawLongrest | 长休止（type 0x2c） |
+| 0x1005a6e0 | CScoreView::DrawSlur | 圆滑线 |
+| 0x1005b1f0 | CScoreView::DrawMultiText | 文本框（type 0x04/0x06） |
+| 0x1005e690 | CScoreView::DrawDynamic | 力度（`CodeDyn[+0x5E]`） |
+| 0x1005ebb0 | CScoreView::DrawTextMsg | 歌词（type 0x19） |
+| 0x10063160 | CScoreView::DrawMeasTuplet | 小节连音符（type 0x12） |
+| 0x10066290 | CScoreView::DrawMidiShortMsg | MIDI 短消息（type 0x42） |
+| 0x10036470 | CSMMsg::CalcPlayTime | 时值计算（`0x100>>(+0x5E&0x1F)`、附点、f2 比例） |
+| 0x10042a50 | CSMMsg::GetPlayTime | 播放时间查询（`+0x6E & 0x10` → 0） |
+| 0x100b76f0 | CSMMsg::SetPlayTime | 时值回写 head[4..7] |
+| 0x100b7fb0 | CSMMsg::GetRealNoteDur | 实际时值（连音合并 `+0x6E & 1`） |
+| 0x10037a70 | CSMMsg::UpdateStartTime | 写 head[8..11]；驱动子项 |
+| 0x100ac520 / 0x100ac4d0 | CSMMsg::Get/SetMidiKey | **head[0] = MIDI key** |
+| 0x100ac570 / 0x100ac5c0 | CSMMsg::Get/SetVelocity | **head[1] = velocity** |
+| 0x100aad60 | CSMMsg::SetParamFromMidiKey | 谱号/打击乐参数（`+0x5C` 鼓组、`+0x52` 音高、半音表） |
+| 0x100ae030 | CSMMeas::SetParamFromMidiKey | 小节级参数与调号表 |
+| 0x100b0830 | CSMMsg::WhatIsAccidental | 变音记号（调号顺序表 {6,2,5,1,4,0,3}） |
+| 0x100af1a0 | CSMMsg::UpdateNoteKeySignature | 变音/调号联动 |
+| 0x100aab90 | CSMMsg::CorrectKeySign | 调号修正 |
+| 0x100b1370 | CSMMsg::CalcNoteRestKind | 时值 → 音符/休止种类 |
+| 0x100b28f0 / 0x100b2940 | Set/GetNoteHeight | 对象 `+0x70`（符干方向/高度） |
+| 0x100b2970 / 0x100b29c0 | Set/GetTemporarySymbolGap | 对象 `+0x66` |
+| 0x100b29f0 / 0x100b2b70 | Set/GetNoteHeadType | **`+0x5C` 符头类型**（7→0x1A） |
+| 0x100b2a90 | CSMMsg::SetTail | `+0x6E bit2` 符尾 |
+| 0x100b2ba0 / 0x100b2bd0 | Set/GetRestType | **`+0x5E` 休止符类型** |
+| 0x100b2c00 / 0x100b2c30 | Set/GetToilThick | 对象 `+0x1C`（连梁粗度） |
+| 0x100b2c60 | CSMMsg::ChangeNoteAttr | 属性批量设置 |
+| 0x100b2f50 | CSMMsg::ChangeNoteDirection | 符干方向（0/1/2/3=自动） |
+| 0x100b2600 | CSMMsg::MakeNoteMarkCtrl | 记号控制点生成 |
+| 0x100abb80 / 0x100abc60 | Make/IsGraceNote | `+0x6E bit4` 装饰音 |
+| 0x100abcc0 | CSMMsg::MakeMidiMsgFromY | **MIDI 头构造**（head 默认 100/0x40/0） |
+| 0x100abda0 | CSMMsg::UpdateMidiMsg | 重算 head[0] |
+| 0x10022d20 | CSMDoc::EncToSMC_MidiMsg | `.enc` → type 0x42（3 字节 MIDI 消息） |
+| 0x1002f610 | CSMDoc::GulsamToSMC_Note | 外部格式 → 音符（字段写入路径；`+0x5C` 映射表） |
+| 0x1002fbe0 | CSMDoc::GulsamToSMC_BEAM | 外部格式 → 连梁 |
+| 0x10037d90 / 0x10037e20 | CSMMsg::GetTie/SlurIndex | tie/slur 子项定位（按 `role`） |
+| 0x1006acd0 | CSMMsg::CreateFrom | 对象复制（连音端点键处理） |
+
+## engine.dll — 结构与布局（第三阶段）
+
+| 地址 | 名称 | 作用 |
+|---|---|---|
+| 0x10078730 | CSMSystem::Read | ObjectCore + nStaff1/nStaff2/wholeTick + Staff[]；键重映射 |
+| 0x10079030 | CSMStaff::Read | ObjectCore + 0x70 尾块（名称/谱号类别/调号表）+ Meas[] |
+| 0x100798e0 | CSMMeas::Read | MeasCore(s16 headLen) + 0x60 尾块（拍号/调号）+ 子项整理 |
+| 0x1003a4d0 | CSMMeas::CalcWholeCount | 小节 tick 与连音符分段表（对象 +0xEC） |
+| 0x1007bbf0 | CSMPage::Read | 0x18 头 + Block×(A+B) + 页面消息 |
+| 0x1007b550 | CSMBlock::Read | 0x1C 头 + StaffRef×n + 小节坐标 + 点表 |
+| 0x1007b020 | CSMBlock::Write | Block 写回（`nStaves*5+2+f2*2+nPts*8`） |
+| 0x1007a740 | CSMObject::Write | **ObjectCore 磁盘布局确证**（`+06 = headLen+12`） |
+| 0x1007a240 | CSMMsg::Write | **MsgHdr 磁盘布局确证** |
+| 0x1007aa20 | CSMObject::Read | ObjectCore / 子项 / tie 键登记 |
+| 0x1007a490 | CSMMsg::Read | MsgHdr + ObjectCore；type 0x41→0x08 |
+| 0x100bad70 / 0x100baec0 | CSMObject::AddMsg / InsertMsg | 子项描述符写入（`role` 字节） |
+| 0x100bb270 / 0x100bb320 | CSMObject::Set/GetHead | head 负载存取 |
+| 0x1002c100 | CFontDatas::LoadBuffer | **字体表格式**（`u8 index, u8 nameLen, u8 name[]`） |
+| 0x1002c100 之后 | AddNewFont / GetFontName | 字体注册与查询 |
+
 ## engine.dll — 相关但尚未分析
 
 | 地址 | 名称 | 关注原因 |

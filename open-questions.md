@@ -1,44 +1,74 @@
 # 未解决问题
 
-按优先级排序。标 `[已解决]` 者为第二阶段已闭合项（保留记录以便追溯）。
+按优先级排序。标 `[已解决]` 者为前阶段已闭合项（保留记录）。
+
+## 已解决（第三阶段）
+
+- **[已解决] MsgHdr（0x2C）全部字段** — 由 `CSMMsg::Read` 0x1007a490 与 `CSMMsg::Write` 0x1007a240 双向确证；见 `smc-format.md` §6.1。
+- **[已解决] ObjectCore 磁盘布局** — `+06 = headLen + 12`；`+01` 为写入未初始化栈的保留字节（读取端忽略）；见 §5.1。
+- **[已解决] Child 描述符语义** — `u32 key, u8 role, u8 pad[3]`；`role` 编码引用角色；见 §5.2。
+- **[已解决] 全部消息类型 → 绘制器分派表** — `CScoreView::SMDrawMsg` 0x1004aa00；见 §6.3。
+- **[已解决] 音符 head（12 字节）字段表** — key/velocity/0x40/声部/时值/起始时间；见 §6.7 与 `music-fields.md` §1.1。
+- **[已解决] 音乐属性字段** — 符头类型、附点数、变音状态、标志位；见 §6.5/§6.6。
+- **[已解决] 拍号** — Meas 尾块 +56 分子 / +58 分母，`CalcWholeCount` 换算；见 `layout.md` §4.3。
+- **[已解决] 连音/圆滑线引用机制** — 双端点键 + `role` 字节；见 §6.4。
+- **[已解决] 字体表文件格式** — `u8 index, u8 nameLen, u8 name[]`；见 §3.4。
+- **[已解决] 音乐符号机制** — 引擎单字节常量 + `KAYAKUMA.TTF` 符号字体（U+F020–U+F0FF），与 889F 零重叠；见 `font-resources.md`。
 
 ## 已解决（第二阶段）
 
-- **[已解决] 韩文文本编码** — code id 1 = 889F.cod，`.cod` 结构与查表算法已恢复，见 `encoding.md`。
-- **[已解决] 歌词消息身份** — type 0x19 = `CSMLyricMsg`，字段表见 `lyrics.md` §3。
-- **[已解决] 歌词↔音符关联** — 包含关系：歌词是 type 0x01 音符消息的嵌入子对象；key 通常为 note_key+1，见 `lyrics.md` §5。
-- **[已解决] 文本框（0x06）结构** — TLV 标签表已恢复，见 `lyrics.md` §6。
+- **[已解决] 韩文文本编码** — code id 1 = 889F.cod。
+- **[已解决] 歌词消息身份** — type 0x19 = `CSMLyricMsg`。
+- **[已解决] 歌词↔音符关联** — 包含关系（音符嵌入子对象）。
+- **[已解决] 文本框（0x06）结构** — TLV 标签表。
 
 ## 进行中 / 待办
 
-1. **歌词 head 的 4 个未定字节**（+0x06 u16、+0x0D/+0x0E/+0x0F u8）
-   - 线索：DrawMsg 只使用 head+0x00/+0x04/+0x08/+0x0C 与 head+0x10 起的文本，其余字节不被绘制路径读取。
-   - 验证：分析 `CSMLyricMsg::WriteToMem`/`Save`（若存在）或编辑器路径（`CTempLyricMsg` 0x100C9B70、`BeginDrag` 0x100C9CF0 等）看这些字节是否为编辑期缓存。
-2. **head +0x02 与 +0x04 的字节归属**
-   - 现状：按统计给出「+0x02 样式 / +0x04 字号」，与 DrawMsg 的 `flag & 1/2/4` 和默认 13 一致，但 Ghidra 栈局部划分不足以 100% 判定。
-   - 验证：读取 `CSMLyricMsg::DrawMsg` 0x1009AD00 的原始汇编，跟踪 `memcpy(this+0x20 → local_24, 0x10)` 后各 `local_*` 的 EBP 偏移。
-3. **未映射 889F 码位在字体中的来源**
-   - 验证：解析 `Font\Wk*.ttf` 的 cmap，检查对应码位是私人字形还是真符号。
-4. **歌词行分组规则**（换行/对齐/分句）
-   - 线索：「－」（U+FF0D，来自码位 F0 41）在语料中作为分句符。
-   - 验证：分析 `CSMDoc::GetRealRectOfLyrics` 0x10003D40 与 `CScoreView::DrawTextMsg` 0x1005EBB0 的调用者（绘制循环），观察行如何聚合。
-5. **其余 Msg 类型的语义**（0x03,0x04,0x05,0x08,0x09,0x0a,0x12,0x14,0x18,0x1b,0x3f,0x40 …）
-   - 验证：在 engine 中找到按 type 分派的 switch（绘制函数），并用 REA 的 jump-table evidence 恢复每个 case 的目标。
-6. **音符 Msg（0x01）头部与 12 字节 head 的语义**（音高、时值、符尾方向、声部）
-   - 验证：分析 `CSMMsg::GetMidiKey` 与 `CSMMeas::UpdatePlayTime` / `CalcWholeCount`。
-7. **ObjectCore 中未读取的字段**（+1 字节、+6 u16），以及 Child.pad[3]
-   - 验证：分析 `CSMObject::Write` 0x1007a740。
-8. **SYMP 头 0x58C 的其余字段**、SMC 块 0x318 的字段、附加字符串（“448”之类）的含义
-   - 验证：在 exe 中追踪 view+0x380..0x90c 的读取者；对全语料统计非零字段。
-9. **旧格式路径 FUN_00425090** 和 `CSMDoc::ImportSMC`
-   - 当前语料全部使用 SYMP 0x2004/0x2005，优先级较低。
-10. **文件尾 4 字节**（等于 bodyLen）：保存代码是否写入它、作用是什么
-    - 验证：分析 exe 的保存路径 / `CSMDoc::Save` 0x100773c0。
-11. **图片如何引用**：语料中没有嵌入 JPEG，也没有文件名字符串。
-    - 验证：在 exe 中查找 `LOAD_JPEG_File` 的调用者和传给它的路径来源。
-12. **Page/Block 字段的精确语义**（nBlockA 与 nBlockB 的区别、StaffRef 的两个 u16、nPts 点数组）
-    - 验证：分析 `CSMBlock::UpdateMeasXY`、`MakeStaffNameRect`，以及 `CSMBlock::Write` 0x1007b020。
-13. **CSMFileInfo 0x20 字节的语义**
-    - 验证：分析 `CSMFileInfo::SetLogicPageInfo` 0x10094ed0 和 `UpdateLogicDoc` 0x100950a0。
-14. **`KorCode.cod` / `KcgInfo.kbd` 的用途**（键盘输入映射？）；**`F040.cod`（5122 B，无 CCodeTable 头）的用途**
-    - 验证：分析 exe 中 `KorCode.cod` 的读取者（FUN_00411c00 的调用者）与 `F040.cod` 的引用点。
+1. **歌词 head +0x02/+0x04 字节归属**（`unknown-fields.md` C2）
+   - 验证：精读 `CSMLyricMsg::DrawMsg` 0x1009ad00 汇编，跟踪 `memcpy(this+0x20 → local, 0x10)` 后各局部量的 EBP 偏移。
+   - 收尾成本低，建议下一阶段首项。
+
+2. **歌词 head +0x06 / +0x0D / +0x0E / +0x0F**（C1）
+   - 线索：`DrawMsg` 未使用这些字节。
+   - 验证：`CTempLyricMsg` 0x100c9b70 / `BeginDrag` 0x100c9cf0，或歌词写入路径。
+
+3. **类型 0x2c（长休止）headLen 60 的字段表**（B2）
+   - 验证：`CScoreView::DrawLongrest` 0x100595b0。语料 98 条。
+
+4. **类型 0x47（节奏型）与 `CRtmData` 字段**（B4）
+   - 验证：`CRtmData::ReadFromMem` 0x10047720、`CRtmData::GetRealMidiKey` 0x10047410。语料 12716 条。
+
+5. **类型 0x0c（Coda）head 字段**（B3）
+   - 验证：`DrawCoda` 0x10056ec0 / `DrawCodaEx` 0x10065660。语料 165 条。
+
+6. **类型 0x46（指板）`CFretInfo` 16 字节字段**（B5）
+   - 验证：`CFretInfo::ReadFromMem` 0x1002dc70。语料 177909 条。
+
+7. **文档级消息 0x04 / 0x3f / 0x40 语义**（B6）
+   - 验证：动态观察或 exe 侧消费者。每文件各一次。
+
+8. **`CSMFileInfo`（0x20）与 `CSMCtrlTool` 剩余字段语义**（B8）
+   - 入口：`CSMFileInfo::SetLogicPageInfo` 0x10094ed0、`UpdateLogicDoc` 0x100950a0。
+
+9. **Meas 尾块未解字段**（`layout.md` §8）
+   - +44..+52、+4E/+50、+5A/+5C（后者已确认为调号符号/个数）。
+
+10. **附加字符串（file 0x590）语义**（B7）
+    - 验证：exe 中 `view+0x90c` 的读取者。
+
+11. **文件尾 4 字节的写入路径**（C4）
+    - 验证：`CSMDoc::Save` 0x100773c0。
+
+12. **图片引用机制**（C3）
+    - 语料无嵌入 JPEG、无文件名。
+    - 验证：exe 中 `LOAD_JPEG_File` 调用者与路径来源。
+
+13. **符号常量表完整导出**
+    - `codeAcci`（0x10100430）、`CodeDyn`（0x101006d4）、`codeSmallDigit`、`codeSlid` 的完整项数与取值。
+    - 验证：`find_xrefs_to_name` + `read_bytes` 逐表导出。
+
+14. **`CSMDoc::GulsamToSMC_*` 系列**（外部格式 → SMC）
+    - 已知 0x1002f610（Note）、0x1002fbe0（BEAM）、0x10030010（Lyrics）；可用于反向确认字段（如 `MsgHdr+06` 符头类型映射表 8→5, 9→4, 10→2, 11→6, 12→3, 13→3, 14→2, 15→1）。
+
+15. **旧格式路径** `FUN_00425090` / `CSMDoc::ImportSMC` 0x10077690
+    - 当前语料全部 0x2004/0x2005，优先级低。
