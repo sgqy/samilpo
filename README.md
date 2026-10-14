@@ -2,7 +2,7 @@
 
 > Use AI Translation to convert the docs to your native language.
 
-RDFM: `docs/smc-format.md`
+RTFM: `docs/smc-format.md`
 
 ## 使用工具
 
@@ -26,7 +26,7 @@ https://archive.org/details/samilpo-2
 
 可能有变体，因为 Music Score Viewer 打开的东西显示乱码。
 
-乱码原因是要加载码表，总之RDFM。
+乱码原因是要加载码表，总之RTFM。
 
 可用的下载链接在这里。
 
