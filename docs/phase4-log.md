@@ -236,4 +236,106 @@ CFile::Seek(uVar4, 0)                    ; 回到尾部之后
 - 0x0C（Coda）：`DrawCoda` 0x10056ec0 / `DrawCodaEx` 0x10065660；语料 165 条；headLen ∈ {5,8,9,11}；字段未解析。
 - 0x3F/0x40/0x04（文档级）：每文件各一次；无 head；语义未定。
 
+## 6. 任务 D1：动态调试可行性调查（只读检查，未安装任何工具）
+
+### 6.1 环境勘察结果
+
+| 工具 | 路径 | 状态 |
+|---|---|---|
+| **x64dbg / x96dbg headless** | `%LOCALAPPDATA%\Programs\x96dbg\release\{x32,x64}\headless.exe` | **已安装**（x32 对应 32 位目标） |
+| x32dbg / x64dbg GUI | 同目录 `x32dbg.exe` / `x64dbg.exe` | 已安装 |
+| **IDA Professional 9.5** | `C:\Program Files\IDA Professional 9.5`（含 `idalib\`、`python\`、`idalib.dll`、`idapro-0.0.10-py3-none-any.whl`、`py-activate-idalib.py`） | **已安装** |
+| Ghidra 项目 | `C:\Users\aya\ghidra\samilpo.gpr` + `samilpo.rep` | 项目存在；独立安装目录未在 PATH 发现 |
+| Cutter 2.4.1 | `%LOCALAPPDATA%\Programs\Cutter-v2.4.1-Windows-x86_64` | 已安装（rizin 后端） |
+| WinDbg / cdb / ntsd | 未发现 | 未安装 |
+| Frida（Python 模块） | `importlib.find_spec('frida')` = False | 未安装 |
+| pywin32 / pwn / capstone / keystone / unicorn | 均未安装 | 未安装 |
+| Java | 未在 PATH 发现 | — |
+
+### 6.2 x64dbg `headless.exe` 实测（未加载任何目标）
+
+- 启动后输出 `[headless] entering command loop...`，**接受 stdin 命令流** [E]。
+- 送入 `quit` 后正常退出（`[headless] shutdown requested by Ctrl+C`），exit code 0 [E]。
+- 二进制内含字符串 `[headless] failed to redirect log to %s`（支持日志重定向）、
+  `[FAIL] command failed`、`[FAIL] no script id registered %d`、`GUI_SCRIPT_*` 家族 [E]。
+- 结论：具备**命令系统 + 脚本 + 日志**三要素，可用作 Agent 驱动的动态调试后端。
+
+### 6.3 REA 能力边界
+
+- `capture_process_scenario` 可启动并捕获目标进程的终端/进程/文件系统证据（PTY 驱动）[E 工具契约]。
+- `observe_native_calls` 为 **LLDB / Mach-O（macOS）**，不适用于 Windows PE [?]。
+- → REA 不提供 Windows 原生断点调试；动态调试需外部调试器承载，输出经 stdin/stdout 流入会话。
+
+### 6.4 结论与交付
+
+- 交付物：`debugging-plan.md`（方案、前提、最小实验、限制、需用户执行的操作）。
+- 判定：**可行且无需安装新工具**；推荐 x64dbg x32 headless，IDA idalib 作脚本化备选。
+- **未执行任何动态操作**；最小闭环实验需用户明确许可（隔离环境，人工触发打开样本）。
+
+## 7. 任务 E：字段覆盖清单
+
+新增 `tools/field_coverage.py` 作为**覆盖度数字的唯一数据源**：脚本内以
+`(offset, size, category, label, evidence)` 形式定义每个结构的字段，按字节分类并计算覆盖率。
+
+分类口径（互斥且穷尽）：
+
+| 类别 | 含义 |
+|---|---|
+| S | 已确认文件语义 |
+| I | 推断 |
+| N | 已确认**无文件语义**（保留/栈残留/派生/纯绘制缓存） |
+| U | 长度已知、语义未知 |
+| X | 未建模 |
+
+两个覆盖率：**结构覆盖 = (S+I+N)/总**；**语义覆盖 = (S+I)/总**。
+
+计算结果（全文见 `field-coverage.md`）：
+
+| 层 | 总字节 | 结构覆盖 | 语义覆盖 | 未解释 |
+|---|---:|---:|---:|---:|
+| 核心层（对象模型 + 消息头 + 各 head + 结构头） | 156 | **92.9%** | **78.8%** | 7.1% |
+| 布局层（Staff/Meas/Page/Block 头与尾块） | 260 | 60.4% | 60.4% | 39.6% |
+| 文件级大块（SYMP/SMC/CtrlTool/FileInfo） | 3388 | 19.9% | 19.9% | 80.1% |
+| 全部 | 3804 | 25.7% | 25.1% | 74.3% |
+
+- 无语义字节（N）合计仅 **22/3804 = 0.6%**，均已逐一定位（`field-coverage.md` §3）。
+- 文件级大块的低覆盖主要来自 SYMP 与 SMC 的**大面积固定零区**（X = 2124 字节）。
+
+## 8. 文档统一（本轮）[E]
+
+按用户要求统一表记：
+
+1. **数据类型改 Rust 风格**：`u8/u16/u32/u64`、`i8/i16/i32/i64`、`bool`、`[u8; N]`、`[T; N]`、`Vec<T>`、`CStr`、`CStrZ`；
+   Win32 类型保留 `RECT`/`POINT`/`SIZE`/`COLORREF`/`LOGFONTA` 并与 Rust 表达互注（`smc-format.md` §0.2）。
+2. **知识评级统一**：`[E]` 直接证据 / `[I]` 推断 / `[?]` 未知 / `[C]` 已推翻；凡例集中在 `smc-format.md` §0.1，
+   各文档首部引用。
+3. **新增 §0.4「Ptr32 与无语义字节」**：明确两类必须原样保留的字节及其判别特征。
+4. 全部专题文档（`music-fields.md`、`layout.md`、`lyrics.md`、`encoding.md`、`font-resources.md`、
+   `unknown-fields.md`、`function-index.md`）按同一凡例重排；表格逐行补评级。
+5. 章节编号统一：主规范 §0–§11；专题文档 §0 为索引/速览。
+
+## 9. 成本与范围控制记录
+
+- 复用同一 REA/Ghidra 会话完成全部查询（未重复导入）。
+- 批量统计全部在本地 Python 完成；未把大段反编译重复送入上下文。
+- 未安装任何软件；D1 仅做只读勘察，未启动目标程序。
+- 未开发转换器、IR 或目标格式适配（任务书排除）。
+
+## 10. 停止条件
+
+满足任务书全部 5 项：
+1. 主要低成本静态未知字段已收尾（歌词 head、文件尾、符号表）。
+2. 0x45/0x46/0x47 取得结构级可验证进展。
+3. 文件级剩余未知字段系统记录（`unknown-fields.md` B1–B9、`field-coverage.md` §4）。
+4. 建立字段覆盖清单并统一口径。
+5. 明确动态调试方案（可行、无需安装、需用户确认）。
+
+## 11. 遗留与下一步
+
+优先项见 `open-questions.md` 的 P1–P4。建议下一阶段首项：
+
+1. `MsgHdr+0x03/+0x04/+0x1E` 的 xref 定位（成本低、直接影响核心层语义覆盖）。
+2. `MeasTail` / `StaffTail` 的写回逐字段对照（可一次性消灭约 96 个 U 字节）。
+3. `RtmData` 事件体（结构已知，内部待定）。
+
 
