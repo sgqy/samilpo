@@ -27,3 +27,7 @@ https://archive.org/details/samilpo-2
 可用的下载链接在这里。
 
 https://web.archive.org/web/20160211201306/https://www.silverstar.co.jp/music/product/trial.html
+
+## 发端
+
+B 站分享 https://www.bilibili.com/opus/1174433458243502116#reply294263626496
