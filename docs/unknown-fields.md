@@ -1,8 +1,8 @@
 # SMC 未知字段与未解结构
 
-> 凡例见 `smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
+> 凡例见 `docs/smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
 > 状态：`Open`（待研究）/ `Blocked`（需动态调试或额外样本）/ `Low`（低优先级）。
-> 逐结构的字节覆盖率见 `field-coverage.md`。
+> 逐结构的字节覆盖率见 `docs/field-coverage.md`。
 
 ## A. 已确认读写但语义未明（Inferred）
 
@@ -38,7 +38,7 @@
 ### B4. type 0x47（节奏型）事件体语义
 
 - 语料 12716 条（其中 101 条内嵌于 0x45）。
-- 顶层结构已恢复（见 `smc-format.md` §6.9）：`totalSize/stride/字段A/字段B/eventCount/eventSize/事件块/第二段`。
+- 顶层结构已恢复（见 `docs/smc-format.md` §6.9）：`totalSize/stride/字段A/字段B/eventCount/eventSize/事件块/第二段`。
 - **每条事件（16 字节）与第二段（6 字节/条）内部字段未解析**。
 - 相关函数：`CRtmData::ConvertToPlayData`（导出）、`CRtmData::GetRealMidiKey` 0x10047410、
   `CRtmData::ReadRtmData` 0x10046210、`CRtmData::GetFullFileName` 0x100472F0。
@@ -47,14 +47,14 @@
 ### B5. type 0x46（指板）与 `FretInfo` 的 8 字节对
 
 - 语料 177909 条（与 0x45 一一对应）。
-- 已确认：`+0x00` 基准品位、`+0x02` 6 弦品位、`+0x08` 4 组 (起始,结束) 对（见 `smc-format.md` §6.8）[E]。
+- 已确认：`+0x00` 基准品位、`+0x02` 6 弦品位、`+0x08` 4 组 (起始,结束) 对（见 `docs/smc-format.md` §6.8）[E]。
 - **4 组 (起始,结束) 对的具体含义**（按弦的按弦区间？）未定 [?]。
 - 状态：`Open`（低）。
 
 ### B5b. type 0x45 的 head（长度 100）
 
 - headLen ∈ {0, 100}；长度 100 的 head 为**持久化运行期结构**（含 MFC42 区段 `Ptr32` 与栈值）[E]。
-- 详见 `smc-format.md` §6.9。第三方处理方式：**原样保留**。
+- 详见 `docs/smc-format.md` §6.9。第三方处理方式：**原样保留**。
 - 状态：`Open`（中；如需完全解释需动态调试）。
 
 ### B6. 文档级消息 0x04 / 0x3F / 0x40
@@ -70,13 +70,13 @@
 
 ### B8. SYMP 头 / SMC 块 / CSMCtrlTool / CSMFileInfo 的其余字段
 
-- 大量字段读写位置已知但语义未定（见 `smc-format.md` §3.1、§3.5、§3.6）。
+- 大量字段读写位置已知但语义未定（见 `docs/smc-format.md` §3.1、§3.5、§3.6）。
 - 入口：`CSMFileInfo::SetLogicPageInfo` 0x10094ED0、`UpdateLogicDoc` 0x100950A0。
 - 状态：`Open`（低；需 exe 侧消费者分析）。
 
 ### B9. Meas 尾块未解字段
 
-- `+0x44..+0x52`、`+0x4E`/`+0x50` 等（见 `layout.md` §4.2）。
+- `+0x44..+0x52`、`+0x4E`/`+0x50` 等（见 `docs/layout.md` §4.2）。
 - 状态：`Open`（低）。
 
 ## C. 需要动态调试或额外样本（Blocked）
@@ -111,11 +111,11 @@
 | 二 | 歌词 head +0x06/+0x0D/+0x0E/+0x0F 含义未知 | **闭合**：未初始化栈残留 | 读写两侧汇编集合一致 [E] |
 | 三 | ObjectCore +0x01 是语义字段 | 写入未初始化栈的保留字节 | `CSMObject::Write` 0x1007A740 [E] |
 | 三 | ObjectCore +0x06 未知 | `= headLen + 12`（派生冗余长度） | `CSMObject::Write` [E] |
-| 三 | 音乐符号来自文本编码 | 引擎单字节常量 + KayakumA 符号字体；与 889F 零重叠 | `_probe_font_cmap.py` / `_probe_symbols.py` [E] |
+| 三 | 音乐符号来自文本编码 | 引擎单字节常量 + KayakumA 符号字体；与 889F 零重叠 | `tools/_probe_font_cmap.py` / `tools/_probe_symbols.py` [E] |
 
 ## E. 剩余未知字节范围（摘要）
 
-精确到结构的字节范围见 `field-coverage.md`。要点：
+精确到结构的字节范围见 `docs/field-coverage.md`。要点：
 
 1. **无语义区域**（可安全保留，不需解释）：ObjectCore +0x01；ObjectCore +0x06（派生）；
    歌词 head 的 6 个残留字节；type 0x45 headLen 100 的绝大部分。

@@ -1,12 +1,12 @@
 # 未解决问题
 
-> 凡例见 `smc-format.md` §0。按优先级排序；已闭合项保留以便追溯。
-> 逐结构字节覆盖率与无语义清单见 `field-coverage.md`。
+> 凡例见 `docs/smc-format.md` §0。按优先级排序；已闭合项保留以便追溯。
+> 逐结构字节覆盖率与无语义清单见 `docs/field-coverage.md`。
 
 ## 已解决（第四阶段）
 
 - **[已解决] 歌词 head +0x02 / +0x04 归属** — 汇编级证据：`+0x02` 为 `u8` 样式位（`& 1/2/4`）、
-  `+0x04` 为 `u16` 字号（0 → 13）。见 `lyrics.md` §3、`docs/phase4-log.md` §1。
+  `+0x04` 为 `u16` 字号（0 → 13）。见 `docs/lyrics.md` §3、`project/phase4-log.md` §1。
 - **[已解决] 歌词 head +0x06 / +0x0D / +0x0E / +0x0F** — 均为**未初始化栈残留**：
   读写两侧的访问/写入集合完全一致（读取侧未访问、写入侧未写入同一组字节）；30353 条记录验证。
 - **[已解决] 文件尾 4 字节** — `CSMDoc::Save` 0x100773C0 写入 bodyLen 的冗余副本（与起始处同一变量）。
@@ -15,7 +15,7 @@
   `eventCount` / `eventSize`(16) / 事件块 / `count2` / `size2`(6) / 第二段。
 - **[已解决] type 0x45 headLen 100 的性质** — 持久化运行期结构（含 MFC42 区段 `Ptr32` 与栈值），
   无语义，须原样保留。
-- **[已解决] 音乐符号常量表** — 12 个常量表的地址、字节序列与项数已导出（`font-resources.md` §4.2）。
+- **[已解决] 音乐符号常量表** — 12 个常量表的地址、字节序列与项数已导出（`docs/font-resources.md` §4.2）。
 - **[已解决] 动态调试可行性** — `debugging-plan.md`：x64dbg x32 `headless.exe` 为可行主方案。
 
 ## 已解决（第三阶段）
@@ -90,7 +90,7 @@
 
 12. **符号表补充导出**
     - `codeAcci` / `codeSmallDigit` / `codeSlid` 的完整项数与逐项语义
-      （`font-resources.md` §4.2 已给主要项）。
+      （`docs/font-resources.md` §4.2 已给主要项）。
 
 ### P4 — 低优先级
 
@@ -100,7 +100,7 @@
 16. **`ObjectCore.f8` 的消费者**。
 17. **旧格式路径** `FUN_00425090` / `CSMDoc::ImportSMC` 0x10077690（当前语料不触发）。
 18. **条件分支覆盖**：type 0x26/0x27/0x28/0x29/0x2A/0x2B/0x34–0x3E/0x42/0x4A（语料 0–14 例）；
-    见 `field-coverage.md` §5。
+    见 `docs/field-coverage.md` §5。
 
 ## 动态调试（需用户确认）
 

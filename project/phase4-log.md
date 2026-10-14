@@ -218,7 +218,7 @@ CFile::Seek(uVar4, 0)                    ; 回到尾部之后
 | … | u16 ×2 | 第二段：`count2`（恒 16? 见下）、`size2`（**恒 6**）|
 | … | u8[count2 × 6] | 第二段数据（每条 6 字节）|
 
-- 验证（`_probe_p4_rhythm.py`，101 条）：`stride = 16`、`eventSize = 16`、`size2 = 6`；
+- 验证（`tools/_probe_p4_rhythm.py`，101 条）：`stride = 16`、`eventSize = 16`、`size2 = 6`；
   `total = 已消耗字节数 + 4`（**101/101 成立**，故 +00 自含计数）。
 - 内嵌位置：`CRtmData` 出现在 **0x45 的 Rhythm 部分**（101 处）；独立 0x47（type 0x47 共 12716 条）只含 Msg 部分。
 
@@ -229,7 +229,7 @@ CFile::Seek(uVar4, 0)                    ; 回到尾部之后
 - 中间**打印十进制数字**：`CString::Format((CString)..., *(short*)(param_1 + 0x1C))`
   → **长休止的小节数在 `MsgHdr+0x1C`**（=「符干长度」字段，此处复用为小节数）[E]。
 - 数字使用 `CSMCtrlTool+0x3b0` 处 LOGFONT（第 9 个 LOGFONT，字号按 `ctrl+0x1c` 缩放）[E]。
-- headLen = 60 的 head 内部字段**未在本阶段解析**（`unknown-fields.md` B2）。
+- headLen = 60 的 head 内部字段**未在本阶段解析**（`docs/unknown-fields.md` B2）。
 
 ### 5.5 其他类型
 
@@ -289,7 +289,7 @@ CFile::Seek(uVar4, 0)                    ; 回到尾部之后
 
 两个覆盖率：**结构覆盖 = (S+I+N)/总**；**语义覆盖 = (S+I)/总**。
 
-计算结果（全文见 `field-coverage.md`）：
+计算结果（全文见 `docs/field-coverage.md`）：
 
 | 层 | 总字节 | 结构覆盖 | 语义覆盖 | 未解释 |
 |---|---:|---:|---:|---:|
@@ -298,7 +298,7 @@ CFile::Seek(uVar4, 0)                    ; 回到尾部之后
 | 文件级大块（SYMP/SMC/CtrlTool/FileInfo） | 3388 | 19.9% | 19.9% | 80.1% |
 | 全部 | 3804 | 25.7% | 25.1% | 74.3% |
 
-- 无语义字节（N）合计仅 **22/3804 = 0.6%**，均已逐一定位（`field-coverage.md` §3）。
+- 无语义字节（N）合计仅 **22/3804 = 0.6%**，均已逐一定位（`docs/field-coverage.md` §3）。
 - 文件级大块的低覆盖主要来自 SYMP 与 SMC 的**大面积固定零区**（X = 2124 字节）。
 
 ## 8. 文档统一（本轮）[E]
@@ -306,12 +306,12 @@ CFile::Seek(uVar4, 0)                    ; 回到尾部之后
 按用户要求统一表记：
 
 1. **数据类型改 Rust 风格**：`u8/u16/u32/u64`、`i8/i16/i32/i64`、`bool`、`[u8; N]`、`[T; N]`、`Vec<T>`、`CStr`、`CStrZ`；
-   Win32 类型保留 `RECT`/`POINT`/`SIZE`/`COLORREF`/`LOGFONTA` 并与 Rust 表达互注（`smc-format.md` §0.2）。
-2. **知识评级统一**：`[E]` 直接证据 / `[I]` 推断 / `[?]` 未知 / `[C]` 已推翻；凡例集中在 `smc-format.md` §0.1，
+   Win32 类型保留 `RECT`/`POINT`/`SIZE`/`COLORREF`/`LOGFONTA` 并与 Rust 表达互注（`docs/smc-format.md` §0.2）。
+2. **知识评级统一**：`[E]` 直接证据 / `[I]` 推断 / `[?]` 未知 / `[C]` 已推翻；凡例集中在 `docs/smc-format.md` §0.1，
    各文档首部引用。
 3. **新增 §0.4「Ptr32 与无语义字节」**：明确两类必须原样保留的字节及其判别特征。
-4. 全部专题文档（`music-fields.md`、`layout.md`、`lyrics.md`、`encoding.md`、`font-resources.md`、
-   `unknown-fields.md`、`function-index.md`）按同一凡例重排；表格逐行补评级。
+4. 全部专题文档（`docs/music-fields.md`、`docs/layout.md`、`docs/lyrics.md`、`docs/encoding.md`、`docs/font-resources.md`、
+   `docs/unknown-fields.md`、`function-index.md`）按同一凡例重排；表格逐行补评级。
 5. 章节编号统一：主规范 §0–§11；专题文档 §0 为索引/速览。
 
 ## 9. 成本与范围控制记录
@@ -326,7 +326,7 @@ CFile::Seek(uVar4, 0)                    ; 回到尾部之后
 满足任务书全部 5 项：
 1. 主要低成本静态未知字段已收尾（歌词 head、文件尾、符号表）。
 2. 0x45/0x46/0x47 取得结构级可验证进展。
-3. 文件级剩余未知字段系统记录（`unknown-fields.md` B1–B9、`field-coverage.md` §4）。
+3. 文件级剩余未知字段系统记录（`docs/unknown-fields.md` B1–B9、`docs/field-coverage.md` §4）。
 4. 建立字段覆盖清单并统一口径。
 5. 明确动态调试方案（可行、无需安装、需用户确认）。
 

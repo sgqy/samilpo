@@ -14,7 +14,7 @@ import struct, os, sys
 FONTDIR = r'C:\Program Files (x86)\Samilpo 2.0\Font'
 CODDIR = r'C:\Program Files (x86)\Samilpo 2.0'
 
-# 889F forward-table codepoints used by the corpus (sampled ranges from encoding.md)
+# 889F forward-table codepoints used by the corpus (sampled ranges from docs/encoding.md)
 PROBE_CODES = [0x8a7d, 0x9660, 0x8cda, 0x9299, 0x8eae, 0x965b, 0x8a4c, 0x889f,
                0xf041, 0xf040, 0xf300, 0xe0a1, 0x9f9f, 0x8800]
 

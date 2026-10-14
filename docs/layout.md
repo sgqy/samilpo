@@ -1,6 +1,6 @@
 # SMC 布局结构（System / Staff / Meas / Page / Block）
 
-> 凡例见 `smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
+> 凡例见 `docs/smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
 > 地址属 `engine.dll`（基址 `0x10000000`）。
 
 ## 1. 层次结构

@@ -1,7 +1,7 @@
 # 第三阶段执行记录（2026-10-14）
 
 > 工作日志：记录本阶段新增的**直接证据**（函数地址 + 伪代码依据）与待验证项。
-> 最终归档目标是 `smc-format.md` 等专题文档；本文件是过程记录。
+> 最终归档目标是 `docs/smc-format.md` 等专题文档；本文件是过程记录。
 
 ## 0. 会话
 
@@ -175,7 +175,7 @@ this[0x76] = 0; MakeNoteMarkCtrl(this);
 | 0x45 | virtual `vtable+0x18` | **和弦记号**（CChordSymbol 自身绘制） |
 | 0x4a | DrawBezierLine | 贝塞尔曲线 |
 | 0x09 / 0x0a | （不在此 switch）| 连音线家族：由 `CSMObject::Read` 注册到 tie/slur 表 |
-| 0x3f / 0x40 | （文档级，不在此 switch）| 见 `smc-format.md` §6 |
+| 0x3f / 0x40 | （文档级，不在此 switch）| 见 `docs/smc-format.md` §6 |
 
 补充证据：
 - 0x2a：`local_18[0] = *(uchar*)((int)&codeSmallDigit + *(ushort*)(param_1+0x1C) + 1)` → 用 **ObjectCore.f2 的偏移取值**（不是 head）[E]

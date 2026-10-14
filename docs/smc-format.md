@@ -1,6 +1,6 @@
 # SMC 文件格式规范（Samilpo 2.0）
 
-> 状态：初版定稿（第四阶段末）。第一至第四阶段成果已汇总；未解字段见 `unknown-fields.md` 与 `field-coverage.md`。
+> 状态：初版定稿（第四阶段末）。第一至第四阶段成果已汇总；未解字段见 `docs/unknown-fields.md` 与 `docs/field-coverage.md`。
 
 ---
 
@@ -55,7 +55,7 @@
 1. **未初始化残留**（栈残留）：写入方未初始化局部变量即整体 memcpy 到文件。读取方从不访问。特征：同一字段在不同样本中取大范围随机值，且与任何已知语义无关。
 2. **持久化运行期结构**（含 `Ptr32`）：把内存中的 C++ 对象或栈结构原样写入。特征：含落在 `MFC42.DLL`（`0x5F400000` 段）或 `engine.dll` 的绝对地址。
 
-第三方解析器对二者的正确处理都是**原样保留**；重建时若需写出，只能沿用原字节或写入确定性的占位值。已确认的此类区域列于 `field-coverage.md` 的「无语义」类别。
+第三方解析器对二者的正确处理都是**原样保留**；重建时若需写出，只能沿用原字节或写入确定性的占位值。已确认的此类区域列于 `docs/field-coverage.md` 的「无语义」类别。
 
 ---
 
@@ -91,7 +91,7 @@ SMC 是 Samilpo 2.0（韩国记谱软件）的乐谱文档格式。一个文件�
 |---|---|
 | 字节序 | 全部小端 |
 | 对齐 | 无对齐填充 |
-| 文本编码 | **889F Code**（见 §8、`encoding.md`） |
+| 文本编码 | **889F Code**（见 §8、`docs/encoding.md`） |
 | 对象 key | `u32`，同一文档内唯一，读取时经 `CSMSystem::GetKey` 重映射 [E] |
 | 字符串 | `CStr`（带 `u16 len`）或 `CStrZ`（NUL 结尾），依结构而定 |
 
@@ -189,7 +189,7 @@ FontRecord :=
 
 `[i16; 12]`（→ +4..+0x1A）+ `[u32; 2]`（→ +0x1C, +0x20）[E]。
 样本：`6, 4, 79, 79, 86, 90, 30, 113, 9, 8, 0, 0, 529, 795`。
-导出函数 `SetLogicPageInfo(POINT, RECT, i16×4, …)` 暗示为页面版式信息 [I]。字段语义见 `layout.md` §8。
+导出函数 `SetLogicPageInfo(POINT, RECT, i16×4, …)` 暗示为页面版式信息 [I]。字段语义见 `docs/layout.md` §8。
 
 ---
 
@@ -233,7 +233,7 @@ ObjectCore :=
 
 - `+0x06 = headLen + 0xC`：由 `CSMObject::Write` 写入，读取端不读 [E]。
 - `+0x01` 为写入方未初始化的栈字节：全语料 46% 为 0，其余为大范围随机值；
-  读取端完全忽略，故写入 0 安全 [E]（`docs/phase3-log.md` §1.4、§4b）。
+  读取端完全忽略，故写入 0 安全 [E]（`project/phase3-log.md` §1.4、§4b）。
 
 内存布局（供交叉引用反编译）：`+0x18`=f8、`+0x1C`=f2、`+0x1E`=headLen、`+0x20`=head 指针、
 `+0x24`=子项数组、`+0x38`=控制点数组、`+0x08`=父指针、`+0x0C`=文档、`+0x14`=本对象 key、`+0x10`=页面/视图指针 [E]。
@@ -533,11 +533,11 @@ head = `0x10 + 文本字节数` [E]。头 16 字节字段表（第四阶段汇�
   其余字节来自未初始化栈（`CONCAT31` 仅设低字节）[E]。
 - 验证（400 文件、30353 条）：样式 {0: 30254, 1: 99}、字号 {13: 30136, 14: 140, 12: 74, 0: 3}、
   head+0x06 有 317 个不同值、head+0x0D..0x0F 有 535 种组合（仅 6089 条全 0）→ 确认残留 [E]。
-- 关联：歌词**始终**为 type 0x01 音符的嵌入子对象（2961/2961）[E]。详见 `lyrics.md`。
+- 关联：歌词**始终**为 type 0x01 音符的嵌入子对象（2961/2961）[E]。详见 `docs/lyrics.md`。
 
 ### 6.11 type 0x06（文本框，`CSMTextMsg`）
 
-head 为 **TLV** 串（标签 + 长度 + 值），见 `lyrics.md` §6 [E]。
+head 为 **TLV** 串（标签 + 长度 + 值），见 `docs/lyrics.md` §6 [E]。
 
 ### 6.12 type 0x1B（力度记号）
 
@@ -547,7 +547,7 @@ head 为 **TLV** 串（标签 + 长度 + 值），见 `lyrics.md` §6 [E]。
 
 - `DrawLongrest` 0x100595B0 以 `codeLongRestBar` 绘制长休止条，并存**中间打印十进制数字**：
   `CString::Format(..., *(i16*)(msg + 0x1C))` → **小节数在 `MsgHdr+0x1C`** [E]。
-- headLen 60 的 head 内部字段未解析 [?]（`unknown-fields.md` B2）。
+- headLen 60 的 head 内部字段未解析 [?]（`docs/unknown-fields.md` B2）。
 
 ### 6.14 type 0x42（MIDI 短消息）
 
@@ -692,7 +692,7 @@ SMC 文本使用 **code id 1 = "889F Code"**（`889F.cod`），即以 Shift-JIS 
 - 码位区段：0x88–0x9F、0xE0–0xFC，另含 SJIS 用户定义区 0xF000–0xF300。
 - 验证：8451/8451 曲名、全部歌词记录、1991 个文本框全部正确解码 [E]。
 
-完整说明见 `encoding.md`。
+完整说明见 `docs/encoding.md`。
 
 ---
 
@@ -702,7 +702,7 @@ SMC 文本使用 **code id 1 = "889F Code"**（`889F.cod`），即以 Shift-JIS 
 
 - 程序启动时加载 8 个 TTF（`<安装目录>\Font\`）[E]。
 - SMC 文件内的字体表（§3.4）保存**字体显示名与索引**，供消息的字体索引字段引用。
-- 详见 `font-resources.md`。
+- 详见 `docs/font-resources.md`。
 
 ### 9.2 音乐符号
 
@@ -711,7 +711,7 @@ SMC 文本使用 **code id 1 = "889F Code"**（`889F.cod`），即以 Shift-JIS 
 
 - `KAYAKUMA.TTF` 的 cmap **仅覆盖 U+F020–U+F0FF**（223 字形）[E]。
 - 889F 正向表**没有任何**码位映射到 U+F000–U+F0FF（0 个）→ 音乐符号与韩文文本使用**互不重叠的两套编码空间** [E]。
-- 符号常量表（引擎映像 `0x10100360`–`0x10100700`）见 `font-resources.md` §4。
+- 符号常量表（引擎映像 `0x10100360`–`0x10100700`）见 `docs/font-resources.md` §4。
 
 ### 9.3 图片
 
@@ -731,7 +731,7 @@ exe 通过 `SHDrawJpeg.dll` 的 `LOAD_JPEG_File` / `DRAW_JPEG_File` 从**文件*
 
 ## 11. 未知字段与研究限制
 
-见 `unknown-fields.md`（未解项清单）与 `field-coverage.md`（逐结构覆盖率与字节范围）。
+见 `docs/unknown-fields.md`（未解项清单）与 `docs/field-coverage.md`（逐结构覆盖率与字节范围）。
 
 主要空白：
 1. `MsgHdr+0x03`、`+0x04`、`+0x28` 的语义。

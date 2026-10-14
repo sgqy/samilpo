@@ -1,8 +1,8 @@
 # SMC 歌词消息（Msg type 0x19）与关联机制
 
-> 凡例见 `smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
+> 凡例见 `docs/smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
 > 结论：type **0x19 = `CSMLyricMsg`**，一条记录 = 一个歌词音节单元，**内嵌于 type 0x01 音符消息的子对象列表中**。
-> 文本用 889F 编码（见 `encoding.md`）。head 字段表已由**汇编级证据**闭合（第四阶段）。
+> 文本用 889F 编码（见 `docs/encoding.md`）。head 字段表已由**汇编级证据**闭合（第四阶段）。
 
 ## 1. 类型身份的直接证据
 
@@ -20,7 +20,7 @@
 
 ## 2. 消息头与 head 的关系
 
-0x19 与所有消息一样使用 **0x2C 字节消息头 + ObjectCore**（见 `smc-format.md` §5.1、§6.1），
+0x19 与所有消息一样使用 **0x2C 字节消息头 + ObjectCore**（见 `docs/smc-format.md` §5.1、§6.1），
 私有数据放在 ObjectCore 的 head 负载里：
 
 ```
@@ -183,6 +183,6 @@ MOV  EAX, [EDX+0x20] ; ADD EAX, 0x10           ; 文本指针 = head+0x10
 
 ## 9. 未决项
 
-1. 未映射 889F 码位在歌词中的确切来源（私人字形或符号）：见 `encoding.md` §8 [?]。
+1. 未映射 889F 码位在歌词中的确切来源（私人字形或符号）：见 `docs/encoding.md` §8 [?]。
 2. 歌词的行分组规则（如何判定换行/对齐）：需分析 `CSMDoc::GetRealRectOfLyrics` 0x10003D40
    的调用者与绘制循环 [?]。

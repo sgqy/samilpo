@@ -1,8 +1,8 @@
 # SMC 音乐字段与消息语义
 
-> 凡例见 `smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
+> 凡例见 `docs/smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
 > 本文件记录音符、休止符、音乐属性、演奏控制类消息的字段级结构。
-> 地址均属 `engine.dll`（基址 `0x10000000`）。主规范见 `smc-format.md` §6。
+> 地址均属 `engine.dll`（基址 `0x10000000`）。主规范见 `docs/smc-format.md` §6。
 
 ## 0. 关键函数索引
 
@@ -139,7 +139,7 @@ NoteHead :=
 ## 8. 节奏型 Msg（type 0x47）
 
 - headLen 0；数据在 `CRhythm` / `CRtmData` 结构中 [E]。
-- 完整字段表见 `smc-format.md` §6.9（RtmData），以及 `unknown-fields.md` B4（事件体语义）。
+- 完整字段表见 `docs/smc-format.md` §6.9（RtmData），以及 `docs/unknown-fields.md` B4（事件体语义）。
 - 语料 12716 条；其中 101 条作为 0x45 的 `Rhythm` 部分内嵌 [E]。
 
 ## 9. 谱表名 Msg（type 0x49）
@@ -167,9 +167,9 @@ NoteHead :=
 - 每文件各出现一次（0x3F 8451、0x40 8451、0x04 8342）[E]。
 - 均无 head（headLen 0）[E]。
 - 语义未定；0x04 亦在 `SMDrawMsg` 中映射到 `DrawMultiText` [E]。
-- 详见 `unknown-fields.md` B6。
+- 详见 `docs/unknown-fields.md` B6。
 
 ## 13. 范围说明
 
 本文件覆盖全部高频消息类型。低频类型（0x2C 长休止、0x0C Coda、0x46 指板、0x47 节奏）的
-head 内部字段见 `smc-format.md` §6.8/§6.9/§6.13 与 `unknown-fields.md`。
+head 内部字段见 `docs/smc-format.md` §6.8/§6.9/§6.13 与 `docs/unknown-fields.md`。

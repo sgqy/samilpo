@@ -3,7 +3,7 @@
 Implements ONLY the layout recovered from static analysis of MusicBook.exe
 FUN_00424670 and engine.dll CSMDoc::Load and its sub-readers. Field semantics
 are mostly unknown; this script validates that the recovered framing consumes
-the sample file exactly. See smc-format.md.
+the sample file exactly. See docs/smc-format.md.
 
 Usage: python smc_walk.py <file.smc> [-v]
 """

@@ -1,6 +1,6 @@
 """Phase-3 probe: verify newly recovered SMC fields against real samples.
 
-Checks (each is a falsifiable claim from docs/phase3-log.md):
+Checks (each is a falsifiable claim from project/phase3-log.md):
   C1  ObjectCore disk +0x06 == headLen + 12   (CSMObject::Write 0x1007a740)
   C2  ObjectCore disk +0x01 == 0
   C3  type 0x01 head[0] (MIDI key) in 0..127

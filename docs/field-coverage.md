@@ -1,6 +1,6 @@
 # SMC 字段覆盖清单
 
-> 凡例见 `smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
+> 凡例见 `docs/smc-format.md` §0（知识评级 `[E]`/`[I]`/`[?]`/`[C]`；数据类型为 Rust 风格）。
 > 本文件的数字由 `tools/field_coverage.py` 生成，脚本内含字段级定义，是本清单的**唯一数据源**。
 > 修改覆盖度时改脚本再重跑，避免口径漂移。
 
@@ -80,10 +80,10 @@
 |---|---:|---|---|
 | ObjectCore +0x01 | 1/对象 | 写入方未初始化栈字节 | `CSMObject::Write` 0x1007A740；读取端不访问 |
 | ObjectCore +0x06 | 2/对象 | 派生值 `headLen + 12` | 同上；读取端跳过 |
-| 歌词 head +0x03/+0x06/+0x07/+0x0D/+0x0E/+0x0F | 6/记录 | 未初始化栈残留 | 读写两侧访问集合一致（`docs/phase4-log.md` §1） |
+| 歌词 head +0x03/+0x06/+0x07/+0x0D/+0x0E/+0x0F | 6/记录 | 未初始化栈残留 | 读写两侧访问集合一致（`project/phase4-log.md` §1） |
 | MsgHdr +0x0C/+0x0E/+0x10/+0x12/+0x1A | 10/消息 | 纯绘制缓存（外接矩形） | `DrawMsg` 系列回写；不参与文件语义 |
 | MeasCore +0x01、+0x06 | 3/小节 | 不读 | `CSMMeas::Read` |
-| type 0x45 head（长度 100 时） | 100/记录 | 持久化运行期结构（含 `Ptr32`） | `smc-format.md` §6.9 |
+| type 0x45 head（长度 100 时） | 100/记录 | 持久化运行期结构（含 `Ptr32`） | `docs/smc-format.md` §6.9 |
 
 ## 4. 未解释字节的定位（U + X）
 
