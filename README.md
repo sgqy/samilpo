@@ -1,6 +1,8 @@
 # Samilpo Reverse Engineering Report
 
-> Use AI Translation to convert this readme to your native language.
+> Use AI Translation to convert the docs to your native language.
+
+RDFM: `docs/smc-format.md`
 
 ## 使用工具
 
