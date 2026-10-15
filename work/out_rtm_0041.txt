@@ -1,0 +1,136 @@
+============================================================================
+measure 1 staff 1 style=b'KOREAN' name=b'6/8GudGoRi-2'
+measures=2 measLen=720 events=67 stride=16 tracks=4
+  track 0 ch=9  trans=0    events=29  PERCUSSION
+      raw      = 68 09 00 01 00 00
+      starts   = [0, 256, 341, 512, 683, 768, 853, 939, 1024, 1280, 1365, 1536, 1707, 1877]
+      keys     = [0, 65, 66]
+      key=0   unk2=244 start=0     dur=185   vel=0   b15=9  
+      key=0   unk2=9   start=0     dur=8377  vel=0   b15=9  
+      key=0   unk2=134 start=0     dur=201   vel=0   b15=9  
+      key=0   unk2=112 start=0     dur=181   vel=64  b15=5  
+  track 1 ch=5  trans=0    events=24 
+      raw      = 6c 05 00 01 00 00
+      starts   = [256, 341, 683, 768, 853, 1280, 1365, 1707]
+      keys     = [60, 64, 67]
+      key=60  unk2=100 start=256   dur=85    vel=64  b15=0  
+      key=64  unk2=100 start=256   dur=85    vel=64  b15=0  
+      key=67  unk2=100 start=256   dur=85    vel=64  b15=0  
+      key=60  unk2=100 start=341   dur=171   vel=64  b15=0  
+  track 2 ch=6  trans=0    events=8  
+      raw      = 71 06 00 0c 00 00
+      starts   = [683, 768, 853, 939, 1707, 1792, 1877, 1963]
+      keys     = [67, 79]
+      key=79  unk2=100 start=683   dur=85    vel=64  b15=0  
+      key=67  unk2=100 start=768   dur=85    vel=64  b15=0  
+      key=79  unk2=100 start=853   dur=85    vel=64  b15=0  
+      key=67  unk2=100 start=939   dur=85    vel=64  b15=0  
+  track 3 ch=7  trans=-12  events=6  
+      raw      = 7f 07 00 2c f4 ff
+      starts   = [0, 512, 853, 1024, 1536, 1877]
+      keys     = [43, 48]
+      key=48  unk2=100 start=0     dur=512   vel=64  b15=0  
+      key=48  unk2=100 start=512   dur=341   vel=64  b15=0  
+      key=43  unk2=100 start=853   dur=171   vel=64  b15=0  
+      key=43  unk2=100 start=1024  dur=512   vel=64  b15=7  
+  all starts inside 2048 units: YES
+  distinct track indexes used: [0, 1, 2, 3]
+  track index within table: True
+============================================================================
+measure 67 staff 1 style=b'_RHYTHM2' name=b'MyLove'
+measures=1 measLen=384 events=51 stride=16 tracks=7
+  track 0 ch=5  trans=0    events=25 
+      raw      = 7f 05 00 05 00 00
+      starts   = [0, 256, 512, 768]
+      keys     = [0, 60]
+      key=0   unk2=195 start=0     dur=181   vel=195 b15=5  
+      key=0   unk2=195 start=0     dur=8373  vel=195 b15=5  
+      key=0   unk2=195 start=0     dur=1221  vel=195 b15=5  
+      key=0   unk2=133 start=0     dur=181   vel=0   b15=5  
+  track 1 ch=5  trans=0    events=4  
+      raw      = 7f 05 00 05 00 00
+      starts   = [0, 256, 512, 768]
+      keys     = [64]
+      key=64  unk2=100 start=0     dur=1024  vel=64  b15=0  
+      key=64  unk2=100 start=256   dur=768   vel=64  b15=0  
+      key=64  unk2=100 start=512   dur=512   vel=64  b15=0  
+      key=64  unk2=100 start=768   dur=256   vel=64  b15=0  
+  track 2 ch=5  trans=0    events=4  
+      raw      = 7f 05 00 05 00 00
+      starts   = [0, 256, 512, 768]
+      keys     = [67]
+      key=67  unk2=100 start=0     dur=1024  vel=64  b15=0  
+      key=67  unk2=100 start=256   dur=768   vel=64  b15=0  
+      key=67  unk2=100 start=512   dur=512   vel=64  b15=0  
+      key=67  unk2=100 start=768   dur=256   vel=64  b15=0  
+  track 3 ch=8  trans=0    events=4  
+      raw      = 7f 08 00 22 00 00
+      starts   = [0, 384, 512, 896]
+      keys     = [48]
+      key=48  unk2=100 start=0     dur=1024  vel=64  b15=0  
+      key=48  unk2=100 start=384   dur=128   vel=64  b15=0  
+      key=48  unk2=100 start=512   dur=512   vel=64  b15=0  
+      key=48  unk2=100 start=896   dur=128   vel=64  b15=0  
+  track 4 ch=9  trans=0    events=8   PERCUSSION
+      raw      = 7f 09 00 01 00 00
+      starts   = [0, 128, 256, 384, 512, 640, 768, 896]
+      keys     = [51]
+      key=51  unk2=100 start=0     dur=128   vel=64  b15=0  
+      key=51  unk2=100 start=128   dur=128   vel=64  b15=0  
+      key=51  unk2=100 start=256   dur=128   vel=64  b15=0  
+      key=51  unk2=100 start=384   dur=128   vel=64  b15=0  
+  track 5 ch=9  trans=0    events=2   PERCUSSION
+      raw      = 7f 09 00 01 00 00
+      starts   = [256, 768]
+      keys     = [38]
+      key=38  unk2=100 start=256   dur=256   vel=64  b15=0  
+      key=38  unk2=100 start=768   dur=256   vel=64  b15=0  
+  track 6 ch=9  trans=0    events=4   PERCUSSION
+      raw      = 7f 09 00 01 00 00
+      starts   = [0, 384, 512, 896]
+      keys     = [35]
+      key=35  unk2=100 start=0     dur=256   vel=64  b15=0  
+      key=35  unk2=100 start=384   dur=128   vel=64  b15=0  
+      key=35  unk2=100 start=512   dur=256   vel=64  b15=0  
+      key=35  unk2=100 start=896   dur=128   vel=64  b15=0  
+  all starts inside 1024 units: YES
+  distinct track indexes used: [0, 1, 2, 3, 4, 5, 6]
+  track index within table: True
+============================================================================
+measure 99 staff 1 style=b'KOREAN' name=b'6/8GudGoRi-2'
+measures=2 measLen=720 events=67 stride=16 tracks=4
+  track 0 ch=9  trans=0    events=29  PERCUSSION
+      raw      = 68 09 00 01 00 00
+      starts   = [0, 256, 341, 512, 683, 768, 853, 939, 1024, 1280, 1365, 1536, 1707, 1877]
+      keys     = [0, 65, 66]
+      key=0   unk2=9   start=0     dur=185   vel=0   b15=9  
+      key=0   unk2=8   start=0     dur=8377  vel=0   b15=9  
+      key=0   unk2=0   start=0     dur=201   vel=0   b15=9  
+      key=0   unk2=3   start=0     dur=181   vel=0   b15=5  
+  track 1 ch=5  trans=0    events=24 
+      raw      = 6c 05 00 01 00 00
+      starts   = [256, 341, 683, 768, 853, 1280, 1365, 1707]
+      keys     = [60, 64, 67]
+      key=60  unk2=100 start=256   dur=85    vel=64  b15=0  
+      key=64  unk2=100 start=256   dur=85    vel=64  b15=0  
+      key=67  unk2=100 start=256   dur=85    vel=64  b15=0  
+      key=60  unk2=100 start=341   dur=171   vel=64  b15=0  
+  track 2 ch=6  trans=0    events=8  
+      raw      = 71 06 00 0c 00 00
+      starts   = [683, 768, 853, 939, 1707, 1792, 1877, 1963]
+      keys     = [67, 79]
+      key=79  unk2=100 start=683   dur=85    vel=64  b15=2  
+      key=67  unk2=100 start=768   dur=85    vel=64  b15=0  
+      key=79  unk2=100 start=853   dur=85    vel=64  b15=2  
+      key=67  unk2=100 start=939   dur=85    vel=64  b15=2  
+  track 3 ch=7  trans=-12  events=6  
+      raw      = 7f 07 00 2c f4 ff
+      starts   = [0, 512, 853, 1024, 1536, 1877]
+      keys     = [43, 48]
+      key=48  unk2=100 start=0     dur=512   vel=64  b15=2  
+      key=48  unk2=100 start=512   dur=341   vel=64  b15=2  
+      key=43  unk2=100 start=853   dur=171   vel=64  b15=2  
+      key=43  unk2=100 start=1024  dur=512   vel=64  b15=0  
+  all starts inside 2048 units: YES
+  distinct track indexes used: [0, 1, 2, 3]
+  track index within table: True

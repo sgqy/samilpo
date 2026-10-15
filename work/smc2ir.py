@@ -657,21 +657,31 @@ def lyric_record(msg, cod, opts):
 def harmony_record(msg, anchor_note, pid, mi, opts, cod, staff=1):
     ce = getattr(msg, 'chord_extra', None)
     name = decode_text(ce.name, cod) if ce else ''
+    # The root is NOT the pitch of the note the symbol sits over. A chord symbol
+    # records only its suffix; the root is implied by the fingering stored in the
+    # embedded FretBoard, so it must be read back from the fret shape.
+    root = root_from_fret_info(ce.fret_info) if ce else None
     rec = {
         'kind': 'harmony', 'part': pid, 'meas': mi + 1,
         'staff': staff, 'voice': (anchor_note or {}).get('voice', 1),
         'on': anchor_note['on'] if anchor_note else 0,
         'name': name, 'kind_text': kind_from_surfix(name),
-        'root': ({'midi': anchor_note['midi'], 'step': anchor_note['step'],
-                  'alter': anchor_note['alter'], 'octave': anchor_note['octave']}
-                 if anchor_note and anchor_note['midi'] is not None else None),
+        'root': root,
+        'anchor_midi': anchor_note['midi'] if anchor_note else None,
         'anchored': anchor_note is not None,
         'src': {'key': msg.key},
     }
+    shape = shape_from_fret_info(ce.fret_info) if ce else None
     if opts.extent != 'musical':
         rec['ext'] = {'info_hex': ce.info.hex() if ce else '',
+                      'fret_info_hex': ce.fret_info.hex() if ce else '',
+                      'fret_shape': shape,
+                      'fret_base': (ce.fret_info[0] | (ce.fret_info[1] << 8))
+                                   if ce and len(ce.fret_info) >= 2 else None,
                       'head_len': msg.head_len,
                       'has_rhythm': ce.has_rhythm if ce else 0}
+    if opts.extent == 'debug' and shape:
+        rec['d_shape'] = shape
     return rec
 
 
@@ -682,6 +692,44 @@ SUFFIX_KIND = {
     '9': 'dominant-ninth', '6': 'major-sixth', 'sus4': 'suspended-fourth',
     'aug': 'augmented',
 }
+
+
+# Standard guitar tuning for the six strings of FretInfo, lowest first, as MIDI
+# note numbers (E2 A2 D3 G3 B3 E4). Index 0 is the 6th string, which is what a
+# chord diagram prints leftmost.
+OPEN_STRING_MIDI = (40, 45, 50, 55, 59, 64)
+STEP_NAMES = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
+
+
+def root_from_fret_info(raw):
+    """Derive the chord root from a FretInfo, as a chord diagram reads.
+
+    smc-format.md 6.8: +0x00 is baseFret and +0x02..+0x07 are the six string
+    fret values; >= 0xFE means the string is not played (the "x" in x02210).
+    The sounding bass note is the root. The chord message itself carries only a
+    suffix, so this fret shape is the sole place the root is recorded.
+    """
+    if not raw or len(raw) < 8:
+        return None
+    base = raw[0] | (raw[1] << 8)
+    midis = [OPEN_STRING_MIDI[i] + base + f
+             for i, f in enumerate(raw[2:8]) if f < 0xFE]
+    if not midis:
+        return None
+    midi = min(midis)
+    pc = midi % 12
+    return {'midi': midi,
+            'step': STEP_NAMES[pc].rstrip('#'),
+            'alter': 1 if '#' in STEP_NAMES[pc] else 0,
+            'octave': midi // 12 - 1}
+
+
+def shape_from_fret_info(raw):
+    """Print the six strings the way a chord diagram does, e.g. "x02210"."""
+    if not raw or len(raw) < 8:
+        return None
+    base = raw[0] | (raw[1] << 8)
+    return ''.join('x' if f >= 0xFE else str(base + f) for f in raw[2:8])
 
 
 def kind_from_surfix(name):

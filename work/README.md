@@ -28,13 +28,25 @@
 
 ## 用法
 
+三种产物一次生成（推荐）：
+
+```
+python work/smc_convert.py <file.smc> [--out-dir DIR]
+```
+
+写出 `<stem>.ndjson`（IR）、`<stem>.musicxml`、并在源文件带并排文本时写出 `<stem>.txt`。
+其余选项原样透传给 `smc2ir.py`，`parameters.md` H 的六个参数在此全部可用。
+
+分步：
+
 ```
 python work/smc2ir.py <file.smc> <out.ndjson> [六个参数]
 python work/ir2musicxml.py <out.ndjson> <out.musicxml>
+python work/side_text.py <out.ndjson> <out.txt> [--width 60] [--header]
 python work/verify_musicxml.py <out.ndjson> <out.musicxml>
 ```
 
-把两者串起来跑一个文件，用 `batch.py` 跑全语料：
+把三者串起来跑一个文件，用 `batch.py` 跑全语料：
 
 ```
 python work/batch.py --max 0            # 8451 文件，约 4 分钟
@@ -42,6 +54,21 @@ python work/batch.py --max 0            # 8451 文件，约 4 分钟
 
 当前结果：**8442 / 8451 通过全部不变量检查**；其余 9 例已定性为源文件自身的异常
 （见 `verification.md` §3）。
+
+### 三种产物为什么是三种
+
+`decisions.md` §12–§14 有完整依据，摘要：
+
+- **MusicXML**：音符、歌词（第一段）、速度/表情术语、强弱号、和弦记号。这是能回放进 MuseScore 的主体。
+- **`.txt`（并排文本）**：源文件写在谱面旁边的多行文本块（通常是**第二、三段歌词**）。
+  MusicXML 没有"谱面旁边的多行文本块"这种结构，硬塞进 `<words>` 会丢行结构、
+  塞进 `<lyric>` 又必须挂到某个音符上，所以单独出文件。
+- 单行文本块（如 `낭만적으로`、曲名）确实在谱面上，走 MusicXML 的 `<words>`。
+
+**伴奏**：`8000Songs` 里**没有伴奏音轨**——没有音频/MIDI 文件，8451 个 `.smc` 中
+仅 23 个含多谱表，其中多数第二谱表只有 1–5 小节（短尾声），
+5 个谱表的文件是合唱/合奏**分谱**（每个谱表各有自己的音符与歌词）。
+基本实验文件 `500KFS-0041` 只有 1 个谱表。**源数据里没有可导出的伴奏声部**。
 
 ## 文档
 
@@ -59,6 +86,8 @@ python work/batch.py --max 0            # 8451 文件，约 4 分钟
 | `smc_read.py` | SMC 读取库（按 spec 实现，保留全部需要的字段） |
 | `smc2ir.py` | step1：SMC → NDJSON IR |
 | `ir2musicxml.py` | step2：IR → MusicXML 4.0 partwise |
+| `side_text.py` | 并排文本导出（第二、三段歌词等多行文本块） |
+| `smc_convert.py` | 一条命令产出全部三种产物 |
 | `verify_musicxml.py` | 不变量校验 |
 | `batch.py` | 全语料回归 |
 | `verify_read.py` | 与 `tools/smc_walk.py` 的交叉校验 |
@@ -95,5 +124,9 @@ python work/_diff_notes.py <file.smc> <meas>  # 逐音符比对 IR 与 XML
 - [x] **step1（`smc2ir.py`）与 step2（`ir2musicxml.py`）实现完成**。
 - [x] 全语料端到端 **8442/8451** 通过不变量检查；9 例异常已定性。
 - [x] 取舍清单收敛为 6 个参数，其余固化（`parameters.md` §I 有降级记录）。
+- [x] 速度/表情术语、强弱号、和弦记号写出（`decisions.md` §12）。
+- [x] 第二、三段歌词导出为并排 `.txt`（`decisions.md` §13）。
 - [ ] 歌词换行（`parameters.md` D3）仍是启发式，需真实排版核对。
 - [ ] 谱号类别枚举（C4）与力度码映射（E4）仍是推断，等待新证据。
+- [ ] 节拍器 `head[2]` 判定为 BPM/10（§12），需静态确认 `DrawMetronome`。
+- [ ] `part_merge=auto` 对"合唱分谱"应拆成多个 part（§14），判据待定。

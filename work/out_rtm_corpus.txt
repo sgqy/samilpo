@@ -1,0 +1,113 @@
+files scanned            : 8451
+parse failures           : 0
+chord symbols total      : 177909
+chords carrying a rhythm : 12716
+files with any rhythm    : 8445
+
+track-count histogram (tracks -> chords): {1: 3, 2: 1017, 3: 2459, 4: 3443, 5: 5413, 6: 3, 7: 366, 8: 12}
+percussion-track histogram (n -> chords): {0: 3142, 1: 9195, 2: 2, 3: 365, 4: 12}
+
+distinct styles (style, name -> chords):
+   _RHYTHM1     My Love                  835
+   POLKA        Polka8                   473
+   POLKA        Polka8-Ending            434
+   POLKA        Polka5                   405
+   ARPEGIO      6/8Arpegio6              345
+   CHORD        Chord01                  324
+   ARPEGIO      6/8Arpegio6-Ending       315
+   KOREAN       AnTang-2                 244
+   TANGO & WALTZ 6/4Waltz1                233
+   ROCK         8Beat05(OK)              229
+   CHORD        Chord01-Ending1          225
+   Josongchol   2-054-3(4_4)             205
+   GEN          Kor11-2                  179
+   MARCH        March1                   179
+   GEN          Gen21                    174
+   KOREAN1      Kor1                     166
+   KOREAN       12/8DongDoKung1          159
+   KOREAN       AnTang-Ending            137
+   ROCK         8Beat05a-01Ending        132
+   KOREAN       6/8BanGudGoRi-2          131
+   _RHYTHM1     Polka                    131
+   GEN          3/4Waltz1                127
+   TANGO & WALTZ 6/8Waltz1-2              114
+   CHORD        Chord01-FillIn1          112
+   KOREAN       3/4BanSalPulI1           112
+   TANGO & WALTZ 3/4Waltz1-2              109
+   POLKA        Polka1                   108
+   KOREAN       6/4BanSalPulI            101
+   ROCK         8Beat05a(-)              92
+   KOREAN1      6/8Kor2                  89
+   POLKA        2/4Polka2                86
+   Josongchol   2-054-2(3_4)             86
+   BEAT         8beat1-1                 83
+   KOREAN       6/8GudGoRi-2             81
+   KOREAN1      12/8Kor3                 78
+   TANGO & WALTZ Tango4.                  74
+   Josongchol   2-054-2(4_4)             73
+   POLKA        Polka1-Ending            73
+   ARPEGIO      6/8Arpegio3              71
+   ARPEGIO      6/8Arpegio3-Ending       68
+
+files:
+   \100SONG\110SSS\110SSS-001.smc                 chords=34   CHORD/Chord01(4t,0p,48e), CHORD/Chord15(2t,0p,34e), CHORD/Chord01(4t,0p,48e)
+   \100SONG\110SSS\110SSS-002.smc                 chords=27   CHORD/Chord01(4t,0p,48e), GEN/Gen1(4t,0p,37e), GEN/Gen1(4t,0p,34e)
+   \100SONG\110SSS\110SSS-003.smc                 chords=29   GEN/3/4Waltz1(4t,1p,53e), GEN/Gen20(4t,1p,43e), GEN/Gen22(4t,1p,40e)
+   \100SONG\110SSS\110SSS-004.smc                 chords=19   CHORD/Chord01(4t,0p,36e), CHORD/Chord08(4t,0p,40e), CHORD/Chord01(4t,0p,36e)
+   \100SONG\110SSS\110SSS-005.smc                 chords=30   GEN/Gen2(4t,0p,36e), GEN/Gen6(4t,0p,40e), GEN/Gen2(4t,0p,36e)
+   \100SONG\120UFS\121GLS-001.smc                 chords=10   GEN/2/4Gen2(5t,1p,34e), KOREAN/2/4Kor-Ending1(4t,0p,26e)
+   \100SONG\120UFS\121GLS-002.smc                 chords=17   GEN/3/4Gen4(3t,0p,16e), GEN/8/9Arpegio(2t,0p,16e)
+   \100SONG\120UFS\121GLS-003.smc                 chords=26   ROCK/8Beat21(4t,1p,59e), ROCK/8Beat22(5t,1p,53e), ROCK/8Beat21(4t,1p,59e)
+   \100SONG\120UFS\121GLS-004.smc                 chords=14   ARPEGIO/6/8Arpegio3(4t,0p,31e), ARPEGIO/6/8Arpegio3-Ending(4t,0p,36e)
+   \100SONG\120UFS\121GLS-005.smc                 chords=22   GEN/3_4Gen3(3t,0p,22e)
+   \100SONG\120UFS\121GLS-006.smc                 chords=21   ARPEGIO/6/8Arpegio3(4t,0p,43e), ARPEGIO/6/8Arpegio4(4t,0p,44e), ARPEGIO/6/8Arpegio3(4t,0p,43e)
+   \100SONG\120UFS\121GLS-007.smc                 chords=16   CHORD/2/4Bak5(3t,1p,28e), CHORD/2/4Bak5(3t,1p,28e), CHORD/2/4Chord-Ending2(5t,1p,35e)
+   \100SONG\120UFS\121GLS-008.smc                 chords=13   KOREAN/2/4Kor2(2t,0p,14e)
+   \100SONG\120UFS\121GLS-009.smc                 chords=20   KOREAN/AnTang-2(3t,1p,69e), KOREAN/AnTang-Ending(3t,1p,41e)
+   \100SONG\120UFS\121GLS-010.smc                 chords=17   KOREAN/AnTang-2(3t,1p,69e), KOREAN/AnTang-Ending(3t,1p,41e)
+   \100SONG\120UFS\122DLS-001.smc                 chords=10   ARPEGIO/6/8Arpegio3(4t,0p,43e), ARPEGIO/6/8Arpegio3-Ending(4t,0p,36e)
+   \100SONG\120UFS\122DLS-002.smc                 chords=13   X3/4/3/4Arpegio1(4t,0p,19e)
+   \100SONG\120UFS\122DLS-003.smc                 chords=34   ARPEGIO/6/8Arpegio5(4t,0p,49e), ARPEGIO/6/8Arpegio3-Ending(4t,0p,36e)
+   \100SONG\120UFS\122DLS-004.smc                 chords=34   TANGO & WALTZ/6/8Waltz4-2(3t,1p,68e), TANGO & WALTZ/6/8Waltz5-2(3t,1p,72e), TANGO & WALTZ/6/8Waltz4-2(3t,1p,68e)
+   \100SONG\120UFS\122DLS-005.smc                 chords=25   ARPEGIO/6/8Arpegio6(5t,1p,66e), ARPEGIO/6/8Arpegio6-Ending(5t,1p,55e)
+   \100SONG\120UFS\122DLS-006.smc                 chords=25   ARPEGIO/6/8Arpegio6(5t,1p,66e), ARPEGIO/6/8Arpegio6-Ending(5t,1p,55e)
+   \100SONG\120UFS\122DLS-007.smc                 chords=19   Josongchol/2-012(5t,1p,66e)
+   \100SONG\120UFS\122DLS-008.smc                 chords=21   Josongchol/2-012(5t,1p,66e)
+   \100SONG\120UFS\122DLS-009.smc                 chords=19   ROCK/8Beat05(OK)(5t,1p,49e), ROCK/8Beat22-Ending(5t,1p,47e)
+   \100SONG\120UFS\122DLS-010.smc                 chords=15   CHORD/Chord01(4t,0p,48e), CHORD/Chord01-Ending1(2t,0p,34e)
+   \100SONG\121KHJ\123KTS-001.smc                 chords=20   ROCK/8Beat21(4t,1p,59e)
+   \100SONG\121KHJ\123KTS-002.smc                 chords=13   ARPEGIO/6/8Arpegio3(4t,0p,43e), ARPEGIO/6/8Arpegio3-Ending(4t,0p,36e)
+   \100SONG\121KHJ\123KTS-003.smc                 chords=16   KOREAN1/3/4Kor2(2t,0p,14e)
+   \100SONG\121KHJ\123KTS-004.smc                 chords=27   KOREAN1/Kor1(2t,0p,34e)
+   \100SONG\121KHJ\123KTS-005.smc                 chords=20   KOREAN1/Kor1(2t,0p,34e), KOREAN1/Kor-Ending1(2t,0p,30e)
+   \100SONG\130RVS\130RVS-001.smc                 chords=20   ROCK/8Beat21(4t,1p,59e), ROCK/8Beat22(5t,1p,53e), ROCK/8Beat21(4t,1p,59e)
+   \100SONG\130RVS\130RVS-002.smc                 chords=26   ARPEGIO/6/8Arpegio3(4t,0p,43e), ARPEGIO/6/8Arpegio3-Ending(4t,0p,36e)
+   \100SONG\130RVS\130RVS-003.smc                 chords=25   POLKA/2/4Polka2(5t,1p,27e), POLKA/2/4Polka2-Ending(5t,1p,27e)
+   \100SONG\130RVS\130RVS-004.smc                 chords=11   KOREAN1/2/4Kor2(2t,0p,20e)
+   \100SONG\130RVS\130RVS-005.smc                 chords=25   POLKA/2/4Polka2(5t,1p,27e), POLKA/2/4Polka2-Ending(5t,1p,27e)
+   \100SONG\130RVS\130RVS-006.smc                 chords=23   CHORD/2/4Chord1(2t,0p,20e)
+   \100SONG\130RVS\130RVS-007.smc                 chords=8    POLKA/2/4Polka2(5t,1p,27e), POLKA/2/4Polka2-Ending(5t,1p,27e)
+   \100SONG\130RVS\130RVS-008.smc                 chords=13   POLKA/2/4Polka2(5t,1p,27e), POLKA/2/4Polka2-Ending(5t,1p,27e)
+   \100SONG\130RVS\130RVS-009.smc                 chords=10   CHORD/2/4Chord1(2t,0p,20e)
+   \100SONG\130RVS\130RVS-010.smc                 chords=16   MARCH/2/4March-2(5t,1p,53e), POLKA/2/4Polka2-Ending(5t,1p,27e)
+   \100SONG\130RVS\130RVS-011.smc                 chords=19   ARPEGIO/6/8Arpegio3(4t,0p,43e), ARPEGIO/6/8Arpegio3-Ending(4t,0p,36e)
+   \100SONG\130RVS\130RVS-012.smc                 chords=5    KOREAN1/2/4Kor2(2t,0p,20e)
+   \100SONG\130RVS\130RVS-013.smc                 chords=19   CHORD/3/4Bak2(5t,1p,40e), CHORD/3/4Bak2-Ending(5t,1p,24e)
+   \100SONG\130RVS\130RVS-014.smc                 chords=23   CHORD/2/4Chord1(2t,0p,20e)
+   \100SONG\130RVS\130RVS-015.smc                 chords=28   CHORD/3/4Chord10(4t,0p,37e), CHORD/3/4Chord11(4t,0p,33e), ARPEGIO/3/4Arpegio2-Ending(5t,1p,39e)
+   \100SONG\130RVS\130RVS-016.smc                 chords=15   KOREAN1/2/4Kor2(2t,0p,20e)
+   \100SONG\130RVS\130RVS-017.smc                 chords=16   CHORD/2/4Chord1(2t,0p,20e)
+   \100SONG\130RVS\130RVS-018.smc                 chords=6    POLKA/2/4Polka2(5t,1p,27e), POLKA/2/4Polka2-Ending2(5t,1p,27e)
+   \100SONG\130RVS\130RVS-019.smc                 chords=13   BEAT/8beat4(4t,0p,28e)
+   \100SONG\130RVS\130RVS-020.smc                 chords=10   KOREAN1/Kor1(2t,0p,34e)
+   \100SONG\130RVS\130RVS-021.smc                 chords=23   CHORD/2/4Chord1(2t,0p,20e)
+   \100SONG\130RVS\130RVS-022.smc                 chords=7    X2/4/2/4Bak3(4t,0p,28e)
+   \100SONG\130RVS\130RVS-023.smc                 chords=9    KOREAN1/2/4Kor2(2t,0p,20e)
+   \100SONG\130RVS\130RVS-024.smc                 chords=14   KOREAN1/2/4Kor2(2t,0p,20e)
+   \100SONG\130RVS\130RVS-025.smc                 chords=14   CHORD/2/4Chord1(2t,0p,20e)
+   \100SONG\130RVS\130RVS-026.smc                 chords=12   POLKA/2/4Polka2(5t,1p,27e), POLKA/2/4Polka2-Ending(5t,1p,27e)
+   \100SONG\130RVS\130RVS-027.smc                 chords=14   KOREAN1/2/4Kor2(2t,0p,20e)
+   \100SONG\130RVS\130RVS-028.smc                 chords=13   POLKA/2/4Polka2(5t,1p,27e), POLKA/2/4Polka2-Ending(5t,1p,27e)
+   \100SONG\130RVS\130RVS-029.smc                 chords=11   POLKA/2/4Polka2(5t,1p,27e), POLKA/2/4Polka2-Ending(5t,1p,27e)
+   \100SONG\130RVS\130RVS-030.smc                 chords=15   CHORD/3/4Bak8(4t,0p,30e)
+   ... and 8385 more files
