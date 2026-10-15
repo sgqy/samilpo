@@ -262,7 +262,18 @@ def write_measure_body(measure_el, mrec, events, pid, span_index, div, n_staves)
     for n in notes:
         by_voice.setdefault((n.get('staff', 1), n['voice']), []).append(n)
 
-    if not by_voice:
+    # Directions and harmonies are placed in the voice stream that is already at
+    # their onset, so MusicXML's additive time model stays intact.
+    dirs_at = collections.defaultdict(list)
+    for e in events:
+        if e['kind'] == 'direction':
+            key = (e.get('staff', 1), e.get('voice', 1))
+            dirs_at[key].append(('direction', e))
+        elif e['kind'] == 'harmony':
+            key = (e.get('staff', 1), e.get('voice', 1))
+            dirs_at[key].append(('harmony', e))
+
+    if not by_voice and not dirs_at:
         write_empty_measure(measure_el, mrec, div)
         return issues
 
@@ -274,11 +285,21 @@ def write_measure_body(measure_el, mrec, events, pid, span_index, div, n_staves)
             b = sub(measure_el, 'backup')
             b.append(_dur(tpm))
         cursor, issued = write_voice(measure_el, mrec, staff, voice,
-                                     order_voice(vnotes), spans_of, div, n_staves)
+                                     order_voice(vnotes), spans_of, div, n_staves,
+                                     dirs_at.pop((staff, voice), None))
         issues.extend(issued)
         if cursor < tpm:
             f = sub(measure_el, 'forward')
             f.append(_dur(tpm - cursor))
+
+    # Anything whose voice never appeared still has to be emitted, or the tempo
+    # marking and the chord symbols would silently vanish.
+    leftover = [x for group in dirs_at.values() for x in group]
+    if leftover:
+        if ordered:
+            b = sub(measure_el, 'backup')
+            b.append(_dur(tpm))
+        write_directions_and_harmonies(measure_el, leftover, div)
     return issues
 
 
@@ -361,7 +382,6 @@ def _exp_for(dur, whole_tick=240):
             return exp
     return None
 
-
 def _notate(dur, whole_tick=240, max_terms=16):
     """Express a tick length as MusicXML notation.
 
@@ -420,13 +440,188 @@ def _gcd(a, b):
     return a
 
 
-def write_voice(el, mrec, staff, voice, vnotes, spans_of, div, n_staves):
-    """Emit one voice stream; return (tick reached, issues)."""
+def write_directions_and_harmonies(measure_el, items, div):
+    """Emit <direction> and <harmony> elements for one measure.
+
+    Both are placed at their tick with a preceding <forward> so MusicXML's
+    additive time model stays consistent. They carry no duration, so they do not
+    advance the cursor beyond their onset.
+    """
+    cursor = 0
+    for kind, e in sorted(items, key=lambda x: x[1].get('on', 0)):
+        on = e.get('on', 0)
+        if on > cursor:
+            f = sub(measure_el, 'forward')
+            f.append(_dur(on - cursor))
+            cursor = on
+        if kind == 'harmony':
+            write_harmony(measure_el, e)
+        else:
+            write_direction(measure_el, e)
+
+
+def write_direction(measure_el, e):
+    d = e.get('d') or {}
+    dt = d.get('type')
+    if dt == 'text' and d.get('multiline'):
+        # A multi-line block is a later verse written beside the staff, not a
+        # marking on it. It is routed to the side text file (see side_text.py)
+        # rather than into <words>, which would place the whole verse at one
+        # tick and lose the line structure.
+        return
+    el = sub(measure_el, 'direction', placement=e.get('placement', 'above'))
+    body = sub(el, 'direction-type')
+    if dt == 'dynamic':
+        dyn = sub(body, 'dynamics')
+        name = d.get('text')
+        if name:
+            sub(dyn, name)
+        else:
+            # Code with no entry in the mapping table: keep the mark's identity
+            # rather than dropping the sign, so nothing is silently lost.
+            sub(dyn, 'other-dynamics', 'smc%d' % d.get('code', 0))
+    elif dt == 'text':
+        lines = d.get('lines') or []
+        words = ' '.join(ln for ln in lines if ln)
+        if words:
+            sub(body, 'words', words)
+    elif dt == 'metronome':
+        m = sub(body, 'metronome')
+        sub(m, 'beat-unit', d.get('beat_unit') or 'quarter')
+        if d.get('bpm'):
+            sub(m, 'per-minute', d['bpm'])
+            sub(el, 'sound', tempo=str(d['bpm']))
+    else:
+        # Marks with no MusicXML counterpart (breath, coda, long rest, ...) are
+        # kept as words so the information survives into the product.
+        label = d.get('smc') or ('smc-type-%s' % d.get('smc_type'))
+        sub(body, 'words', label)
+
+
+def write_harmony(measure_el, e):
+    el = sub(measure_el, 'harmony')
+    root = e.get('root')
+    if root:
+        r = sub(el, 'root')
+        sub(r, 'root-step', root['step'])
+        if root.get('alter'):
+            sub(r, 'root-alter', root['alter'])
+        if root.get('octave') is not None:
+            # The octave is not part of the chord name, but the IR derived the
+            # spelling from a sounding pitch; recording it keeps the harmonic
+            # content distinguishable when the same symbol is played in two
+            # registers.
+            sub(r, 'root-octave', root['octave'])
+    kind = e.get('kind_text')
+    k = sub(el, 'kind')
+    if kind:
+        k.text = kind
+    elif e.get('name'):
+        # Unrecognised suffix: MusicXML allows free text here, which is more
+        # faithful than forcing it into a wrong enumerated kind.
+        k.text = 'other'
+        k.set('text', e['name'].strip() or 'unknown')
+    else:
+        k.text = 'major'
+
+
+def smc_text_payload(d):
+    """Decode a 0x06 TLV head kept in the IR as raw hex.
+
+    Returns (words, tempo_or_None). An expression such as '약동적으로 좀 빠르게'
+    is a text direction and yields words only; the numeric tempo in this corpus
+    comes from the metronome mark (type 0x05), not from the text.
+    """
+    raw = d.get('raw_hex')
+    if raw:
+        try:
+            return _tlv_words(bytes.fromhex(raw), _load_cod()), None
+        except Exception:
+            pass
+    return (d.get('words') or '', None)
+
+
+def _tlv_words(b, cod=None):
+    """Concatenate the text payloads of a type 0x06 TLV head.
+
+    Tag table: 0x01 i16 align, 0x02 u16 font, 0x03 u8 style, 0x04 u16 size,
+    0x05 and 0x07 four bytes, 0x06 u16 length + text, 0x0A newline.
+    """
+    q = 0
+    out = []
+    while q + 1 < len(b):
+        tag = b[q]
+        q += 1
+        if tag in (0x01, 0x02, 0x04, 0x09):
+            q += 2
+        elif tag in (0x03, 0x05, 0x07):
+            q += {0x03: 1, 0x05: 4, 0x07: 4}[tag]
+        elif tag == 0x06:
+            if q + 2 > len(b):
+                break
+            n = int.from_bytes(b[q:q + 2], 'little')
+            q += 2
+            seg = b[q:q + n]
+            q += n
+            if cod is not None:
+                try:
+                    import smc_read as S
+                    out.append(S.decode(seg, cod))
+                    continue
+                except Exception:
+                    pass
+            out.append(seg.decode('latin-1'))
+        elif tag == 0x0A:
+            out.append(' ')
+        else:
+            break
+    return ''.join(out).strip()
+
+
+_COD = None
+
+
+def _load_cod():
+    global _COD
+    if _COD is None:
+        try:
+            import smc_read as S
+            _COD = S.load_cod()
+        except Exception:
+            _COD = False
+    return _COD or None
+
+
+def write_voice(el, mrec, staff, voice, vnotes, spans_of, div, n_staves,
+                markings=None):
+    """Emit one voice stream; return (tick reached, issues).
+
+    `markings` are the direction/harmony records for this voice. They are
+    interleaved at their own onset, before the note that starts there, so a
+    tempo marking or chord symbol lands on the beat it belongs to.
+    """
     tpm = measure_length(mrec)
     events, issues = plan_voice(vnotes, tpm)
+    pending = collections.defaultdict(list)
+    for kind, e in (markings or []):
+        pending[e.get('on', 0)].append((kind, e))
     cursor = 0
     for ev in events:
         n = ev['n']
+        # A rest planned by A4 has no IR note behind it, so its own grace flag
+        # cannot be consulted; only real notes can carry one.
+        grace_here = bool(n and n['attrs'].get('grace'))
+        if not grace_here:
+            at = ev['on'] if ev['on'] is not None else cursor
+            # Everything whose onset has been reached is emitted before this
+            # note, so a tempo marking or chord symbol lands on its beat.
+            ready = sorted(k for k in pending if k <= at)
+            for k in ready:
+                if k > cursor:
+                    f = sub(el, 'forward')
+                    f.append(_dur(k - cursor))
+                    cursor = k
+                write_markings(el, pending.pop(k))
         note_el = sub(el, 'note')
         if ev['kind'] == 'rest':
             sub(note_el, 'rest')
@@ -518,7 +713,23 @@ def write_voice(el, mrec, staff, voice, vnotes, spans_of, div, n_staves):
             sub(lyr, 'text', ly['text'])
         if not grace:
             cursor = ev['on'] + ev['dur']
+    # any marking still pending (its onset is at or past the last note) is
+    # emitted at the end of the stream rather than dropped
+    for k in sorted(pending):
+        if k > cursor:
+            f = sub(el, 'forward')
+            f.append(_dur(k - cursor))
+            cursor = k
+        write_markings(el, pending[k])
     return cursor, issues
+
+
+def write_markings(el, items):
+    for kind, e in items:
+        if kind == 'harmony':
+            write_harmony(el, e)
+        else:
+            write_direction(el, e)
 
 
 def _slur(kind, number=1):

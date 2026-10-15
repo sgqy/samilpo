@@ -134,6 +134,19 @@ def main():
             base = os.path.join(a.out, os.path.splitext(name)[0])
             open(base + '.ndjson', 'w', encoding='utf-8', newline='\n').write(ir_text)
             open(base + '.musicxml', 'w', encoding='utf-8', newline='\n').write(xml_text)
+            # Side text (verses written beside the staff) is a separate product
+            # because MusicXML has no place for it; see work/side_text.py.
+            import side_text
+            blocks = side_text.collect_from_text(ir_text)
+            if blocks:
+                chunks = side_text.render(blocks, 60)
+                lines = []
+                for pid, mnum, body in chunks:
+                    lines.append('[%s measure %d]' % (pid, mnum))
+                    lines.extend(body)
+                    lines.append('')
+                open(base + '.txt', 'w', encoding='utf-8', newline='\n').write(
+                    '\n'.join(lines).rstrip('\n') + '\n')
             kept += 1
 
     total = ok + sum(fail.values())

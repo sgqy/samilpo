@@ -24,6 +24,7 @@ import collections
 import hashlib
 import json
 import os
+import struct
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -302,6 +303,58 @@ def decode_text(raw, cod):
     return raw.decode('latin-1')
 
 
+# MsgHdr+0x00 of a type 0x05 metronome mark: which note value gets the beat.
+METRONOME_BEAT = {1: 'quarter', 2: 'eighth', 3: '16th', 4: 'half',
+                  5: 'whole', 6: 'dotted-quarter'}
+
+
+def tlv_lines(head, opts, cod):
+    """Split a type 0x06 TLV head into text lines.
+
+    The tag table comes from docs/lyrics.md 6: 0x01 align, 0x02 font, 0x03 style,
+    0x04 size, 0x05/0x07 four opaque bytes, 0x06 length-prefixed text, 0x0A
+    newline. In this corpus a multi-line block separates lines with CRLF and
+    paragraphs with CRLF LF, which is why an empty line must be preserved rather
+    than collapsed - it is the paragraph break the source author typed.
+    """
+    b = head
+    q = 0
+    align = None
+    cur = []
+    lines = []
+    while q < len(b):
+        tag = b[q]
+        q += 1
+        if tag == 0x01:
+            if q + 2 > len(b):
+                break
+            align = struct.unpack_from('<h', b, q)[0]
+            q += 2
+        elif tag in (0x02, 0x04, 0x09):
+            q += 2
+        elif tag in (0x03,):
+            q += 1
+        elif tag in (0x05, 0x07):
+            q += 4
+        elif tag == 0x06:
+            if q + 2 > len(b):
+                break
+            n = struct.unpack_from('<H', b, q)[0]
+            q += 2
+            cur.append(decode_text(b[q:q + n], cod))
+            q += n
+        elif tag == 0x0A:
+            lines.append(''.join(cur))
+            cur = []
+        else:
+            break
+    if cur:
+        lines.append(''.join(cur))
+    if align in (-2, -1) and lines:
+        lines = [ln.rstrip() for ln in lines]
+    return lines, align
+
+
 def convert_group(em, doc, group, pid, opts, cod, warn, audit):
     """Emit measures for one part (1..n staves merged)."""
     wt = doc.system.whole_tick
@@ -425,18 +478,18 @@ def convert_group(em, doc, group, pid, opts, cod, warn, audit):
             elif m.type in (0x14, 0x25):
                 pass                                   # container: handled below
             elif m.type == 0x1B:
-                directions.append(direction_record(m, pid, mi, 'dynamic', opts))
+                directions.append(direction_record(m, pid, mi, 'dynamic', opts, staff_no))
             elif m.type == 0x05:
-                directions.append(direction_record(m, pid, mi, 'metronome', opts))
+                directions.append(direction_record(m, pid, mi, 'metronome', opts, staff_no))
             elif m.type in (0x08, 0x0C, 0x10, 0x21, 0x0D, 0x13, 0x2C, 0x2F, 0x30):
-                directions.append(direction_record(m, pid, mi, 'symbol', opts))
+                directions.append(direction_record(m, pid, mi, 'symbol', opts, staff_no))
             elif m.type == 0x06 or m.type == 0x04:
                 if opts.extent != 'musical':
-                    directions.append(direction_record(m, pid, mi, 'text', opts))
+                    directions.append(direction_record(m, pid, mi, 'text', opts, staff_no, cod=cod))
             elif m.type == 0x45:
                 par = parent_of.get(m.key)
                 anchor = notes_by_key.get(par.key) if par is not None else None
-                harmonies.append(harmony_record(m, anchor, pid, mi, opts, cod))
+                harmonies.append(harmony_record(m, anchor, pid, mi, opts, cod, staff_no))
             elif m.type in (0x09, 0x0A, 0x12, 0x2E):
                 sp = span_record(m, key_index, staff_of_key, pid, opts)
                 if not sp['resolved']:
@@ -601,11 +654,12 @@ def lyric_record(msg, cod, opts):
     return rec
 
 
-def harmony_record(msg, anchor_note, pid, mi, opts, cod):
+def harmony_record(msg, anchor_note, pid, mi, opts, cod, staff=1):
     ce = getattr(msg, 'chord_extra', None)
     name = decode_text(ce.name, cod) if ce else ''
     rec = {
         'kind': 'harmony', 'part': pid, 'meas': mi + 1,
+        'staff': staff, 'voice': (anchor_note or {}).get('voice', 1),
         'on': anchor_note['on'] if anchor_note else 0,
         'name': name, 'kind_text': kind_from_surfix(name),
         'root': ({'midi': anchor_note['midi'], 'step': anchor_note['step'],
@@ -634,10 +688,10 @@ def kind_from_surfix(name):
     return SUFFIX_KIND.get(name, None)
 
 
-def direction_record(msg, pid, mi, dclass, opts):
+def direction_record(msg, pid, mi, dclass, opts, staff=1, voice=1, cod=None):
     rec = {
         'kind': 'direction', 'part': pid, 'meas': mi + 1,
-        'on': msg.start, 'voice': msg.voice or 1,
+        'on': msg.start, 'voice': voice, 'staff': staff,
         'placement': 'above' if msg.dy <= 0 else 'below',
         'src': {'key': msg.key},
     }
@@ -646,7 +700,31 @@ def direction_record(msg, pid, mi, dclass, opts):
         rec['d'] = {'type': 'dynamic', 'code': code,
                     'text': opts.dynamic_map.get(code)}
     elif dclass == 'text':
-        rec['d'] = {'type': 'text', 'raw_hex': msg.head.hex()}
+        # A type 0x06 text block is a TLV stream. Short blocks are expression
+        # words (or the title) that belong on the staff. A multi-line block is a
+        # further verse written *beside* the staff, not attached to notes: those
+        # are exported as a side text file instead of being crammed into <words>.
+        lines, align = tlv_lines(msg.head, opts, cod)
+        rec['d'] = {
+            'type': 'text',
+            'lines': lines,
+            'align': align,
+            'multiline': len(lines) > 1,
+        }
+        if opts.extent == 'debug':
+            rec['d']['raw_hex'] = msg.head.hex()
+    elif dclass == 'metronome':
+        # MsgHdr+0x08 is unused for 0x05; the beat count and its value are in the
+        # head: +0x00 picks the beat unit, +0x02 is the figure (see evidence in
+        # decisions.md). A 5-byte head with +0x02 in 9..12 is "per-minute / 10".
+        b = msg.head
+        beat = b[0] if len(b) > 0 else 1
+        val = struct.unpack_from('<H', b, 2)[0] if len(b) >= 4 else 0
+        rec['d'] = {'type': 'metronome', 'beat_index': beat, 'value': val,
+                    'beat_unit': METRONOME_BEAT.get(beat, 'quarter'),
+                    'bpm': val * 10 if 6 <= val <= 30 else None}
+        if opts.extent == 'debug':
+            rec['d']['head_hex'] = b.hex()
     else:
         rec['d'] = {'type': 'symbol', 'smc_type': msg.type,
                     'code': msg.type_index,

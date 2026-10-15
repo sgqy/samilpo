@@ -32,6 +32,24 @@
           <line>2</line>
         </clef>
       </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words>랑만적으로</words>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <mf />
+          </dynamics>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -79,6 +97,11 @@
       </note>
     </measure>
     <measure number="2">
+      <direction placement="above">
+        <direction-type>
+          <words>바다의 노래</words>
+        </direction-type>
+      </direction>
       <note>
         <pitch>
           <step>D</step>
@@ -135,6 +158,12 @@
       </note>
     </measure>
     <measure number="3">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -238,6 +267,12 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -256,6 +291,12 @@
       </note>
     </measure>
     <measure number="5">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -315,6 +356,12 @@
       </note>
     </measure>
     <measure number="6">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -359,6 +406,12 @@
           <text>－</text>
         </lyric>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -385,6 +438,12 @@
       </note>
     </measure>
     <measure number="7">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -586,6 +645,12 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -604,6 +669,12 @@
       </note>
     </measure>
     <measure number="11">
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>G</step>
@@ -696,6 +767,12 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -714,6 +791,12 @@
       </note>
     </measure>
     <measure number="13">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>C</step>
@@ -764,6 +847,12 @@
       </note>
     </measure>
     <measure number="14">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -838,6 +927,12 @@
       </note>
     </measure>
     <measure number="15">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>C</step>
@@ -890,6 +985,12 @@
       </note>
     </measure>
     <measure number="16">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -929,6 +1030,12 @@
           <slur type="stop" number="1" />
         </notations>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -955,6 +1062,12 @@
       </note>
     </measure>
     <measure number="17">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -1064,6 +1177,12 @@
       </note>
     </measure>
     <measure number="19">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -1162,6 +1281,12 @@
       </note>
     </measure>
     <measure number="21">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -1244,6 +1369,12 @@
       </note>
     </measure>
     <measure number="22">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -1288,6 +1419,12 @@
           <text>－</text>
         </lyric>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -1314,6 +1451,12 @@
       </note>
     </measure>
     <measure number="23">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -1397,6 +1540,13 @@
       </note>
     </measure>
     <measure number="24">
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <mp />
+          </dynamics>
+        </direction-type>
+      </direction>
       <note>
         <pitch>
           <step>A</step>
@@ -1412,6 +1562,12 @@
       </note>
     </measure>
     <measure number="25">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -1471,6 +1627,12 @@
       </note>
     </measure>
     <measure number="26">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -1546,6 +1708,12 @@
       </note>
     </measure>
     <measure number="27">
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>G</step>
@@ -1629,6 +1797,12 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -1647,6 +1821,12 @@
       </note>
     </measure>
     <measure number="29">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>C</step>
@@ -1717,6 +1897,12 @@
       </note>
     </measure>
     <measure number="30">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>dominant</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -1756,6 +1942,12 @@
           <slur type="stop" number="1" />
         </notations>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -1782,6 +1974,12 @@
       </note>
     </measure>
     <measure number="31">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -1844,6 +2042,13 @@
       </note>
     </measure>
     <measure number="32">
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <mf />
+          </dynamics>
+        </direction-type>
+      </direction>
       <note>
         <pitch>
           <step>D</step>
@@ -1891,6 +2096,12 @@
       </note>
     </measure>
     <measure number="33">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -1989,6 +2200,12 @@
       </note>
     </measure>
     <measure number="35">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -2071,6 +2288,12 @@
       </note>
     </measure>
     <measure number="36">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -2115,6 +2338,12 @@
           <text>－</text>
         </lyric>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -2141,6 +2370,12 @@
       </note>
     </measure>
     <measure number="37">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -2239,6 +2474,24 @@
       </note>
     </measure>
     <measure number="39">
+      <direction placement="above">
+        <direction-type>
+          <words>smc-type-8</words>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <mp />
+          </dynamics>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -2374,6 +2627,12 @@
       </note>
     </measure>
     <measure number="41">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>C</step>
@@ -2469,6 +2728,12 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -2487,6 +2752,12 @@
       </note>
     </measure>
     <measure number="43">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -2546,6 +2817,12 @@
       </note>
     </measure>
     <measure number="44">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -2591,6 +2868,12 @@
           <text>－</text>
         </lyric>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -2617,6 +2900,12 @@
       </note>
     </measure>
     <measure number="45">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -2700,6 +2989,19 @@
       </note>
     </measure>
     <measure number="46">
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <mf />
+          </dynamics>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -2795,6 +3097,12 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -2813,6 +3121,12 @@
       </note>
     </measure>
     <measure number="49">
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>G</step>
@@ -2905,6 +3219,12 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -2923,6 +3243,12 @@
       </note>
     </measure>
     <measure number="51">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>C</step>
@@ -2981,6 +3307,12 @@
       </note>
     </measure>
     <measure number="52">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -3020,6 +3352,12 @@
           <slur type="stop" number="1" />
         </notations>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -3046,6 +3384,12 @@
       </note>
     </measure>
     <measure number="53">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -3155,6 +3499,12 @@
       </note>
     </measure>
     <measure number="55">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -3213,6 +3563,12 @@
       </note>
     </measure>
     <measure number="56">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -3263,6 +3619,12 @@
       </note>
     </measure>
     <measure number="57">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -3325,6 +3687,13 @@
       </note>
     </measure>
     <measure number="58">
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <mp />
+          </dynamics>
+        </direction-type>
+      </direction>
       <note>
         <pitch>
           <step>D</step>
@@ -3372,6 +3741,12 @@
       </note>
     </measure>
     <measure number="59">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -3470,6 +3845,12 @@
       </note>
     </measure>
     <measure number="61">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -3562,6 +3943,19 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <mf />
+          </dynamics>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -3580,6 +3974,12 @@
       </note>
     </measure>
     <measure number="63">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -3662,6 +4062,12 @@
       </note>
     </measure>
     <measure number="64">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -3706,6 +4112,12 @@
           <text>－</text>
         </lyric>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -3732,6 +4144,12 @@
       </note>
     </measure>
     <measure number="65">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -3869,6 +4287,24 @@
           <beat-type>4</beat-type>
         </time>
       </attributes>
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <mf />
+          </dynamics>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <words>약동적으로 좀 빠르게</words>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -3967,6 +4403,16 @@
       </note>
     </measure>
     <measure number="69">
+      <direction placement="above">
+        <direction-type>
+          <words>smc-type-8</words>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <words>smc-type-8</words>
+        </direction-type>
+      </direction>
       <note>
         <pitch>
           <step>A</step>
@@ -4076,6 +4522,12 @@
       </note>
     </measure>
     <measure number="71">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -4147,6 +4599,12 @@
       </note>
     </measure>
     <measure number="72">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -4183,6 +4641,12 @@
           <text>배</text>
         </lyric>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -4209,6 +4673,9 @@
       </note>
     </measure>
     <measure number="73">
+      <harmony>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <rest />
         <duration>120</duration>
@@ -4277,6 +4744,13 @@
       </note>
     </measure>
     <measure number="74">
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <f />
+          </dynamics>
+        </direction-type>
+      </direction>
       <note>
         <pitch>
           <step>A</step>
@@ -4291,6 +4765,12 @@
       </note>
     </measure>
     <measure number="75">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -4346,6 +4826,12 @@
       </note>
     </measure>
     <measure number="76">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -4440,6 +4926,12 @@
       </note>
     </measure>
     <measure number="78">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -4535,6 +5027,12 @@
       </note>
     </measure>
     <measure number="79">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -4549,6 +5047,12 @@
       </note>
     </measure>
     <measure number="80">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -4604,6 +5108,12 @@
       </note>
     </measure>
     <measure number="81">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -4622,6 +5132,9 @@
       </note>
     </measure>
     <measure number="82">
+      <harmony>
+        <kind>major</kind>
+      </harmony>
       <note>
         <rest />
         <duration>120</duration>
@@ -4698,6 +5211,12 @@
       </note>
     </measure>
     <measure number="83">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -4785,6 +5304,12 @@
       </note>
     </measure>
     <measure number="84">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -4799,6 +5324,11 @@
       </note>
     </measure>
     <measure number="85">
+      <direction placement="above">
+        <direction-type>
+          <words>smc-type-8</words>
+        </direction-type>
+      </direction>
       <note>
         <pitch>
           <step>A</step>
@@ -4850,6 +5380,12 @@
       </note>
     </measure>
     <measure number="86">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -5112,6 +5648,12 @@
       </note>
     </measure>
     <measure number="90">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -5137,6 +5679,12 @@
           <text>장</text>
         </lyric>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -5243,6 +5791,12 @@
       </note>
     </measure>
     <measure number="92">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -5300,6 +5854,17 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <direction placement="above">
+        <direction-type>
+          <words>smc-type-8</words>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>G</step>
@@ -5319,6 +5884,12 @@
       </note>
     </measure>
     <measure number="95">
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>G</step>
@@ -5337,6 +5908,17 @@
       </note>
     </measure>
     <measure number="96">
+      <direction placement="above">
+        <direction-type>
+          <words>smc-type-8</words>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -5373,6 +5955,19 @@
       </note>
     </measure>
     <measure number="98">
+      <direction placement="above">
+        <direction-type>
+          <words>좀 느리게</words>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <words>smc-type-8</words>
+        </direction-type>
+      </direction>
+      <harmony>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <rest />
         <duration>120</duration>
@@ -5459,6 +6054,12 @@
           <beat-type>8</beat-type>
         </time>
       </attributes>
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
       <note>
         <pitch>
           <step>C</step>
@@ -5517,6 +6118,12 @@
       </note>
     </measure>
     <measure number="100">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -5556,6 +6163,12 @@
           <slur type="stop" number="1" />
         </notations>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -5582,6 +6195,12 @@
       </note>
     </measure>
     <measure number="101">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -5644,6 +6263,13 @@
       </note>
     </measure>
     <measure number="102">
+      <direction placement="above">
+        <direction-type>
+          <dynamics>
+            <mf />
+          </dynamics>
+        </direction-type>
+      </direction>
       <note>
         <pitch>
           <step>D</step>
@@ -5706,6 +6332,12 @@
       </note>
     </measure>
     <measure number="103">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -5786,6 +6418,12 @@
         <voice>1</voice>
         <type>16th</type>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -5804,6 +6442,12 @@
       </note>
     </measure>
     <measure number="105">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
@@ -5886,6 +6530,12 @@
       </note>
     </measure>
     <measure number="106">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>D</step>
@@ -5930,6 +6580,12 @@
           <text>－</text>
         </lyric>
       </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>E</step>
@@ -5956,6 +6612,12 @@
       </note>
     </measure>
     <measure number="107">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>minor</kind>
+      </harmony>
       <note>
         <pitch>
           <step>A</step>
