@@ -1,0 +1,30 @@
+==============================================================================
+SYMP HEADER TITLE (the canonical title field)
+==============================================================================
+500KFS-0041.smc  title_raw=b'\x8c\xc4\x8a}\x96\xa7 \x89\xcf\x8b\xb5'
+                 decoded  ='바다의 노래'
+                 extra_str=b'448\x00'
+110SSS-001.smc   title_raw=b'\x89M\x96m\x8d\xc0\x8e\x9e\x88\xe9\x96\xa7 \x89\xcf\x8b\xb5'
+                 decoded  ='김일성장군의 노래'
+                 extra_str=b'54\x00'
+
+==============================================================================
+GENERATED MUSICXML - title, creators, first bytes
+==============================================================================
+500KFS-0041      file=out_500KFS-0041.musicxml
+                 first4=b'<?xm'  bom=False
+                 title='바다의 노래'
+                 creators=[]
+                 parts=12
+
+110SSS-001       file=out_110SSS-001.musicxml
+                 first4=b'<?xm'  bom=False
+                 title='김일성장군의 노래'
+                 creators=[('lyricist', '리찬'), ('composer', '김원균')]
+                 parts=17
+
+==============================================================================
+CREDIT TEXT PRESENCE ACROSS THE CORPUS
+==============================================================================
+files scanned        : 8451
+files with a credit  : 0

@@ -1,0 +1,33 @@
+==============================================================================
+A. EMITTED XML FOR A ROOTLESS HARMONY
+==============================================================================
+file 130RVS-016
+   measure 1: <harmony><kind>major</kind></harmony>
+   measure 3: <harmony><kind>minor</kind></harmony>
+   measure 4: <harmony><kind>major</kind></harmony>
+   measure 5: <harmony><kind>minor</kind></harmony>
+   measure 6: <harmony><kind>major</kind></harmony>
+   measure 7: <harmony><kind>minor</kind></harmony>
+   harmonies=15  without root or function=15  <- invalid MusicXML
+
+file 110SSS-001
+   measure 17: <harmony><kind>major</kind></harmony>
+   harmonies=34  without root or function=1  <- invalid MusicXML
+
+==============================================================================
+B/C. ROOTLESS SYMBOLS vs NEARBY TEXT AND SIBLING 0x46
+==============================================================================
+rootless symbols                    : 29892
+   in a measure that also has text  : 1470 (4.9%)
+   with a sibling 0x46              : 0
+   text message types seen          : [(6, 1513)]
+
+   examples of a rootless symbol in a measure with text:
+      130RVS-012.smc           m1    name=''       text=['\x92h \x96w\x89a']
+      130RVS-012.smc           m5    name=''       text=['\x81@\x81@ðx \x82Q\x81L\x82W\x8e¬']
+      130RVS-013.smc           m1    name=''       text=['\x8cñ\x90Ð\x8dÎ\x8a¨\x8b\x81']
+      130RVS-016.smc           m1    name=''       text=['\x94À\x94À\x91Õ\x89a']
+      130RVS-018.smc           m1    name=''       text=['\x93è\x8b¡\x88Ô \x88Ð\x90¦\x91Õ\x89a']
+      130RVS-020.smc           m1    name=''       text=['\x92h\x8fr\x89a']
+      130RVS-023.smc           m5    name=''       text=['\x81i\x92G\x8b{\x81j']
+      130RVS-023.smc           m5    name=''       text=['\x81i\x92G\x8b{\x81j']

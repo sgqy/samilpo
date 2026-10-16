@@ -1,0 +1,242 @@
+==============================================================================
+HEADER FIELD COMPARISON
+==============================================================================
+rooted symbols sampled   : 15436
+rootless symbols sampled : 4014
+
+  type_index
+     rooted   : [(0, 9323), (4, 1091), (3, 1084), (2, 1016), (1, 1007), (5, 990), (6, 925)]
+     rootless : [(0, 955), (2, 540), (1, 523), (4, 516), (5, 504), (6, 497), (3, 479)]
+
+  head_type
+     rooted   : [(0, 15436)]
+     rootless : [(0, 4014)]
+
+  f03
+     rooted   : [(0, 15436)]
+     rootless : [(0, 4014)]
+
+  f04
+     rooted   : [(0, 15436)]
+     rootless : [(0, 4014)]
+
+  scale
+     rooted   : [(16, 15436)]
+     rootless : [(16, 4014)]
+
+  style
+     rooted   : [(0, 15436)]
+     rootless : [(0, 4014)]
+
+  bracket
+     rooted   : [(0, 15436)]
+     rootless : [(0, 4014)]
+
+  dots
+     rooted   : [(0, 15436)]
+     rootless : [(0, 4014)]
+
+  voice
+     rooted   : [(1, 15313), (2, 111), (3, 12)]
+     rootless : [(1, 4012), (2, 2)]
+
+  stem_flag
+     rooted   : [(0, 15436)]
+     rootless : [(0, 4014)]
+
+  f2
+     rooted   : [(256, 15436)]
+     rootless : [(256, 4014)]
+
+  derived
+     rooted   : [(12, 8070), (112, 7366)]
+     rootless : [(112, 3544), (12, 470)]
+
+  head_len
+     rooted   : [(0, 8070), (100, 7366)]
+     rootless : [(100, 3544), (0, 470)]
+
+  child_count
+     rooted   : [(0, 15436)]
+     rootless : [(0, 4014)]
+
+==============================================================================
+HEAD BYTE COMPARISON (rooted vs rootless, per offset)
+==============================================================================
+head lengths rooted   : [(0, 8070), (100, 7366)]
+head lengths rootless : [(100, 3544), (0, 470)]
+comparable pairs: rooted 7366, rootless 3544
+   +0x00  mean rooted=86.2 rootless=112.9
+   +0x02  mean rooted=73.9 rootless=25.7
+   +0x08  mean rooted=131.9 rootless=175.8
+   +0x09  mean rooted=109.6 rootless=179.6
+   +0x0B  mean rooted=50.8 rootless=6.6
+   +0x0E  mean rooted=103.1 rootless=190.8
+   +0x0F  mean rooted=85.5 rootless=145.0
+   +0x11  mean rooted=33.6 rootless=1.0
+   +0x14  mean rooted=25.9 rootless=53.3
+   +0x16  mean rooted=65.3 rootless=22.4
+   +0x18  mean rooted=96.6 rootless=127.7
+   +0x1A  mean rooted=113.2 rootless=189.4
+   +0x1B  mean rooted=70.5 rootless=144.3
+   +0x1C  mean rooted=69.7 rootless=97.6
+   +0x21  mean rooted=51.7 rootless=107.0
+   +0x22  mean rooted=72.5 rootless=121.7
+   +0x23  mean rooted=55.8 rootless=21.0
+   +0x24  mean rooted=115.0 rootless=43.1
+   +0x39  mean rooted=51.4 rootless=97.5
+   +0x3C  mean rooted=93.7 rootless=44.0
+   +0x3D  mean rooted=67.2 rootless=30.4
+   +0x3E  mean rooted=107.2 rootless=80.6
+   +0x40  mean rooted=52.1 rootless=1.1
+   +0x43  mean rooted=95.1 rootless=137.1
+   +0x44  mean rooted=91.9 rootless=29.2
+   +0x46  mean rooted=107.8 rootless=148.5
+
+==============================================================================
+DOES ANY HEAD BYTE EQUAL THE FINGERING ROOT PITCH CLASS?
+==============================================================================
+samples: 7366
+top offsets whose value tracks the root pitch class:
+   +0x5B  mod12  match=15.7%  (1155/7366)
+   +0x5B  idx<18  match=15.7%  (1155/7366)
+   +0x58  mod12  match=15.7%  (1155/7366)
+   +0x58  idx<18  match=15.7%  (1155/7366)
+   +0x53  mod12  match=15.7%  (1155/7366)
+   +0x53  idx<18  match=15.7%  (1155/7366)
+   +0x52  mod12  match=15.7%  (1155/7366)
+   +0x52  idx<18  match=15.7%  (1155/7366)
+   +0x51  mod12  match=15.7%  (1155/7366)
+   +0x51  idx<18  match=15.7%  (1155/7366)
+   +0x4C  mod12  match=15.7%  (1155/7366)
+   +0x48  mod12  match=15.7%  (1155/7366)
+   +0x33  mod12  match=15.7%  (1155/7366)
+   +0x33  idx<18  match=15.7%  (1155/7366)
+   +0x2D  mod12  match=15.6%  (1149/7366)
+
+   direct value histogram at each offset that scored above 30%:
+
+==============================================================================
+RAW HEADS: one rootless file in full
+==============================================================================
+130RVS-016.smc - every 0x45 with its full head
+   m1    name=b''      info=             type_index=0    head_type=0    f03=0    f04=0    style=0
+        +0x00  5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 98 62 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m3    name=b'm'     info=03 04        type_index=5    head_type=0    f03=0    f04=0    style=0
+        +0x00  6d 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 28 ee 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m4    name=b''      info=             type_index=4    head_type=0    f03=0    f04=0    style=0
+        +0x00  5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 00 30 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m5    name=b'm'     info=03 04        type_index=5    head_type=0    f03=0    f04=0    style=0
+        +0x00  6d 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 28 ee 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m6    name=b''      info=             type_index=0    head_type=0    f03=0    f04=0    style=0
+        +0x00  5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 9f 17 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m7    name=b'm'     info=03 04        type_index=2    head_type=0    f03=0    f04=0    style=0
+        +0x00  6d 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 28 ee 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m8    name=b'7'     info=04 03 03     type_index=4    head_type=0    f03=0    f04=0    style=0
+        +0x00  37 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 28 ee 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m9    name=b''      info=             type_index=0    head_type=0    f03=0    f04=0    style=0
+        +0x00  5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 3b 00 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m10   name=b'm'     info=03 04        type_index=5    head_type=0    f03=0    f04=0    style=0
+        +0x00  6d 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 28 ee 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m11   name=b''      info=             type_index=0    head_type=0    f03=0    f04=0    style=0
+        +0x00  5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 3b 00 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m12   name=b''      info=             type_index=3    head_type=0    f03=0    f04=0    style=0
+        +0x00  5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 00 30 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m13   name=b''      info=             type_index=3    head_type=0    f03=0    f04=0    style=0
+        +0x00  5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 00 30 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m14   name=b''      info=             type_index=0    head_type=0    f03=0    f04=0    style=0
+        +0x00  5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 3b 00 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m15   name=b'7'     info=04 03 03     type_index=1    head_type=0    f03=0    f04=0    style=0
+        +0x00  37 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 28 ee 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f
+   m16   name=b''      info=             type_index=4    head_type=0    f03=0    f04=0    style=0
+        +0x00  5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf
+        +0x10  00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+        +0x20  2a 8e a1 00 00 be 98 11 97 17 40 9a 02 00 9d 11
+        +0x30  48 be 28 00 99 29 f7 bf 00 30 00 00 00 00 46 02
+        +0x40  00 00 68 8e 02 00 b8 3c 18 10 40 5f 18 10 40 5f
+        +0x50  01 00 00 00 76 23 f6 bf 00 30 a1 00 1f 11 40 5f
+        +0x60  25 5d 40 5f

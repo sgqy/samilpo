@@ -1,0 +1,14 @@
+==============================================================================
+REMAINING NULL-ROOT HARMONIES
+==============================================================================
+harmony records total          : 177909
+   with a null root            : 0 (0.000%)
+
+root_index state among them    : {}
+root_source among them         : {}
+
+A null root is expected ONLY when the declared index is out of range AND the
+FretBoard stores no sounding string - then the file genuinely records no root.
+
+unexpected cases (in-range index undecoded, or a shape that went unused): 0
+   none - every remaining null root is explained by the source

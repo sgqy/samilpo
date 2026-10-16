@@ -1,0 +1,44 @@
+==============================================================================
+A. MEASURE COUNT - what the layout declares vs what the reader produced
+==============================================================================
+files with a layout measure count : 8451
+files where the reader produced fewer measures than the layout declares : 0
+
+500KFS-0041 specifically:
+   page 0 block start_meas=0     f2=5     -> measures 1..5
+   page 0 block start_meas=5     f2=5     -> measures 6..10
+   page 0 block start_meas=10    f2=5     -> measures 11..15
+   page 0 block start_meas=15    f2=5     -> measures 16..20
+   page 0 block start_meas=20    f2=5     -> measures 21..25
+   page 0 block start_meas=25    f2=5     -> measures 26..30
+   page 0 block start_meas=30    f2=5     -> measures 31..35
+   page 1 block start_meas=35    f2=5     -> measures 36..40
+   page 1 block start_meas=40    f2=5     -> measures 41..45
+   page 1 block start_meas=45    f2=6     -> measures 46..51
+   page 1 block start_meas=51    f2=5     -> measures 52..56
+   page 1 block start_meas=56    f2=5     -> measures 57..61
+   page 1 block start_meas=61    f2=5     -> measures 62..66
+   page 1 block start_meas=66    f2=4     -> measures 67..70
+   page 1 block start_meas=70    f2=5     -> measures 71..75
+   page 2 block start_meas=75    f2=5     -> measures 76..80
+   page 2 block start_meas=80    f2=5     -> measures 81..85
+   page 2 block start_meas=85    f2=4     -> measures 86..89
+   page 2 block start_meas=89    f2=5     -> measures 90..94
+   page 2 block start_meas=94    f2=5     -> measures 95..99
+   page 2 block start_meas=99    f2=5     -> measures 100..104
+   page 2 block start_meas=104   f2=5     -> measures 105..109
+   reader produced: 109 measures
+
+==============================================================================
+B. AUTHOR CREDIT - both the metadata form and the drawn text
+==============================================================================
+110SSS-001
+   <creator> elements : [('lyricist', '리찬'), ('composer', '김원균')]
+   <words> in score   : ['smc-type-8', '보통속도로', '작사 리찬, 작곡 김원균', '（후렴）']
+   credit also drawn  : yes - it appears as words above
+
+500KFS-0041
+   <creator> elements : []
+   <words> in score   : ['smc-type-8', '랑만적으로', '바다의 노래', '약동적으로 좀 빠르게', '좀 느리게']
+   credit also drawn  : NO
+

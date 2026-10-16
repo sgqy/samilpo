@@ -1,0 +1,47 @@
+   ... 1500/1500
+   ... 3000/3000
+   ... 4500/4500
+   ... 6000/6000
+   ... 7500/7500
+
+==============================================================================
+1. TITLE
+==============================================================================
+files converted        : 8451
+conversion errors      : 0
+title mismatches       : 0
+
+==============================================================================
+2. AUTHOR CREDIT
+==============================================================================
+files with a credit    : 545 of 8451 (6.4%)
+files that lost one    : 0
+   110SSS-001.smc               [('lyricist', '리찬'), ('composer', '김원균')]
+   110SSS-003.smc               [('lyricist', '백인준'), ('composer', '김제선')]
+   110SSS-004.smc               [('lyricist', '집체'), ('composer', '전정근')]
+   110SSS-005.smc               [('lyricist', '박세영'), ('composer', '김원균')]
+   121GLS-010.smc               [('composer', '홍순태')]
+   122DLS-009.smc               [('composer', '리학범')]
+   122DLS-010.smc               [('composer', '설명순')]
+   141BLP-0064.smc              [('lyricist', '왕평'), ('composer', '전기현')]
+   141BLP-0073.smc              [('lyricist', '왕평'), ('composer', '전수린')]
+   141BLP-0085.smc              [('lyricist', '윤시정'), ('composer', '윤시정')]
+   142BLC-0006.smc              [('lyricist', '리원수'), ('composer', '홍란파')]
+   142BLC-0040.smc              [('lyricist', '윤석중'), ('composer', '홍란파')]
+   142BLC-0042.smc              [('lyricist', '박팔양'), ('composer', '윤극영')]
+   150ALS-01GA-0039.smc         [('lyricist', '엄애란'), ('composer', '장설봉')]
+   150ALS-01GA-0042.smc         [('lyricist', '홍기풍'), ('composer', '리상룡')]
+   150ALS-01GA-0051.smc         [('lyricist', '윤두근'), ('composer', '리광오')]
+   150ALS-01GA-0054.smc         [('lyricist', '리성철'), ('composer', '정상진')]
+   150ALS-01GA-0060.smc         [('lyricist', '리정술'), ('composer', '황진영')]
+   150ALS-01GA-0072.smc         [('lyricist', '황진영'), ('composer', '황진영')]
+   150ALS-01GA-0095.smc         [('lyricist', '전동우'), ('composer', '박진국')]
+
+==============================================================================
+3. HARMONY ANCHORS AND BARE MEASURES
+==============================================================================
+harmony records total  : 177909
+   anchored: false       : 8059 (4.530%)
+measures with notes    : 158814
+   carrying no chord    : 18205 (11.5%)
+   (a bare measure is ordinary, not a reader failure)

@@ -38,6 +38,7 @@ def options():
     ns = _ap.Namespace(extent='score+ext', accidental_policy='explicit',
                        lyric_line_policy='by-measure-gap', lyric_gap_threshold=480,
                        hyphen_policy='literal', part_merge='auto',
+                       accomp_mode='always',
                        emit_layout=False, timesig_clamp=False, dynamic_map=None)
     return smc2ir.Options(ns)
 

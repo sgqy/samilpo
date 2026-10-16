@@ -1,0 +1,197 @@
+============================================================================
+measure 1  style=6/8GudGoRi-2  tracks=4 events=67 period=2
+
+  track 0 ch=9 trans=0 events=29  key==0:12  key!=0:17
+     nonzero keys sorted: [65, 66]
+     nonzero key min/max: 65/66
+     key==0 MIDI status: {'0xb0': 8, '0xc0': 4}
+     first 10 raw events:
+        key=0   tr=0  dur=185    start=0     msg=b9 00 00 00 vel=0   b15=9
+        key=0   tr=0  dur=8377   start=0     msg=b9 20 00 00 vel=0   b15=9
+        key=0   tr=0  dur=201    start=0     msg=c9 00 00 00 vel=0   b15=9
+        key=0   tr=0  dur=181    start=0     msg=b5 00 00 00 vel=64  b15=5
+        key=0   tr=0  dur=8373   start=0     msg=b5 20 00 00 vel=0   b15=5
+        key=0   tr=0  dur=197    start=0     msg=c5 00 00 00 vel=0   b15=5
+        key=0   tr=0  dur=182    start=0     msg=b6 00 00 00 vel=64  b15=6
+        key=0   tr=0  dur=8374   start=0     msg=b6 20 00 00 vel=134 b15=6
+        key=0   tr=0  dur=3014   start=0     msg=c6 0b 00 00 vel=0   b15=6
+        key=0   tr=0  dur=183    start=0     msg=b7 00 00 00 vel=0   b15=7
+
+  track 1 ch=5 trans=0 events=24  key==0:0  key!=0:24
+     nonzero keys sorted: [60, 64, 67]
+     nonzero key min/max: 60/67
+     first 10 raw events:
+        key=60  tr=1  dur=85     start=256   msg=55 00 00 00 vel=64  b15=0
+        key=64  tr=1  dur=85     start=256   msg=55 00 00 00 vel=64  b15=0
+        key=67  tr=1  dur=85     start=256   msg=55 00 00 00 vel=64  b15=0
+        key=60  tr=1  dur=171    start=341   msg=ab 00 00 00 vel=64  b15=0
+        key=64  tr=1  dur=171    start=341   msg=ab 00 00 00 vel=64  b15=0
+        key=67  tr=1  dur=171    start=341   msg=ab 00 00 00 vel=64  b15=0
+        key=60  tr=1  dur=85     start=683   msg=55 00 00 00 vel=64  b15=0
+        key=64  tr=1  dur=85     start=683   msg=55 00 00 00 vel=64  b15=0
+        key=67  tr=1  dur=85     start=683   msg=55 00 00 00 vel=64  b15=0
+        key=60  tr=1  dur=85     start=768   msg=55 00 00 00 vel=64  b15=0
+
+  track 2 ch=6 trans=0 events=8  key==0:0  key!=0:8
+     nonzero keys sorted: [67, 79]
+     nonzero key min/max: 67/79
+     first 10 raw events:
+        key=79  tr=2  dur=85     start=683   msg=55 00 00 00 vel=64  b15=0
+        key=67  tr=2  dur=85     start=768   msg=55 00 00 00 vel=64  b15=0
+        key=79  tr=2  dur=85     start=853   msg=55 00 00 00 vel=64  b15=0
+        key=67  tr=2  dur=85     start=939   msg=55 00 00 00 vel=64  b15=0
+        key=79  tr=2  dur=85     start=1707  msg=55 00 00 00 vel=64  b15=0
+        key=67  tr=2  dur=85     start=1792  msg=55 00 00 00 vel=64  b15=0
+        key=79  tr=2  dur=85     start=1877  msg=55 00 00 00 vel=64  b15=0
+        key=67  tr=2  dur=85     start=1963  msg=55 00 00 00 vel=64  b15=7
+
+  track 3 ch=7 trans=-12 events=6  key==0:0  key!=0:6
+     nonzero keys sorted: [43, 48]
+     nonzero key min/max: 43/48
+     first 10 raw events:
+        key=48  tr=3  dur=512    start=0     msg=00 02 00 00 vel=64  b15=0
+        key=48  tr=3  dur=341    start=512   msg=55 01 00 00 vel=64  b15=0
+        key=43  tr=3  dur=171    start=853   msg=ab 00 00 00 vel=64  b15=0
+        key=43  tr=3  dur=512    start=1024  msg=00 02 00 00 vel=64  b15=7
+        key=48  tr=3  dur=341    start=1536  msg=55 01 00 00 vel=64  b15=0
+        key=43  tr=3  dur=171    start=1877  msg=ab 00 00 00 vel=64  b15=0
+
+  all starts: min=0 max=1963  slice limit=2048  beyond: 0
+  events beyond slice limit: 0 of 67
+============================================================================
+measure 67  style=MyLove  tracks=7 events=51 period=1
+
+  track 0 ch=5 trans=0 events=25  key==0:21  key!=0:4
+     nonzero keys sorted: [60]
+     nonzero key min/max: 60/60
+     key==0 MIDI status: {'0xb0': 14, '0xc0': 7}
+     first 10 raw events:
+        key=0   tr=0  dur=181    start=0     msg=b5 00 00 00 vel=195 b15=5
+        key=0   tr=0  dur=8373   start=0     msg=b5 20 00 00 vel=195 b15=5
+        key=0   tr=0  dur=1221   start=0     msg=c5 04 00 00 vel=195 b15=5
+        key=0   tr=0  dur=181    start=0     msg=b5 00 00 00 vel=0   b15=5
+        key=0   tr=0  dur=8373   start=0     msg=b5 20 00 00 vel=8   b15=5
+        key=0   tr=0  dur=1221   start=0     msg=c5 04 00 00 vel=0   b15=5
+        key=0   tr=0  dur=181    start=0     msg=b5 00 00 00 vel=133 b15=5
+        key=0   tr=0  dur=8373   start=0     msg=b5 20 00 00 vel=0   b15=5
+        key=0   tr=0  dur=1221   start=0     msg=c5 04 00 00 vel=0   b15=5
+        key=0   tr=0  dur=184    start=0     msg=b8 00 00 00 vel=133 b15=8
+
+  track 1 ch=5 trans=0 events=4  key==0:0  key!=0:4
+     nonzero keys sorted: [64]
+     nonzero key min/max: 64/64
+     first 10 raw events:
+        key=64  tr=1  dur=1024   start=0     msg=00 04 00 00 vel=64  b15=0
+        key=64  tr=1  dur=768    start=256   msg=00 03 00 00 vel=64  b15=0
+        key=64  tr=1  dur=512    start=512   msg=00 02 00 00 vel=64  b15=0
+        key=64  tr=1  dur=256    start=768   msg=00 01 00 00 vel=64  b15=0
+
+  track 2 ch=5 trans=0 events=4  key==0:0  key!=0:4
+     nonzero keys sorted: [67]
+     nonzero key min/max: 67/67
+     first 10 raw events:
+        key=67  tr=2  dur=1024   start=0     msg=00 04 00 00 vel=64  b15=0
+        key=67  tr=2  dur=768    start=256   msg=00 03 00 00 vel=64  b15=0
+        key=67  tr=2  dur=512    start=512   msg=00 02 00 00 vel=64  b15=0
+        key=67  tr=2  dur=256    start=768   msg=00 01 00 00 vel=64  b15=0
+
+  track 3 ch=8 trans=0 events=4  key==0:0  key!=0:4
+     nonzero keys sorted: [48]
+     nonzero key min/max: 48/48
+     first 10 raw events:
+        key=48  tr=3  dur=1024   start=0     msg=00 04 00 00 vel=64  b15=0
+        key=48  tr=3  dur=128    start=384   msg=80 00 00 00 vel=64  b15=0
+        key=48  tr=3  dur=512    start=512   msg=00 02 00 00 vel=64  b15=0
+        key=48  tr=3  dur=128    start=896   msg=80 00 00 00 vel=64  b15=0
+
+  track 4 ch=9 trans=0 events=8  key==0:0  key!=0:8
+     nonzero keys sorted: [51]
+     nonzero key min/max: 51/51
+     first 10 raw events:
+        key=51  tr=4  dur=128    start=0     msg=80 00 00 00 vel=64  b15=0
+        key=51  tr=4  dur=128    start=128   msg=80 00 00 00 vel=64  b15=0
+        key=51  tr=4  dur=128    start=256   msg=80 00 00 00 vel=64  b15=0
+        key=51  tr=4  dur=128    start=384   msg=80 00 00 00 vel=64  b15=0
+        key=51  tr=4  dur=128    start=512   msg=80 00 00 00 vel=64  b15=0
+        key=51  tr=4  dur=128    start=640   msg=80 00 00 00 vel=64  b15=0
+        key=51  tr=4  dur=128    start=768   msg=80 00 00 00 vel=64  b15=0
+        key=51  tr=4  dur=128    start=896   msg=80 00 00 00 vel=64  b15=0
+
+  track 5 ch=9 trans=0 events=2  key==0:0  key!=0:2
+     nonzero keys sorted: [38]
+     nonzero key min/max: 38/38
+     first 10 raw events:
+        key=38  tr=5  dur=256    start=256   msg=00 01 00 00 vel=64  b15=0
+        key=38  tr=5  dur=256    start=768   msg=00 01 00 00 vel=64  b15=0
+
+  track 6 ch=9 trans=0 events=4  key==0:0  key!=0:4
+     nonzero keys sorted: [35]
+     nonzero key min/max: 35/35
+     first 10 raw events:
+        key=35  tr=6  dur=256    start=0     msg=00 01 00 00 vel=64  b15=0
+        key=35  tr=6  dur=128    start=384   msg=80 00 00 00 vel=64  b15=0
+        key=35  tr=6  dur=256    start=512   msg=00 01 00 00 vel=64  b15=0
+        key=35  tr=6  dur=128    start=896   msg=80 00 00 00 vel=64  b15=0
+
+  all starts: min=0 max=896  slice limit=1024  beyond: 0
+  events beyond slice limit: 0 of 51
+============================================================================
+measure 99  style=6/8GudGoRi-2  tracks=4 events=67 period=2
+
+  track 0 ch=9 trans=0 events=29  key==0:12  key!=0:17
+     nonzero keys sorted: [65, 66]
+     nonzero key min/max: 65/66
+     key==0 MIDI status: {'0xb0': 8, '0xc0': 4}
+     first 10 raw events:
+        key=0   tr=0  dur=185    start=0     msg=b9 00 00 00 vel=0   b15=9
+        key=0   tr=0  dur=8377   start=0     msg=b9 20 00 00 vel=0   b15=9
+        key=0   tr=0  dur=201    start=0     msg=c9 00 00 00 vel=0   b15=9
+        key=0   tr=0  dur=181    start=0     msg=b5 00 00 00 vel=0   b15=5
+        key=0   tr=0  dur=8373   start=0     msg=b5 20 00 00 vel=0   b15=5
+        key=0   tr=0  dur=197    start=0     msg=c5 00 00 00 vel=0   b15=5
+        key=0   tr=0  dur=182    start=0     msg=b6 00 00 00 vel=12  b15=6
+        key=0   tr=0  dur=8374   start=0     msg=b6 20 00 00 vel=0   b15=6
+        key=0   tr=0  dur=3014   start=0     msg=c6 0b 00 00 vel=0   b15=6
+        key=0   tr=0  dur=183    start=0     msg=b7 00 00 00 vel=0   b15=7
+
+  track 1 ch=5 trans=0 events=24  key==0:0  key!=0:24
+     nonzero keys sorted: [60, 64, 67]
+     nonzero key min/max: 60/67
+     first 10 raw events:
+        key=60  tr=1  dur=85     start=256   msg=55 00 00 00 vel=64  b15=0
+        key=64  tr=1  dur=85     start=256   msg=55 00 00 00 vel=64  b15=0
+        key=67  tr=1  dur=85     start=256   msg=55 00 00 00 vel=64  b15=0
+        key=60  tr=1  dur=171    start=341   msg=ab 00 00 00 vel=64  b15=0
+        key=64  tr=1  dur=171    start=341   msg=ab 00 00 00 vel=64  b15=0
+        key=67  tr=1  dur=171    start=341   msg=ab 00 00 00 vel=64  b15=9
+        key=60  tr=1  dur=85     start=683   msg=55 00 00 00 vel=64  b15=2
+        key=64  tr=1  dur=85     start=683   msg=55 00 00 00 vel=64  b15=2
+        key=67  tr=1  dur=85     start=683   msg=55 00 00 00 vel=64  b15=2
+        key=60  tr=1  dur=85     start=768   msg=55 00 00 00 vel=64  b15=2
+
+  track 2 ch=6 trans=0 events=8  key==0:0  key!=0:8
+     nonzero keys sorted: [67, 79]
+     nonzero key min/max: 67/79
+     first 10 raw events:
+        key=79  tr=2  dur=85     start=683   msg=55 00 00 00 vel=64  b15=2
+        key=67  tr=2  dur=85     start=768   msg=55 00 00 00 vel=64  b15=0
+        key=79  tr=2  dur=85     start=853   msg=55 00 00 00 vel=64  b15=2
+        key=67  tr=2  dur=85     start=939   msg=55 00 00 00 vel=64  b15=2
+        key=79  tr=2  dur=85     start=1707  msg=55 00 00 00 vel=64  b15=0
+        key=67  tr=2  dur=85     start=1792  msg=55 00 00 00 vel=64  b15=0
+        key=79  tr=2  dur=85     start=1877  msg=55 00 00 00 vel=64  b15=0
+        key=67  tr=2  dur=85     start=1963  msg=55 00 00 00 vel=64  b15=0
+
+  track 3 ch=7 trans=-12 events=6  key==0:0  key!=0:6
+     nonzero keys sorted: [43, 48]
+     nonzero key min/max: 43/48
+     first 10 raw events:
+        key=48  tr=3  dur=512    start=0     msg=00 02 00 00 vel=64  b15=2
+        key=48  tr=3  dur=341    start=512   msg=55 01 00 00 vel=64  b15=2
+        key=43  tr=3  dur=171    start=853   msg=ab 00 00 00 vel=64  b15=2
+        key=43  tr=3  dur=512    start=1024  msg=00 02 00 00 vel=64  b15=0
+        key=48  tr=3  dur=341    start=1536  msg=55 01 00 00 vel=64  b15=9
+        key=43  tr=3  dur=171    start=1877  msg=ab 00 00 00 vel=64  b15=2
+
+  all starts: min=0 max=1963  slice limit=2048  beyond: 0
+  events beyond slice limit: 0 of 67

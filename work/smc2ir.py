@@ -24,12 +24,16 @@ import collections
 import hashlib
 import json
 import os
+import re
 import struct
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import smc_read as S
 from probe_smc import walk_msgs, play_time, tick_per_meas
+from fret import (OPEN_STRING_MIDI, STEP_BY_PC, ALTER_BY_PC,
+                  root_from_fret_info, root_of, shape_from_fret_info, spelling_of)
+import accomp
 
 # ---------------------------------------------------------------- constants
 
@@ -286,10 +290,106 @@ def convert(path, opts, fh):
         })
         convert_group(em, doc, group, pid, opts, cod, warn, audit)
 
+    # ---- author credit (decisions.md: written as page text, not as a field)
+    # Reuse the text blocks already turned into directions rather than rescanning
+    # the document. The credit stays in the part as <words> as well, because the
+    # source really does display it there; dropping it would lose visible
+    # content. The structured form exists so the names are machine-readable.
+    creators = []
+    seen_creators = set()
+    for rec in em.recs:
+        if rec.get('kind') != 'direction':
+            continue
+        d = rec.get('d') or {}
+        if d.get('type') != 'text':
+            continue
+        for line in (d.get('lines') or []):
+            for role, names in parse_credit(line).items():
+                for nm in names:
+                    if (role, nm) in seen_creators:
+                        continue
+                    seen_creators.add((role, nm))
+                    creators.append({'role': role, 'name': nm,
+                                     'meas': rec.get('meas'), 'text': line})
+    score_rec['creators'] = creators
+
+    # ---- accompaniment (decisions.md: the embedded patterns are real tracks)
+    # A chord symbol may carry a multi-track arrangement that the original
+    # program plays but never draws. It is not derived from the chords: it is a
+    # stored arrangement whose pitches are written as scale degrees relative to
+    # the chord in force. Every track is exported as its own part, because
+    # "hidden" is a layout state and dropping it would lose the music.
+    # Share the melody's barline positions exactly. Step 2 sizes a measure as
+    # max(time signature, furthest content), so read that back from the melody's
+    # own measure records rather than recomputing the rule.
+    timeline = ([], [])
+    for rec in em.recs:
+        if rec.get('kind') == 'measure' and rec.get('part') == 'P1':
+            ends = list((rec.get('content_end') or {}).values())
+            want = max([rec.get('tpm', 0)] + ends)
+            timeline[0].append(sum(timeline[1]))
+            timeline[1].append(want)
+    aparts, anotes, ameasures, astats = accomp.build(
+        doc, cod, opts, timeline=timeline if timeline[1] else None)
+    for rec in aparts:
+        em.emit(rec)
+    for rec in ameasures:
+        em.emit(rec)
+    for rec in anotes:
+        em.emit(rec)
+    for k, v in astats.items():
+        audit['accomp_' + k] = v
+    if not aparts:
+        warn('accompaniment-absent')
+
     # score_rec is em.recs[0]; refresh the audit now that counters are final
     score_rec['audit'] = dict(audit)
     em.flush()
     return score_rec, em
+
+
+CREDIT_ROLE = {'\uc791\uc0ac': 'lyricist', '\uc791\uace1': 'composer'}
+_CREDIT_SPLIT = re.compile(r'(\uc791\uc0ac|\uc791\uace1)')
+
+
+def parse_credit(text):
+    """Map a page credit line to {'lyricist': [...], 'composer': [...]}.
+
+    Nothing in the format stores an author: the credit is ordinary page text.
+    The corpus writes it as one free-form line - "\uc791\uc0ac \ub9ac\ucc2c, \uc791\uace1 \uae40\uc6d0\uade0",
+    "\uc791\uc0ac \uae40\uc815\ud6c8\r\n\uc791\uace1 \uac15\uc219\uc6c5", "\uc791\uc0ac,\uc791\uace1 \uc7ac\uc911\uc870\uc120\uc778\uc608\uc220\ub2e8 \uc9d1\uccb4" - so it can only
+    be recovered by reading the text. Only \uc791\uc0ac (words) and \uc791\uace1 (music) occur:
+    \ud3b8\uace1 / \uc5ed\uace1 / \ubc88\uc5ed appear nowhere in the corpus, so no other role is invented.
+
+    A keyword with no name of its own shares the next one's, which is what
+    "\uc791\uc0ac,\uc791\uace1 NAME" means: both credits name the same author.
+    Returns {} when the text carries no credit keyword, so ordinary expression
+    text ("\uc57d\ub3d9\uc801\uc73c\ub85c \uc88d \ube60\ub974\uac8c") is never mistaken for one.
+    """
+    if '\uc791\uc0ac' not in text and '\uc791\uace1' not in text:
+        return {}
+    parts = _CREDIT_SPLIT.split(text)
+    entries = []                       # [role, [names], text_after_keyword]
+    for i in range(1, len(parts) - 1, 2):
+        role = CREDIT_ROLE.get(parts[i])
+        seg = parts[i + 1]
+        names = [n.strip() for n in re.split(r'[,,\u3001]', seg)]
+        entries.append([role, [n for n in names if n], seg])
+    for i, entry in enumerate(entries):
+        if entry[1] or entry[2].strip(' ,\uff0c'):
+            continue
+        for later in entries[i + 1:]:
+            if later[1]:
+                entry[1] = list(later[1])
+                break
+    out = {}
+    for role, names, _ in entries:
+        if names:
+            bucket = out.setdefault(role, [])
+            for n in names:
+                if n not in bucket:
+                    bucket.append(n)
+    return out
 
 
 def decode_text(raw, cod):
@@ -658,9 +758,13 @@ def harmony_record(msg, anchor_note, pid, mi, opts, cod, staff=1):
     ce = getattr(msg, 'chord_extra', None)
     name = decode_text(ce.name, cod) if ce else ''
     # The root is NOT the pitch of the note the symbol sits over. A chord symbol
-    # records only its suffix; the root is implied by the fingering stored in the
-    # embedded FretBoard, so it must be read back from the fret shape.
-    root = root_from_fret_info(ce.fret_info) if ce else None
+    # records only its suffix; the root is declared separately in ObjectCore +0x08
+    # as an index into the engine's 18-entry spelling table, falling back to the
+    # embedded FretBoard's lowest sounding string only when that index is absent
+    # (see fret.root_of). Using the index matters: it is the only source on the
+    # 29892 symbols whose FretBoard holds no fingering, and where the two differ
+    # the fingering is usually reporting an inversion's bass.
+    root = root_of(msg, ce.fret_info if ce else None)
     rec = {
         'kind': 'harmony', 'part': pid, 'meas': mi + 1,
         'staff': staff, 'voice': (anchor_note or {}).get('voice', 1),
@@ -676,6 +780,8 @@ def harmony_record(msg, anchor_note, pid, mi, opts, cod, staff=1):
         rec['ext'] = {'info_hex': ce.info.hex() if ce else '',
                       'fret_info_hex': ce.fret_info.hex() if ce else '',
                       'fret_shape': shape,
+                      'root_index': msg.f8,
+                      'root_source': (root or {}).get('source'),
                       'fret_base': (ce.fret_info[0] | (ce.fret_info[1] << 8))
                                    if ce and len(ce.fret_info) >= 2 else None,
                       'head_len': msg.head_len,
@@ -692,44 +798,6 @@ SUFFIX_KIND = {
     '9': 'dominant-ninth', '6': 'major-sixth', 'sus4': 'suspended-fourth',
     'aug': 'augmented',
 }
-
-
-# Standard guitar tuning for the six strings of FretInfo, lowest first, as MIDI
-# note numbers (E2 A2 D3 G3 B3 E4). Index 0 is the 6th string, which is what a
-# chord diagram prints leftmost.
-OPEN_STRING_MIDI = (40, 45, 50, 55, 59, 64)
-STEP_NAMES = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
-
-
-def root_from_fret_info(raw):
-    """Derive the chord root from a FretInfo, as a chord diagram reads.
-
-    smc-format.md 6.8: +0x00 is baseFret and +0x02..+0x07 are the six string
-    fret values; >= 0xFE means the string is not played (the "x" in x02210).
-    The sounding bass note is the root. The chord message itself carries only a
-    suffix, so this fret shape is the sole place the root is recorded.
-    """
-    if not raw or len(raw) < 8:
-        return None
-    base = raw[0] | (raw[1] << 8)
-    midis = [OPEN_STRING_MIDI[i] + base + f
-             for i, f in enumerate(raw[2:8]) if f < 0xFE]
-    if not midis:
-        return None
-    midi = min(midis)
-    pc = midi % 12
-    return {'midi': midi,
-            'step': STEP_NAMES[pc].rstrip('#'),
-            'alter': 1 if '#' in STEP_NAMES[pc] else 0,
-            'octave': midi // 12 - 1}
-
-
-def shape_from_fret_info(raw):
-    """Print the six strings the way a chord diagram does, e.g. "x02210"."""
-    if not raw or len(raw) < 8:
-        return None
-    base = raw[0] | (raw[1] << 8)
-    return ''.join('x' if f >= 0xFE else str(base + f) for f in raw[2:8])
 
 
 def kind_from_surfix(name):
@@ -824,6 +892,7 @@ class Options:
         self.lyric_gap_threshold = a.lyric_gap_threshold
         self.hyphen_policy = a.hyphen_policy
         self.part_merge = a.part_merge
+        self.accomp_mode = a.accomp_mode
         self.emit_layout = a.emit_layout
         self.timesig_clamp = a.timesig_clamp
         self.dynamic_map = dict(DEFAULT_DYNAMIC_MAP)
@@ -839,6 +908,7 @@ class Options:
             'lyric_gap_threshold': self.lyric_gap_threshold,
             'hyphen_policy': self.hyphen_policy,
             'part_merge': self.part_merge,
+            'accomp_mode': self.accomp_mode,
         }
 
 
@@ -856,6 +926,18 @@ def main():
     ap.add_argument('--hyphen-policy', default='literal',
                     choices=['literal', 'syllabic'])
     ap.add_argument('--part-merge', default='auto', choices=['auto', 'none', 'all'])
+    # Accompaniment is not optional. The arrangement stored in the chord
+    # symbols is music the source file really contains; it is invisible only
+    # because the original program does not draw it, and "not drawn" is a layout
+    # state, not a reason to drop material. `--accomp-mode` therefore has a
+    # single legal value: there is no way to switch the accompaniment off, and
+    # adding another mode would have to be a deliberate decision rather than a
+    # quiet default.
+    ap.add_argument('--accomp', action='store_true', default=True,
+                    help='emit every accompaniment track as its own part '
+                         '(always on; hidden material must survive)')
+    ap.add_argument('--accomp-mode', default='always', choices=['always'],
+                    help='only "always" exists: hidden tracks are never dropped')
     ap.add_argument('--emit-layout', action='store_true')
     ap.add_argument('--timesig-clamp', action='store_true')
     ap.add_argument('--dynamic-map')

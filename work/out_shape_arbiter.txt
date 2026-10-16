@@ -1,0 +1,52 @@
+   ... 2000/8451
+   ... 4000/8451
+   ... 6000/8451
+   ... 8000/8451
+==============================================================================
+DECIDED DISAGREEMENTS (only pairs where the quality is known)
+==============================================================================
+f8 root explains the shape better : 3573
+fingering explains it better      : 1865
+both explain every shape tone     : 55  (undecided, not a conflict)
+neither explains it fully         : 61
+skipped, unlisted quality         : 123
+
+   among decided cases f8 is right 65.7% of the time
+
+gap (fingering pc - f8 pc) by winner:
+   f8: [(2, 5), (3, 100), (6, 48), (7, 2632), (9, 151), (10, 637)]
+   fret: [(1, 127), (2, 200), (3, 84), (4, 87), (5, 410), (6, 91), (7, 399), (8, 82), (9, 125), (10, 135), (11, 125)]
+
+==============================================================================
+EXAMPLES WHERE F8 IS RIGHT
+==============================================================================
+file                       f8     f8pc   fretpc name           kind                 score f8/fret (shape tones)
+110SSS-002.smc             10     7      5      'm7'           minor-seventh        4/1 (of 4)
+110SSS-004.smc             12     8      3      '7'            dominant             4/1 (of 4)
+110SSS-004.smc             12     8      3      '7'            dominant             4/1 (of 4)
+110SSS-004.smc             12     8      3      '7'            dominant             4/1 (of 4)
+121GLS-003.smc             10     7      5      'm7'           minor-seventh        4/1 (of 4)
+121GLS-003.smc             10     7      5      'm7'           minor-seventh        4/1 (of 4)
+121GLS-003.smc             10     7      5      'm7'           minor-seventh        4/1 (of 4)
+121GLS-003.smc             10     7      5      'm7'           minor-seventh        4/1 (of 4)
+122DLS-004.smc             15     10     5      '7'            dominant             4/1 (of 4)
+122DLS-004.smc             15     10     5      '7'            dominant             4/1 (of 4)
+122DLS-004.smc             15     10     5      '7'            dominant             4/1 (of 4)
+122DLS-004.smc             15     10     5      '7'            dominant             4/1 (of 4)
+
+==============================================================================
+EXAMPLES WHERE FRET IS RIGHT
+==============================================================================
+file                       f8     f8pc   fretpc name           kind                 score f8/fret (shape tones)
+141BLP-0042.smc            4      2      3      'dim7'         diminished-seventh   0/4 (of 4)
+141BLP-0058.smc            16     11     4      ''             major                2/5 (of 6)
+141BLP-0058.smc            0      0      4      ''             major                4/5 (of 6)
+142BLC-0007.smc            4      2      9      'dim'          diminished           0/2 (of 3)
+150ALS-01GA-0019.smc       3      2      9      ''             major                1/4 (of 5)
+150ALS-01GA-0019.smc       3      2      9      ''             major                1/4 (of 5)
+150ALS-01GA-0019.smc       3      2      9      ''             major                2/3 (of 4)
+150ALS-01GA-0019.smc       3      2      9      ''             major                2/3 (of 4)
+150ALS-01GA-0019.smc       10     7      2      ''             major                2/3 (of 4)
+150ALS-01GA-0019.smc       13     9      7      ''             major                0/5 (of 6)
+150ALS-01GA-0019.smc       3      2      7      ''             major                2/5 (of 6)
+150ALS-01GA-0019.smc       3      2      7      ''             major                2/5 (of 6)

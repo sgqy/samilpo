@@ -1,0 +1,21 @@
+==============================================================================
+MELODY ARBITER for the out-of-range symbols
+==============================================================================
+measures examined        : 707
+melody notes scored      : 3714
+
+share of ALL melody notes that are chord tones of each candidate root:
+   low           2522 / 3714    =  67.91%
+   allmod        1692 / 3714    =  45.56%
+   high          1875 / 3714    =  50.48%
+   control       1865 / 3714    =  50.22%
+   chance           -             50.00%   (chance for a triad)
+
+share of the FIRST melody note of the measure that is a chord tone:
+   low            607 / 707     =  85.86%
+   allmod         306 / 707     =  43.28%
+   high           339 / 707     =  47.95%
+   control        389 / 707     =  55.02%
+
+best on all melody notes : low
+best on the first note   : low

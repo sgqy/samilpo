@@ -1,0 +1,58 @@
+==============================================================================
+500KFS-0041.musicxml
+==============================================================================
+  bytes            : 1163338
+  UTF-8 BOM        : False
+  movement-title   : '바다의 노래'
+  creators         : []
+  parts            : 12
+      P1   Music
+      A1   Drums (6/8GudGoRi-2 #1)
+      A2   6/8GudGoRi-2 #2 Acoustic Grand
+      A3   6/8GudGoRi-2 #3 Vibraphone
+      ... and 8 more
+  P1 measures      : 109
+  P1 harmonies     : 91
+  first 7 measures (ground truth: Am Dm Em F Dm Em Am):
+      m1    A minor
+      m2    (none)
+      m3    D minor
+      m4    E minor
+      m5    F major
+      m6    D minor, E minor
+      m7    A minor
+  last 4 measures:
+      m106  D minor, E minor
+      m107  A minor
+      m108  (no chord symbol in source)
+      m109  (no chord symbol in source)
+
+==============================================================================
+110SSS-001.musicxml
+==============================================================================
+  bytes            : 216719
+  UTF-8 BOM        : False
+  movement-title   : '김일성장군의 노래'
+  creators         : [('lyricist', '리찬'), ('composer', '김원균')]
+  parts            : 17
+      P1   Music
+      A1   Chord01 #1 Acoustic Grand
+      A2   Chord01 #2 Acoustic Grand
+      A3   Chord01 #3 Acoustic Grand
+      ... and 13 more
+  P1 measures      : 20
+  P1 harmonies     : 34
+  first 7 measures (ground truth: Am Dm Em F Dm Em Am):
+      m1    C major
+      m2    (none)
+      m3    G dominant, A minor
+      m4    C major
+      m5    F major
+      m6    C major
+      m7    A minor, G dominant
+  last 4 measures:
+      m17   A minor, F major, E major, C major
+      m18   C major, F major
+      m19   C major, G dominant, E minor
+      m20   C major
+

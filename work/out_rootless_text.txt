@@ -1,0 +1,115 @@
+==============================================================================
+A. TEXT IN ROOTLESS-HEAVY FILES
+==============================================================================
+
+130RVS-016.smc   (title='모두다 나서자')
+   m1   
+        text(0x06) ['씩씩하게']
+        chord name=b''        info=             root=None
+   m3   
+        chord name=b'm'       info=03 04        root=None
+   m4   
+        chord name=b''        info=             root=None
+   m5   
+        chord name=b'm'       info=03 04        root=None
+   m6   
+        chord name=b''        info=             root=None
+   m7   
+        chord name=b'm'       info=03 04        root=None
+   m8   
+        chord name=b'7'       info=04 03 03     root=None
+   total chords=15  with root=0
+
+130RVS-012.smc   (title='단결하라 무산대중')
+   m1   
+        text(0x06) ['힘 있게']
+        chord name=b''        info=04 03        root=None
+   m3   
+        text(0x06) ['＊']
+   m5   
+        text(0x06) ['\u3000\u3000＊ ２∼８절']
+        chord name=b''        info=04 03        root=None
+   m6   
+        chord name=b''        info=04 03        root=None
+   m7   
+        chord name=b'7'       info=04 03 03     root=None
+   m8   
+        chord name=b''        info=04 03        root=None
+   total chords=5  with root=0
+
+130RVS-013.smc   (title='동무야 모여라')
+   m1   
+        text(0x06) ['보통속도로']
+        chord name=b''        info=             root=None
+   m3   
+        chord name=b''        info=             root=None
+   m4   
+        chord name=b''        info=             root=None
+   m5   
+        chord name=b''        info=             root=None
+   m7   
+        chord name=b''        info=             root=None
+   total chords=19  with root=1
+
+130RVS-020.smc   (title='무산자의 선봉대')
+   m1   
+        text(0x06) ['힘차게']
+        chord name=b''        info=             root=None
+   m2   
+        chord name=b''        info=             root=None
+        chord name=b'm'       info=03 04        root=None
+   m3   
+        chord name=b''        info=             root=None
+   m4   
+        chord name=b''        info=             root=None
+        chord name=b''        info=             root=None
+   m6   
+        chord name=b''        info=             root=None
+        chord name=b'm'       info=03 04        root=None
+   m8   
+        chord name=b''        info=             root=None
+        chord name=b''        info=             root=None
+   total chords=10  with root=0
+
+130RVS-024.smc   (title='메데가')
+   m1   
+        text(0x06) ['행진조로']
+        chord name=b''        info=04 03        root=None
+   m3   
+        chord name=b''        info=04 03        root=None
+   m4   
+        chord name=b''        info=04 03        root=None
+   m5   
+        chord name=b''        info=04 03        root=None
+   m7   
+        chord name=b'7'       info=04 03 03     root=None
+   m8   
+        chord name=b''        info=04 03        root=None
+   total chords=14  with root=0
+
+130RVS-066.smc   (title='유격대행진곡')
+   m1   
+        chord name=b''        info=             root=None
+   m3   
+        chord name=b''        info=             root=None
+   m4   
+        chord name=b''        info=             root=None
+   m5   
+        chord name=b''        info=             root=None
+   m7   
+        chord name=b'm'       info=03 04        root=None
+   total chords=23  with root=0
+
+==============================================================================
+B. IS ROOTLESS A FILE-FAMILY PROPERTY?
+==============================================================================
+   ... 2000/8451
+   ... 4000/8451
+   ... 6000/8451
+   ... 8000/8451
+family                      files  withnul   chords       null      null%
+100SONG                      3911     1710    87391      25625     29.32%
+400CHS                       1511      195    28396       2020      7.11%
+300FLS                       1721      252    31614       1827      5.78%
+200OPS                       1191      168    27656        381      1.38%
+500KFS                        117        9     2852         39      1.37%

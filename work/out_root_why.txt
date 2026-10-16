@@ -1,0 +1,164 @@
+   ... 2000/8451
+   ... 4000/8451
+   ... 6000/8451
+   ... 8000/8451
+==============================================================================
+A. symbols WITH a fingering: is the anchored note the root?
+==============================================================================
+symbols with a root       : 148017
+   also anchored          : 137171
+   anchor pc == root pc   : 51426 (37.5%)
+   -> anchor is the root in 37.5% of cases, so it is NOT a safe fallback
+   interval anchor-root histogram: [(0, 51426), (7, 34418), (4, 23800), (3, 10556), (10, 6950), (9, 3481), (2, 2803), (5, 1981), (8, 774), (6, 364), (1, 354), (11, 264)]
+
+==============================================================================
+B. symbols WITHOUT a fingering
+==============================================================================
+count                     : 29892
+   anchored               : 28790
+   anchor pc histogram    : [(0, 3807), (2, 3681), (7, 3324), (9, 2771), (5, 2709), (4, 2346), (10, 2114), (3, 1918), (11, 1857), (6, 1204), (1, 1042), (8, 975)]
+   name histogram         : [('', 14411), ('m', 8635), ('7', 3651), (' (major)', 2513), ('(major)', 234), ('m6', 93), ('m7', 59), ('9', 44), ('m7~-5', 42), ('m~-5', 37)]
+   kind_text histogram    : [('major', 17158), ('minor', 8635), ('dominant', 3651), ('', 200), ('minor-sixth', 93), ('minor-seventh', 59), ('dominant-ninth', 44), ('major-sixth', 24), ('suspended-fourth', 15), ('diminished', 7)]
+   has_rhythm histogram   : [(0, 27542), (1, 2350)]
+   info_hex               : [('', 10406), ('0304', 8635), ('0403', 6485), ('040303', 3652), ('07', 190), ('030402', 93), ('0303', 88), ('030403', 63), ('0404', 48), ('030304', 38)]
+   fret_base              : [(0, 29892)]
+
+   how many of each come from a file that ALSO has a rhythm marker:
+   files containing them  : 2334
+   top files              : [('150ALS-19AA-0574.smc', 113), ('150ALS-14GG-0026.smc', 61), ('150ALS-03DA-0003.smc', 52), ('150ALS-08JA-0327.smc', 50), ('150ALS-16BB-0005.smc', 50), ('150ALS-12PA-0073.smc', 48), ('150ALS-15DD-0005.smc', 48), ('150ALS-01GA-0272.smc', 45), ('150ALS-06BA-0166.smc', 45), ('150ALS-13HA-0192.smc', 45), ('150ALS-19AA-0531.smc', 43), ('150ALS-08JA-0344.smc', 42)]
+
+   first 25 in detail:
+      110SSS-001.smc           m17   on=720   name=''           kind='major'  anchor=0     info=0403                 fret=0 rhy=0
+      110SSS-004.smc           m2    on=0     name=''           kind='major'  anchor=0     info=0403                 fret=0 rhy=1
+      110SSS-005.smc           m16   on=0     name=' (major)'   kind='major'  anchor=None  info=0403                 fret=0 rhy=0
+      110SSS-005.smc           m24   on=0     name=' (major)'   kind='major'  anchor=None  info=0403                 fret=0 rhy=0
+      122DLS-004.smc           m6    on=0     name=' (major)'   kind='major'  anchor=6     info=0403                 fret=0 rhy=0
+      122DLS-004.smc           m13   on=0     name=' (major)'   kind='major'  anchor=3     info=0403                 fret=0 rhy=0
+      122DLS-004.smc           m14   on=360   name=' (major)'   kind='major'  anchor=3     info=0403                 fret=0 rhy=0
+      122DLS-004.smc           m23   on=360   name=' (major)'   kind='major'  anchor=3     info=0403                 fret=0 rhy=0
+      130RVS-008.smc           m1    on=0     name=''           kind='major'  anchor=4     info=                     fret=0 rhy=1
+      130RVS-008.smc           m3    on=0     name=''           kind='major'  anchor=9     info=                     fret=0 rhy=0
+      130RVS-008.smc           m4    on=0     name=''           kind='major'  anchor=7     info=                     fret=0 rhy=0
+      130RVS-008.smc           m5    on=0     name=''           kind='major'  anchor=4     info=                     fret=0 rhy=0
+      130RVS-008.smc           m7    on=0     name=''           kind='major'  anchor=2     info=                     fret=0 rhy=0
+      130RVS-008.smc           m9    on=0     name=''           kind='major'  anchor=0     info=                     fret=0 rhy=0
+      130RVS-012.smc           m1    on=0     name=''           kind='major'  anchor=2     info=0403                 fret=0 rhy=1
+      130RVS-012.smc           m5    on=0     name=''           kind='major'  anchor=4     info=0403                 fret=0 rhy=0
+      130RVS-012.smc           m6    on=0     name=''           kind='major'  anchor=2     info=0403                 fret=0 rhy=0
+      130RVS-012.smc           m7    on=0     name='7'          kind='dominant' anchor=4     info=040303               fret=0 rhy=0
+      130RVS-012.smc           m8    on=0     name=''           kind='major'  anchor=7     info=0403                 fret=0 rhy=0
+      130RVS-013.smc           m1    on=0     name=''           kind='major'  anchor=0     info=                     fret=0 rhy=1
+      130RVS-013.smc           m3    on=0     name=''           kind='major'  anchor=0     info=                     fret=0 rhy=0
+      130RVS-013.smc           m4    on=0     name=''           kind='major'  anchor=5     info=                     fret=0 rhy=0
+      130RVS-013.smc           m5    on=0     name=''           kind='major'  anchor=0     info=                     fret=0 rhy=0
+      130RVS-013.smc           m7    on=0     name=''           kind='major'  anchor=7     info=                     fret=0 rhy=0
+      130RVS-013.smc           m9    on=0     name='m'          kind='minor'  anchor=7     info=0304                 fret=0 rhy=0
+
+==============================================================================
+C. same symbols, with the raw 0x45 head and its rhythm attachment
+==============================================================================
+
+  130RVS-008.smc
+    m1    key=3     head_len=0    head=
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=1 fretboard=False
+    m3    key=20    head_len=0    head=
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m4    key=29    head_len=0    head=
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m5    key=32    head_len=0    head=
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m6    key=38    head_len=0    head=
+           name=b'm'           info=03 04                      fret_info=00 00 fe 00 02 02 01 00 00 00 00 00 00 00 00 00
+           root={'step': 'A', 'alter': 0, 'octave': 2, 'midi': 45} has_rhythm=0 fretboard=False
+    m7    key=48    head_len=0    head=
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m9    key=59    head_len=0    head=
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m11   key=73    head_len=0    head=
+           name=b'm'           info=03 04                      fret_info=00 00 fe 00 02 02 01 00 00 00 00 00 00 00 00 00
+           root={'step': 'A', 'alter': 0, 'octave': 2, 'midi': 45} has_rhythm=0 fretboard=False
+    m12   key=83    head_len=0    head=
+           name=b'(major)'     info=04 03                      fret_info=00 00 01 03 03 02 01 01 00 05 00 00 00 00 00 00
+           root={'step': 'F', 'alter': 0, 'octave': 2, 'midi': 41} has_rhythm=0 fretboard=False
+    m13   key=86    head_len=0    head=
+           name=b'(major)'     info=04 03                      fret_info=00 00 01 03 03 02 01 01 00 05 00 00 00 00 00 00
+           root={'step': 'F', 'alter': 0, 'octave': 2, 'midi': 41} has_rhythm=0 fretboard=False
+    m14   key=94    head_len=0    head=
+           name=b'7'           info=04 03 03                   fret_info=00 00 fe fe 00 02 01 02 00 00 00 00 00 00 00 00
+           root={'step': 'D', 'alter': 0, 'octave': 3, 'midi': 50} has_rhythm=0 fretboard=False
+    m15   key=103   head_len=0    head=
+           name=b'7'           info=04 03 03                   fret_info=00 00 03 02 00 00 00 01 00 00 00 00 00 00 00 00
+           root={'step': 'G', 'alter': 0, 'octave': 2, 'midi': 43} has_rhythm=0 fretboard=False
+    m16   key=114   head_len=0    head=
+           name=b'7'           info=04 03 03                   fret_info=00 00 03 02 00 00 00 01 00 00 00 00 00 00 00 00
+           root={'step': 'G', 'alter': 0, 'octave': 2, 'midi': 43} has_rhythm=1 fretboard=False
+
+  130RVS-012.smc
+    m1    key=6     head_len=100  head=7f 2d 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=04 03                      fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=1 fretboard=False
+    m5    key=36    head_len=100  head=7f 2d 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=04 03                      fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m6    key=45    head_len=100  head=7f 2d 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=04 03                      fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m7    key=54    head_len=100  head=37 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b'7'           info=04 03 03                   fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m8    key=63    head_len=100  head=7f 2d 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=04 03                      fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+
+  130RVS-016.smc
+    m1    key=6     head_len=100  head=5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=1 fretboard=False
+    m3    key=23    head_len=100  head=6d 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b'm'           info=03 04                      fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m4    key=32    head_len=100  head=5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m5    key=36    head_len=100  head=6d 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b'm'           info=03 04                      fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m6    key=46    head_len=100  head=5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m7    key=55    head_len=100  head=6d 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b'm'           info=03 04                      fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m8    key=64    head_len=100  head=37 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b'7'           info=04 03 03                   fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m9    key=68    head_len=100  head=5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m10   key=78    head_len=100  head=6d 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b'm'           info=03 04                      fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m11   key=87    head_len=100  head=5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m12   key=96    head_len=100  head=5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m13   key=99    head_len=100  head=5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m14   key=108   head_len=100  head=5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m15   key=117   head_len=100  head=37 00 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b'7'           info=04 03 03                   fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False
+    m16   key=126   head_len=100  head=5f 38 0a 8e 3f 01 00 00 ec ed a1 00 23 19 f7 bf 00 00 00 00 4c 8e 00 00 31 29 f9 bf 79 1a 3f 01
+           name=b''            info=                           fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+           root=None has_rhythm=0 fretboard=False

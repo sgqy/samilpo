@@ -1,0 +1,106 @@
+==============================================================================
+A. UNANCHORED HARMONIES - do they still carry a root?
+==============================================================================
+500KFS-0041 harmonies        : 91
+   without an anchor note   : 0
+   of those, with a root    : 0
+   of those, rootless       : 0
+   onsets seen             : []
+
+==============================================================================
+B. ACCOMPANIMENT CHORD CARRY-FORWARD
+==============================================================================
+stats                    : Counter({'notes': 3082, 'pitched': 1978, 'control': 1140, 'percussion': 1104, 'parts': 11, 'markers': 3, 'styles': 3})
+measures with a printed chord : 79
+measures with accomp notes    : 109
+measures sounding with NO printed chord : 30
+   [2, 8, 9, 18, 20, 24, 32, 34, 38, 40, 47, 54, 58, 60, 66, 68, 69, 70, 74, 77, 85, 87, 88, 89, 91, 93, 97, 102, 108, 109]
+
+the closing measures, as the accompaniment emits them:
+   m107  A1   voice=2 on=0     dur=360   midi=66   
+   m107  A1   voice=1 on=0     dur=180   midi=65   
+   m107  A1   voice=1 on=180   dur=60    midi=65   
+   m107  A1   voice=1 on=240   dur=120   midi=65   
+   m107  A1   voice=2 on=360   dur=360   midi=66   
+   m107  A1   voice=1 on=360   dur=120   midi=65   
+   m107  A1   voice=1 on=480   dur=60    midi=65   
+   m107  A1   voice=1 on=540   dur=60    midi=65   
+   m107  A1   voice=1 on=600   dur=60    midi=65   
+   m107  A1   voice=1 on=660   dur=60    midi=65   
+   m107  A2   voice=1 on=180   dur=60    midi=57   A3
+   m107  A2   voice=2 on=180   dur=60    midi=60   C4
+   m107  A2   voice=3 on=180   dur=60    midi=64   E4
+   m107  A2   voice=1 on=240   dur=120   midi=57   A3
+   m107  A2   voice=2 on=240   dur=120   midi=60   C4
+   m107  A2   voice=3 on=240   dur=120   midi=64   E4
+   m107  A2   voice=1 on=480   dur=60    midi=57   A3
+   m107  A2   voice=2 on=480   dur=60    midi=60   C4
+   m107  A2   voice=3 on=480   dur=60    midi=64   E4
+   m107  A2   voice=1 on=540   dur=60    midi=57   A3
+   m107  A2   voice=2 on=540   dur=60    midi=60   C4
+   m107  A2   voice=3 on=540   dur=60    midi=64   E4
+   m107  A2   voice=1 on=600   dur=120   midi=57   A3
+   m107  A2   voice=2 on=600   dur=120   midi=60   C4
+   m107  A2   voice=3 on=600   dur=120   midi=64   E4
+   m107  A3   voice=1 on=480   dur=60    midi=76   E5
+   m107  A3   voice=1 on=540   dur=60    midi=64   E4
+   m107  A3   voice=1 on=600   dur=60    midi=76   E5
+   m107  A3   voice=1 on=660   dur=60    midi=64   E4
+   m107  A4   voice=1 on=0     dur=360   midi=33   A1
+   m107  A4   voice=1 on=360   dur=240   midi=33   A1
+   m107  A4   voice=1 on=600   dur=120   midi=28   E1
+   m108  A1   voice=2 on=0     dur=360   midi=66   
+   m108  A1   voice=1 on=0     dur=180   midi=65   
+   m108  A1   voice=1 on=180   dur=60    midi=65   
+   m108  A1   voice=1 on=240   dur=120   midi=65   
+   m108  A1   voice=1 on=360   dur=240   midi=66   
+   m108  A1   voice=2 on=480   dur=120   midi=65   
+   m108  A1   voice=1 on=600   dur=120   midi=66   
+   m108  A2   voice=1 on=180   dur=60    midi=57   A3
+   m108  A2   voice=2 on=180   dur=60    midi=60   C4
+   m108  A2   voice=3 on=180   dur=60    midi=64   E4
+   m108  A2   voice=1 on=240   dur=120   midi=57   A3
+   m108  A2   voice=2 on=240   dur=120   midi=60   C4
+   m108  A2   voice=3 on=240   dur=120   midi=64   E4
+   m108  A2   voice=1 on=480   dur=120   midi=57   A3
+   m108  A2   voice=2 on=480   dur=120   midi=60   C4
+   m108  A2   voice=3 on=480   dur=120   midi=64   E4
+   m108  A3   voice=1 on=480   dur=60    midi=76   E5
+   m108  A3   voice=1 on=540   dur=60    midi=64   E4
+   m108  A3   voice=1 on=600   dur=60    midi=76   E5
+   m108  A3   voice=1 on=660   dur=60    midi=64   E4
+   m108  A4   voice=1 on=0     dur=360   midi=28   E1
+   m108  A4   voice=1 on=360   dur=240   midi=33   A1
+   m108  A4   voice=1 on=600   dur=120   midi=28   E1
+   m109  A1   voice=2 on=0     dur=360   midi=66   
+   m109  A1   voice=1 on=0     dur=180   midi=65   
+   m109  A1   voice=1 on=180   dur=60    midi=65   
+   m109  A1   voice=1 on=240   dur=120   midi=65   
+   m109  A1   voice=2 on=360   dur=360   midi=66   
+   m109  A1   voice=1 on=360   dur=120   midi=65   
+   m109  A1   voice=1 on=480   dur=60    midi=65   
+   m109  A1   voice=1 on=540   dur=60    midi=65   
+   m109  A1   voice=1 on=600   dur=60    midi=65   
+   m109  A1   voice=1 on=660   dur=60    midi=65   
+   m109  A2   voice=1 on=180   dur=60    midi=57   A3
+   m109  A2   voice=2 on=180   dur=60    midi=60   C4
+   m109  A2   voice=3 on=180   dur=60    midi=64   E4
+   m109  A2   voice=1 on=240   dur=120   midi=57   A3
+   m109  A2   voice=2 on=240   dur=120   midi=60   C4
+   m109  A2   voice=3 on=240   dur=120   midi=64   E4
+   m109  A2   voice=1 on=480   dur=60    midi=57   A3
+   m109  A2   voice=2 on=480   dur=60    midi=60   C4
+   m109  A2   voice=3 on=480   dur=60    midi=64   E4
+   m109  A2   voice=1 on=540   dur=60    midi=57   A3
+   m109  A2   voice=2 on=540   dur=60    midi=60   C4
+   m109  A2   voice=3 on=540   dur=60    midi=64   E4
+   m109  A2   voice=1 on=600   dur=120   midi=57   A3
+   m109  A2   voice=2 on=600   dur=120   midi=60   C4
+   m109  A2   voice=3 on=600   dur=120   midi=64   E4
+   m109  A3   voice=1 on=480   dur=60    midi=76   E5
+   m109  A3   voice=1 on=540   dur=60    midi=64   E4
+   m109  A3   voice=1 on=600   dur=60    midi=76   E5
+   m109  A3   voice=1 on=660   dur=60    midi=64   E4
+   m109  A4   voice=1 on=0     dur=360   midi=33   A1
+   m109  A4   voice=1 on=360   dur=240   midi=33   A1
+   m109  A4   voice=1 on=600   dur=120   midi=28   E1

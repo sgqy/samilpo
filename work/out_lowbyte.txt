@@ -1,0 +1,34 @@
+==============================================================================
+1. OUT-OF-RANGE f8 VALUES
+==============================================================================
+out-of-range count       : 734
+low byte range           : 0..16
+all low bytes < 18       : True
+low byte counts          : [(0, 109), (1, 1), (2, 8), (3, 89), (4, 1), (5, 81), (6, 61), (7, 88), (8, 16), (9, 6), (10, 99), (11, 4), (12, 27), (13, 54), (15, 74), (16, 16)]
+distinct high parts      : 17
+high parts (as hex)      : ['0x100', '0x1000', '0x1100', '0x200', '0x300', '0x400', '0x500', '0x600', '0x700', '0x800', '0x900', '0xA00', '0xB00', '0xC00', '0xD00', '0xE00', '0xF00']
+
+==============================================================================
+2. CONTROL - the same reading on the in-range population
+==============================================================================
+low byte vs fingering root : agree 142392 / disagree 5625 = 96.20%
+(must reproduce the 96.2%% already measured, since the low byte is f8 there)
+
+==============================================================================
+3. ARBITER - accompaniment chord tones under each candidate root
+==============================================================================
+files scored             : 413
+accompaniment notes      : 18082
+   low-byte root    chord-tone hits 9669 / 18082 = 53.47%
+   fingering root   chord-tone hits 0 / 0 = 0.00%
+
+A higher hit rate means the root transposes the accompaniment onto chord
+tones more often, which is what the engine itself did when it played it.
+
+==============================================================================
+CONCLUSION
+==============================================================================
+Every out-of-range f8 has a low byte in 0..17 with a high part that is a
+multiple of 0x100, so f8 is (tag << 8) | root_index.  Reading the low
+byte when the whole value is not a valid index yields a root for all
+734 symbols that would otherwise emit <harmony> with no <root>.

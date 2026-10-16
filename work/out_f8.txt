@@ -1,0 +1,151 @@
+   ... 2000/8451
+   ... 4000/8451
+   ... 6000/8451
+   ... 8000/8451
+==============================================================================
+SAMPLES
+==============================================================================
+rooted   : 148017
+rootless : 29892
+
+==============================================================================
+1. f8 DISTRIBUTION FOR METRIC CHORDS (roots that do resolve)
+==============================================================================
+f8 values            : [(0, 21870), (7, 20911), (10, 20019), (3, 17380), (15, 15746), (13, 12516), (5, 12475), (6, 8133), (12, 7551), (16, 4412), (2, 2909), (8, 1728), (9, 1294), (1, 725), (11, 285), (4, 56), (14, 7)]
+
+f8 as spelling index, where f8 < 18:
+   count              : 148017 of 148017
+   spelling pc == fingering root pc : 142340 (96.2%)
+
+   f8 -> (spelling pc, fingering root pc) confusion, top rows:
+      f8=0   C   pc=0   root_pc=0   n=21385 OK
+      f8=7   F   pc=5   root_pc=5   n=20580 OK
+      f8=10  G   pc=7   root_pc=7   n=19461 OK
+      f8=3   D   pc=2   root_pc=2   n=17180 OK
+      f8=15  Bb  pc=10  root_pc=10  n=13409 OK
+      f8=13  A   pc=9   root_pc=9   n=12405 OK
+      f8=5   Eb  pc=3   root_pc=3   n=12198 OK
+      f8=6   E   pc=4   root_pc=4   n=8079 OK
+      f8=12  Ab  pc=8   root_pc=8   n=6958 OK
+      f8=16  B   pc=11  root_pc=11  n=4355 OK
+      f8=2   Db  pc=1   root_pc=1   n=2872 OK
+      f8=15  Bb  pc=10  root_pc=5   n=2118 <<
+      f8=8   F#  pc=6   root_pc=6   n=1300 OK
+      f8=9   Gb  pc=6   root_pc=6   n=1254 OK
+      f8=1   C#  pc=1   root_pc=1   n=722 OK
+      f8=12  Ab  pc=8   root_pc=3   n=436 <<
+      f8=8   F#  pc=6   root_pc=4   n=407 <<
+      f8=11  G#  pc=8   root_pc=8   n=181 OK
+      f8=10  G   pc=7   root_pc=5   n=169 <<
+      f8=10  G   pc=7   root_pc=4   n=141 <<
+
+==============================================================================
+2. f8 vs the fingering root as a plain pitch class (f8 % 12)
+==============================================================================
+match: 22310 / 148017 = 15.07%
+
+==============================================================================
+3. THE ROOTLESS POPULATION: does f8 look like a root index there?
+==============================================================================
+f8 values            : [(0, 3857), (10, 3847), (7, 3651), (3, 3569), (15, 2790), (13, 2495), (5, 2205), (6, 1910), (12, 1408), (16, 1143), (2, 723), (8, 456), (17, 428), (9, 335), (1, 249), (11, 78), (1048581, 69), (720896, 65), (65543, 55), (262154, 43)]
+f8 mod 12 histogram : [(3, 6399), (0, 5310), (10, 3857), (7, 3673), (1, 2760), (5, 2663), (6, 1946), (4, 1191), (2, 845), (8, 546), (9, 431), (11, 271)]
+f8 < 18              : 29158 of 29892
+
+   if f8 < 18 it names a spelled root:
+      f8=0   -> C   (pc 0)   n=3857
+      f8=10  -> G   (pc 7)   n=3847
+      f8=7   -> F   (pc 5)   n=3651
+      f8=3   -> D   (pc 2)   n=3569
+      f8=15  -> Bb  (pc 10)   n=2790
+      f8=13  -> A   (pc 9)   n=2495
+      f8=5   -> Eb  (pc 3)   n=2205
+      f8=6   -> E   (pc 4)   n=1910
+      f8=12  -> Ab  (pc 8)   n=1408
+      f8=16  -> B   (pc 11)   n=1143
+      f8=2   -> Db  (pc 1)   n=723
+      f8=8   -> F#  (pc 6)   n=456
+      f8=17  -> Cb  (pc 11)   n=428
+      f8=9   -> Gb  (pc 6)   n=335
+      f8=1   -> C#  (pc 1)   n=249
+      f8=11  -> G#  (pc 8)   n=78
+      f8=4   -> D#  (pc 2)   n=14
+
+==============================================================================
+4. OTHER CORE FIELDS AGAINST THE ROOT
+==============================================================================
+  derived
+     rooted   : [(12, 105529), (112, 42488)]
+     rootless : [(112, 25333), (12, 4559)]
+  f2
+     rooted   : [(256, 148017)]
+     rootless : [(256, 29892)]
+  head_len
+     rooted   : [(0, 105529), (100, 42488)]
+     rootless : [(100, 25333), (0, 4559)]
+  type_index
+     rooted   : [(0, 112339), (4, 6457), (3, 6386), (1, 6038), (5, 5748), (2, 5579), (6, 5470)]
+     rootless : [(0, 8097), (1, 3860), (4, 3700), (2, 3664), (5, 3543), (3, 3527), (6, 3501)]
+
+==============================================================================
+5. CONSISTENCY TEST: f8 in files where SOME chords resolve
+==============================================================================
+
+  130RVS-012.smc
+     m1    f8=10     f2=256    head_len=100  derived=112  type_index=4    name=''         root=NONE
+     m5    f8=0      f2=256    head_len=100  derived=112  type_index=0    name=''         root=NONE
+     m6    f8=10     f2=256    head_len=100  derived=112  type_index=4    name=''         root=NONE
+     m7    f8=3      f2=256    head_len=100  derived=112  type_index=1    name='7'        root=NONE
+     m8    f8=10     f2=256    head_len=100  derived=112  type_index=4    name=''         root=NONE
+
+  110SSS-001.smc
+     m1    f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m3    f8=13     f2=256    head_len=100  derived=112  type_index=5    name='m'        root=9   
+     m3    f8=10     f2=256    head_len=100  derived=112  type_index=4    name='7'        root=7   
+     m4    f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m5    f8=7      f2=256    head_len=100  derived=112  type_index=3    name=' (major)' root=5   
+     m6    f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m7    f8=13     f2=256    head_len=100  derived=112  type_index=5    name='m'        root=9   
+     m7    f8=10     f2=256    head_len=100  derived=112  type_index=4    name='7'        root=7   
+     m8    f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m9    f8=10     f2=256    head_len=100  derived=112  type_index=4    name=' (major)' root=7   
+     m9    f8=0      f2=256    head_len=0    derived=12   type_index=0    name=' (major)' root=0   
+     m10   f8=10     f2=256    head_len=100  derived=112  type_index=4    name=' (major)' root=7   
+     m11   f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m11   f8=13     f2=256    head_len=100  derived=112  type_index=5    name='m'        root=9   
+     m11   f8=10     f2=256    head_len=100  derived=112  type_index=4    name=' (major)' root=7   
+     m12   f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m12   f8=7      f2=256    head_len=100  derived=112  type_index=3    name=' (major)' root=5   
+     m12   f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m13   f8=0      f2=256    head_len=0    derived=12   type_index=0    name=' (major)' root=0   
+     m15   f8=13     f2=256    head_len=100  derived=112  type_index=5    name='m'        root=9   
+     m15   f8=6      f2=256    head_len=100  derived=112  type_index=2    name=' (major)' root=4   
+     m15   f8=13     f2=256    head_len=100  derived=112  type_index=5    name='m'        root=9   
+     m16   f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m16   f8=10     f2=256    head_len=100  derived=112  type_index=4    name=' (major)' root=7   
+     m17   f8=13     f2=256    head_len=100  derived=112  type_index=5    name='m'        root=9   
+     m17   f8=7      f2=256    head_len=100  derived=112  type_index=3    name=' (major)' root=5   
+     m17   f8=0      f2=256    head_len=0    derived=12   type_index=0    name=''         root=NONE
+     m17   f8=6      f2=256    head_len=0    derived=12   type_index=0    name=' (major)' root=4   
+     m18   f8=7      f2=256    head_len=0    derived=12   type_index=0    name=' (major)' root=5   
+     m18   f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m19   f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+     m19   f8=6      f2=256    head_len=0    derived=12   type_index=0    name='m'        root=4   
+     m19   f8=10     f2=256    head_len=100  derived=112  type_index=4    name='7'        root=7   
+     m20   f8=0      f2=256    head_len=100  derived=112  type_index=0    name=' (major)' root=0   
+
+  130RVS-016.smc
+     m1    f8=0      f2=256    head_len=100  derived=112  type_index=0    name=''         root=NONE
+     m3    f8=13     f2=256    head_len=100  derived=112  type_index=5    name='m'        root=NONE
+     m4    f8=10     f2=256    head_len=100  derived=112  type_index=4    name=''         root=NONE
+     m5    f8=13     f2=256    head_len=100  derived=112  type_index=5    name='m'        root=NONE
+     m6    f8=0      f2=256    head_len=100  derived=112  type_index=0    name=''         root=NONE
+     m7    f8=6      f2=256    head_len=100  derived=112  type_index=2    name='m'        root=NONE
+     m8    f8=10     f2=256    head_len=100  derived=112  type_index=4    name='7'        root=NONE
+     m9    f8=0      f2=256    head_len=100  derived=112  type_index=0    name=''         root=NONE
+     m10   f8=13     f2=256    head_len=100  derived=112  type_index=5    name='m'        root=NONE
+     m11   f8=0      f2=256    head_len=100  derived=112  type_index=0    name=''         root=NONE
+     m12   f8=7      f2=256    head_len=100  derived=112  type_index=3    name=''         root=NONE
+     m13   f8=7      f2=256    head_len=100  derived=112  type_index=3    name=''         root=NONE
+     m14   f8=0      f2=256    head_len=100  derived=112  type_index=0    name=''         root=NONE
+     m15   f8=3      f2=256    head_len=100  derived=112  type_index=1    name='7'        root=NONE
+     m16   f8=10     f2=256    head_len=100  derived=112  type_index=4    name=''         root=NONE

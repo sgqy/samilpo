@@ -1,0 +1,72 @@
+==============================================================================
+C:\Program Files (x86)\Samilpo 2.0\8000Songs\500KFS\500KFS-0041.smc
+title_raw       : b'\x8c\xc4\x8a}\x96\xa7 \x89\xcf\x8b\xb5'
+title decoded   : '바다의 노래'
+extra_str       : b'448\x00'
+file_info       : (6, 4, 79, 79, 86, 90, 30, 113, 9, 8, 0, 0, 529, 795)
+doc_fields      : (6, 17, 24, 21)
+n_staff1/2      : 1 / 0
+  staff1[0] name raw=b'' decoded='' head_len=0
+
+page-text blocks (all of them):
+   m1    type=0x06 dy=-64   ['랑만적으로']
+   m2    type=0x06 dy=-138  ['바다의 노래']
+   m67   type=0x06 dy=-60   ['약동적으로 좀 빠르게']
+   m98   type=0x06 dy=-54   ['좀 느리게']
+
+LAST 6 MEASURES - full child tree (n=109):
+  measure 104  ts=6/8  child_count=2  refs_only=0
+     key=1035   role=1 type=0x14 start=0     head_type=0   type_idx=4  
+         child key=1036   type=0x01 start=0    
+         child key=1038   type=0x01 start=23   
+         child key=1039   type=0x01 start=84   
+     key=1040   role=1 type=0x01 start=0     head_type=1   type_idx=2  
+         child key=1041   type=0x45 start=0    
+         child key=1042   type=0x19 start=0    
+         child key=1037   type=0x-1 start=-1   
+  measure 105  ts=6/8  child_count=5  refs_only=0
+     key=1043   role=1 type=0x01 start=0     head_type=1   type_idx=4  
+         child key=1044   type=0x45 start=0    
+         child key=1045   type=0x19 start=0    
+     key=1046   role=1 type=0x01 start=120   head_type=1   type_idx=4  
+         child key=1047   type=0x19 start=0    
+     key=1048   role=1 type=0x01 start=240   head_type=1   type_idx=4  
+         child key=1049   type=0x19 start=0    
+     key=1050   role=1 type=0x01 start=360   head_type=1   type_idx=4  
+         child key=1051   type=0x19 start=0    
+     key=1052   role=1 type=0x14 start=480   head_type=0   type_idx=4  
+         child key=1053   type=0x01 start=480  
+         child key=1056   type=0x01 start=600  
+  measure 106  ts=6/8  child_count=4  refs_only=0
+     key=1058   role=1 type=0x01 start=0     head_type=1   type_idx=4  
+         child key=1059   type=0x45 start=0    
+         child key=1060   type=0x19 start=0    
+     key=1061   role=1 type=0x14 start=120   head_type=0   type_idx=4  
+         child key=1062   type=0x01 start=120  
+         child key=1065   type=0x01 start=240  
+     key=1067   role=1 type=0x01 start=360   head_type=1   type_idx=3  
+         child key=1068   type=0x45 start=0    
+         child key=1069   type=0x19 start=0    
+     key=1070   role=1 type=0x01 start=600   head_type=1   type_idx=4  
+         child key=1071   type=0x19 start=0    
+  measure 107  ts=6/8  child_count=5  refs_only=0
+     key=1072   role=1 type=0x01 start=0     head_type=1   type_idx=4  
+         child key=1073   type=0x45 start=0    
+         child key=1074   type=0x19 start=0    
+     key=1075   role=1 type=0x01 start=120   head_type=1   type_idx=4  
+         child key=1076   type=0x19 start=0    
+     key=1077   role=1 type=0x01 start=240   head_type=1   type_idx=4  
+         child key=1078   type=0x19 start=0    
+     key=1079   role=1 type=0x01 start=360   head_type=1   type_idx=4  
+         child key=1080   type=0x19 start=0    
+     key=1081   role=1 type=0x14 start=480   head_type=0   type_idx=4  
+         child key=1082   type=0x01 start=480  
+         child key=1085   type=0x01 start=600  
+  measure 108  ts=6/8  child_count=1  refs_only=0
+     key=1087   role=1 type=0x01 start=0     head_type=1   type_idx=2  
+         child key=1088   type=0x19 start=0    
+         child key=1089   type=0x09 start=0    
+  measure 109  ts=6/8  child_count=1  refs_only=0
+     key=1090   role=1 type=0x01 start=0     head_type=1   type_idx=2  
+         child key=1091   type=0x19 start=0    
+         child key=1089   type=0x-1 start=-1   

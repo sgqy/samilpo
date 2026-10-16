@@ -1,0 +1,99 @@
+==============================================================================
+1. 110SSS-001 - the harmony in m17 without a root
+==============================================================================
+   m17   key=198   name=b''          info=04 03                              fret_info=00 00 fe fe fe fe fe fe 00 00 00 00 00 00 00 00
+   total 0x45 in this file: 34
+
+==============================================================================
+2. corpus - harmony records whose root is null
+==============================================================================
+   ... 2000/8451
+   ... 4000/8451
+   ... 6000/8451
+   ... 8000/8451
+harmony records total     : 177909
+   with a null root       : 734 (0.413%)
+files containing any      : 413 of 8451
+   110SSS-005.smc               2 of 30 harmonies
+   130RVS-052.smc               1 of 14 harmonies
+   150ALS-01GA-0018.smc         6 of 41 harmonies
+   150ALS-01GA-0035.smc         1 of 22 harmonies
+   150ALS-01GA-0038.smc         1 of 21 harmonies
+   150ALS-01GA-0042.smc         1 of 16 harmonies
+   150ALS-01GA-0063.smc         1 of 26 harmonies
+   150ALS-01GA-0074.smc         1 of 27 harmonies
+   150ALS-01GA-0077.smc         5 of 25 harmonies
+   150ALS-01GA-0082.smc         1 of 21 harmonies
+   150ALS-01GA-0100.smc         1 of 20 harmonies
+   150ALS-01GA-0104.smc         1 of 16 harmonies
+   150ALS-01GA-0112.smc         1 of 17 harmonies
+   150ALS-01GA-0142.smc         2 of 19 harmonies
+   150ALS-01GA-0144.smc         1 of 14 harmonies
+   150ALS-01GA-0170.smc         12 of 49 harmonies
+   150ALS-01GA-0178.smc         6 of 35 harmonies
+   150ALS-01GA-0186.smc         2 of 26 harmonies
+   150ALS-01GA-0188.smc         1 of 21 harmonies
+   150ALS-01GA-0205.smc         3 of 31 harmonies
+   150ALS-01GA-0233.smc         1 of 27 harmonies
+   150ALS-01GA-0285.smc         1 of 17 harmonies
+   150ALS-01GA-0306.smc         1 of 17 harmonies
+   150ALS-01GA-0318.smc         3 of 20 harmonies
+   150ALS-02NA-0006.smc         2 of 34 harmonies
+   150ALS-02NA-0010.smc         1 of 20 harmonies
+   150ALS-02NA-0013.smc         4 of 17 harmonies
+   150ALS-02NA-0054.smc         2 of 21 harmonies
+   150ALS-02NA-0071.smc         3 of 29 harmonies
+   150ALS-02NA-0074.smc         2 of 20 harmonies
+   ... and 383 more
+
+examples:
+   110SSS-005.smc
+      {'meas': 16, 'on': 0, 'name': ' (major)', 'root': None, 'kind_text': 'major', 'anchored': False}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0403
+   110SSS-005.smc
+      {'meas': 24, 'on': 0, 'name': ' (major)', 'root': None, 'kind_text': 'major', 'anchored': False}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0403
+   130RVS-052.smc
+      {'meas': 2, 'on': 0, 'name': ' (major)', 'root': None, 'kind_text': 'major', 'anchored': True}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0403
+   150ALS-01GA-0018.smc
+      {'meas': 3, 'on': 360, 'name': 'm', 'root': None, 'kind_text': 'minor', 'anchored': True}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0304
+   150ALS-01GA-0018.smc
+      {'meas': 4, 'on': 0, 'name': ' (major)', 'root': None, 'kind_text': 'major', 'anchored': True}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0403
+   150ALS-01GA-0018.smc
+      {'meas': 7, 'on': 360, 'name': 'm', 'root': None, 'kind_text': 'minor', 'anchored': True}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0304
+   150ALS-01GA-0018.smc
+      {'meas': 8, 'on': 0, 'name': ' (major)', 'root': None, 'kind_text': 'major', 'anchored': True}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0403
+   150ALS-01GA-0018.smc
+      {'meas': 19, 'on': 360, 'name': 'm', 'root': None, 'kind_text': 'minor', 'anchored': True}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0304
+   150ALS-01GA-0018.smc
+      {'meas': 28, 'on': 360, 'name': 'm', 'root': None, 'kind_text': 'minor', 'anchored': True}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0304
+   150ALS-01GA-0035.smc
+      {'meas': 14, 'on': 240, 'name': ' (major)', 'root': None, 'kind_text': 'major', 'anchored': True}
+      ext.fret_info_hex=0000fefefefefefe0000000000000000
+      ext.fret_base=0
+      ext.info_hex=0403

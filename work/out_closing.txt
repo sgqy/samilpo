@@ -1,0 +1,84 @@
+==============================================================================
+OPENING - ground truth is Am Dm Em F Dm Em Am
+==============================================================================
+  m1    harmonies=A minor                      sounding=76 76 76
+  m2    harmonies=-                            sounding=74 72 76 76
+  m3    harmonies=D minor                      sounding=69 69 67 69 69 72
+  m4    harmonies=E minor                      sounding=64
+  m5    harmonies=F major                      sounding=69 72 69 72
+  m6    harmonies=D minor, E minor             sounding=74 74 72 76 76
+  m7    harmonies=A minor                      sounding=69 69 67 69 69 72
+
+==============================================================================
+CLOSING - the score part vs what each accompaniment part sounds
+==============================================================================
+
+measure 100
+   P1 harmony   : D minor, E minor
+   P1 sounds    : 74 72 74 76 76
+   A2   6/8GudGoRi-2 #2 Acoustic G n=15  midi=64,67,71                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=71,83                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=35,40                        intervals=0,5
+
+measure 101
+   P1 harmony   : D minor
+   P1 sounds    : 74 74 74 74 74
+   A2   6/8GudGoRi-2 #2 Acoustic G n=21  midi=62,65,69                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=69,81                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=33,38                        intervals=0,5
+
+measure 102
+   P1 harmony   : (none)
+   P1 sounds    : 74 72 69 72
+   A2   6/8GudGoRi-2 #2 Acoustic G n=15  midi=62,65,69                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=69,81                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=33,38                        intervals=0,5
+
+measure 103
+   P1 harmony   : A minor
+   P1 sounds    : 64 64 67 69
+   A2   6/8GudGoRi-2 #2 Acoustic G n=21  midi=57,60,64                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=64,76                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=28,33                        intervals=0,5
+
+measure 104
+   P1 harmony   : E minor
+   P1 sounds    : 64
+   A2   6/8GudGoRi-2 #2 Acoustic G n=15  midi=64,67,71                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=71,83                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=35,40                        intervals=0,5
+
+measure 105
+   P1 harmony   : A minor
+   P1 sounds    : 69 69 69 72 69 72
+   A2   6/8GudGoRi-2 #2 Acoustic G n=21  midi=57,60,64                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=64,76                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=28,33                        intervals=0,5
+
+measure 106
+   P1 harmony   : D minor, E minor
+   P1 sounds    : 74 74 72 76 76
+   A2   6/8GudGoRi-2 #2 Acoustic G n=15  midi=64,67,71                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=71,83                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=35,40                        intervals=0,5
+
+measure 107
+   P1 harmony   : A minor
+   P1 sounds    : 69 69 67 69 69 72
+   A2   6/8GudGoRi-2 #2 Acoustic G n=21  midi=57,60,64                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=64,76                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=28,33                        intervals=0,5
+
+measure 108
+   P1 harmony   : (none)
+   P1 sounds    : 69
+   A2   6/8GudGoRi-2 #2 Acoustic G n=15  midi=57,60,64                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=64,76                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=28,33                        intervals=0,5
+
+measure 109
+   P1 harmony   : (none)
+   P1 sounds    : 69
+   A2   6/8GudGoRi-2 #2 Acoustic G n=21  midi=57,60,64                     intervals=0,3,7
+   A3   6/8GudGoRi-2 #3 Vibraphone n=5   midi=64,76                        intervals=0,12
+   A4   6/8GudGoRi-2 #4 Contrabass n=3   midi=28,33                        intervals=0,5

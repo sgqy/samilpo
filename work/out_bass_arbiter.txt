@@ -1,0 +1,44 @@
+==============================================================================
+BASS ARBITER
+==============================================================================
+files with out-of-range symbols : 413
+measures scored                 : 632
+
+candidate root                   hits      share
+low                                93     14.72%
+allmod                             42      6.65%
+high                               34      5.38%
+control                            32      5.06%
+chance (1 of 12)                    -      8.33%
+
+per-file detail (measures scored, bass matched the low byte):
+   150ALS-19AA-0076.smc         n=12   hit=0    0%
+   150ALS-02NA-0261.smc         n=7    hit=2    29%
+   150ALS-02NA-0275.smc         n=7    hit=2    29%
+   150ALS-01GA-0018.smc         n=6    hit=0    0%
+   150ALS-01GA-0170.smc         n=6    hit=0    0%
+   150ALS-01GA-0178.smc         n=5    hit=0    0%
+   310FFS-06BA-0331-0001.smc    n=5    hit=0    0%
+   320TFS-0783-0001.smc         n=5    hit=2    40%
+   150ALS-01GA-0077.smc         n=4    hit=1    25%
+   150ALS-02NA-0260.smc         n=4    hit=1    25%
+   150ALS-02NA-0313.smc         n=4    hit=0    0%
+   150ALS-07SA-0201.smc         n=4    hit=1    25%
+   150ALS-09CA-0154.smc         n=4    hit=0    0%
+   150ALS-11TA-0037.smc         n=4    hit=0    0%
+   150ALS-13HA-0207.smc         n=4    hit=0    0%
+   150ALS-19AA-0702.smc         n=4    hit=0    0%
+   205OPS-0043.smc              n=4    hit=0    0%
+   219OPS-0001.smc              n=4    hit=2    50%
+   232OPS-0003.smc              n=4    hit=0    0%
+   252OPS-0002.smc              n=4    hit=0    0%
+   310FFS-09CA-0171-0001.smc    n=4    hit=0    0%
+   310FFS-19AA-0781-0001.smc    n=4    hit=1    25%
+   320TFS-0041-0002.smc         n=4    hit=0    0%
+   320TFS-0312-0001.smc         n=4    hit=1    25%
+   320TFS-0692-0001.smc         n=4    hit=1    25%
+   150ALS-01GA-0205.smc         n=3    hit=0    0%
+   150ALS-01GA-0318.smc         n=3    hit=3    100%
+   150ALS-02NA-0071.smc         n=3    hit=0    0%
+   150ALS-02NA-0111.smc         n=3    hit=0    0%
+   150ALS-02NA-0153.smc         n=3    hit=3    100%

@@ -1,0 +1,26 @@
+==============================================================================
+1. 500KFS-0041 - is every emitted harmony actually displayable?
+==============================================================================
+harmonies emitted        : 91
+without a root-step      : 0
+   none - every harmony carries a root and will render
+
+==============================================================================
+2. corpus - source 0x45 count vs harmony records emitted by step1
+==============================================================================
+files found              : 8451
+   ... 1000/8451
+   ... 2000/8451
+   ... 3000/8451
+   ... 4000/8451
+   ... 5000/8451
+   ... 6000/8451
+   ... 7000/8451
+   ... 8000/8451
+files with equal counts  : 8451
+files that differ / error: 0
+
+==============================================================================
+3. unread body bytes - the one region a trailing chord could hide in
+==============================================================================
+files with bytes left over after parsing: 0

@@ -1,0 +1,35 @@
+============================================================================
+C:\Program Files (x86)\Samilpo 2.0\8000Songs\100SONG\110SSS\110SSS-001.smc
+title_raw  : b'\x89M\x96m\x8d\xc0\x8e\x9e\x88\xe9\x96\xa7 \x89\xcf\x8b\xb5'
+decoded    : '김일성장군의 노래'
+extra_str  : b'54\x00'
+file_info  : (6, 4, 113, 113, 139, 113, 0, 113, 10, 13, 0, 0, 567, 870)
+
+document-level messages:
+   type=0x3f head_len=0 head=
+   type=0x40 head_len=0 head=
+   type=0x06 head_len=0 head=
+
+text blocks on the page:
+   m1    type=0x06 on=0     dx=-58   dy=-64   align=-2  ['보통속도로']
+   m3    type=0x06 on=0     dx=72    dy=-64   align=-2  ['작사 리찬, 작곡 김원균']
+   m12   type=0x06 on=0     dx=196   dy=-47   align=-2  ['（후렴）']
+
+============================================================================
+C:\Program Files (x86)\Samilpo 2.0\8000Songs\500KFS\500KFS-0041.smc
+title_raw  : b'\x8c\xc4\x8a}\x96\xa7 \x89\xcf\x8b\xb5'
+decoded    : '바다의 노래'
+extra_str  : b'448\x00'
+file_info  : (6, 4, 79, 79, 86, 90, 30, 113, 9, 8, 0, 0, 529, 795)
+
+document-level messages:
+   type=0x3f head_len=0 head=
+   type=0x40 head_len=0 head=
+   type=0x04 head_len=0 head=
+
+text blocks on the page:
+   m1    type=0x06 on=0     dx=-92   dy=-64   align=-2  ['랑만적으로']
+   m2    type=0x06 on=0     dx=162   dy=-138  align=-2  ['바다의 노래']
+   m67   type=0x06 on=0     dx=-12   dy=-60   align=-2  ['약동적으로 좀 빠르게']
+   m98   type=0x06 on=0     dx=-14   dy=-54   align=-2  ['좀 느리게']
+

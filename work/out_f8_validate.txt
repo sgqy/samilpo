@@ -1,0 +1,86 @@
+==============================================================================
+A. GROUND TRUTH - 500KFS-0041 opening, user verified Am Dm Em F Dm Em Am
+==============================================================================
+meas   name     f8 root   fret root agree  type_idx
+m1     b'm'     A         A         yes    0       
+m3     b'm'     D         D         yes    0       
+m4     b'm'     E         E         yes    0       
+m5     b' (major)' F         F         yes    0       
+m6     b'm'     E         E         yes    0       
+m6     b'm'     D         D         yes    0       
+m7     b'm'     A         A         yes    0       
+
+   f8 roots in order : A D E F E D A
+   expected          : A D E F D E A
+   MATCH             : NO
+   fingering roots   : A D E F E D A
+
+==============================================================================
+B. DISAGREEMENTS - is the fingering an inversion of the declared root?
+==============================================================================
+   ... 2000/8451
+   ... 4000/8451
+   ... 6000/8451
+   ... 8000/8451
+agree                      : 142340
+disagree                   : 5677 (3.84%)
+f8 out of the 0..17 range  : 734
+
+gap = (fingering pc - f8 pc) mod 12, over disagreements:
+   1   n=140     
+   2   n=219     
+   3   n=210     chord tone of the f8 root
+   4   n=131     chord tone of the f8 root
+   5   n=440     
+   6   n=160     
+   7   n=3073    chord tone of the f8 root
+   8   n=86      
+   9   n=306     
+   10  n=778     chord tone of the f8 root
+   11  n=134     chord tone of the f8 root
+
+   gaps of 3/4/7 (md3/M3/P5) mean the fingering is an INVERSION of the
+   declared root, so f8 is the root and the fingering simply is not.
+   share: 3414 of 5677 = 60.1%
+
+   samples:
+      110SSS-002.smc             f8=10  G  ( 7) fret=F  ( 5) gap=10  name=b'm7'
+      110SSS-004.smc             f8=12  Ab ( 8) fret=D  ( 3) gap=7   name=b'7'
+      110SSS-004.smc             f8=12  Ab ( 8) fret=D  ( 3) gap=7   name=b'7'
+      110SSS-004.smc             f8=12  Ab ( 8) fret=D  ( 3) gap=7   name=b'7'
+      121GLS-003.smc             f8=10  G  ( 7) fret=F  ( 5) gap=10  name=b'm7'
+      121GLS-003.smc             f8=10  G  ( 7) fret=F  ( 5) gap=10  name=b'm7'
+      121GLS-003.smc             f8=10  G  ( 7) fret=F  ( 5) gap=10  name=b'm7'
+      121GLS-003.smc             f8=10  G  ( 7) fret=F  ( 5) gap=10  name=b'm7'
+      122DLS-004.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      122DLS-004.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      122DLS-004.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      122DLS-004.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      122DLS-004.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      122DLS-006.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      122DLS-006.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      122DLS-007.smc             f8=8   F# ( 6) fret=E  ( 4) gap=10  name=b'7'
+      123KTS-005.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      123KTS-005.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      123KTS-005.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      123KTS-005.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      130RVS-001.smc             f8=8   F# ( 6) fret=E  ( 4) gap=10  name=b'7'
+      130RVS-001.smc             f8=8   F# ( 6) fret=E  ( 4) gap=10  name=b'7'
+      130RVS-030.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      130RVS-030.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      130RVS-030.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      130RVS-030.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      130RVS-057.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      130RVS-057.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      130RVS-057.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+      130RVS-057.smc             f8=15  Bb (10) fret=F  ( 5) gap=7   name=b'7'
+
+==============================================================================
+C. COVERAGE - what f8 can do that the fingering cannot
+==============================================================================
+Every symbol carries f8 (an ObjectCore field), so it is available exactly
+where the FretBoard is empty.  Counted here from the earlier scans:
+   symbols with a fingering root : 148017  (f8 agrees with 96.2%)
+   symbols with NO fingering     : 29892   (f8 in range for 29158 = 97.5%)
+   -> f8 supplies a declared root for the population that currently emits
+      <harmony><kind> with no <root>, which is invalid MusicXML.

@@ -1,0 +1,132 @@
+==============================================================================
+SOURCE CHORD SYMBOLS (type 0x45) in staff1
+==============================================================================
+file                 : 500KFS-0041.smc
+count in source      : 91
+measures with a chord: 79
+total measures       : 109
+measures WITHOUT one : 30
+   [2, 8, 9, 18, 20, 24, 32, 34, 38, 40, 47, 54, 58, 60, 66, 68, 69, 70, 74, 77, 85, 87, 88, 89, 91, 93, 97, 102, 108, 109]
+
+every 0x45 in order (measure, anchor start, node key, name bytes):
+   m1     anchor_start=0      key=5      name_bytes=1
+   m3     anchor_start=0      key=23     name_bytes=1
+   m4     anchor_start=0      key=42     name_bytes=1
+   m5     anchor_start=0      key=46     name_bytes=8
+   m6     anchor_start=0      key=56     name_bytes=1
+   m6     anchor_start=0      key=65     name_bytes=1
+   m7     anchor_start=0      key=70     name_bytes=1
+   m10    anchor_start=0      key=105    name_bytes=1
+   m11    anchor_start=0      key=108    name_bytes=1
+   m12    anchor_start=0      key=124    name_bytes=1
+   m13    anchor_start=0      key=126    name_bytes=1
+   m14    anchor_start=0      key=136    name_bytes=8
+   m15    anchor_start=0      key=150    name_bytes=8
+   m16    anchor_start=0      key=160    name_bytes=8
+   m16    anchor_start=0      key=167    name_bytes=8
+   m17    anchor_start=0      key=171    name_bytes=1
+   m19    anchor_start=0      key=189    name_bytes=1
+   m21    anchor_start=0      key=205    name_bytes=1
+   m22    anchor_start=0      key=220    name_bytes=1
+   m22    anchor_start=0      key=229    name_bytes=1
+   m23    anchor_start=0      key=234    name_bytes=1
+   m25    anchor_start=0      key=252    name_bytes=1
+   m26    anchor_start=0      key=264    name_bytes=1
+   m27    anchor_start=0      key=276    name_bytes=8
+   m28    anchor_start=0      key=290    name_bytes=1
+   m29    anchor_start=0      key=294    name_bytes=1
+   m30    anchor_start=0      key=307    name_bytes=1
+   m30    anchor_start=0      key=314    name_bytes=1
+   m31    anchor_start=0      key=319    name_bytes=1
+   m33    anchor_start=0      key=339    name_bytes=1
+   m35    anchor_start=0      key=354    name_bytes=1
+   m36    anchor_start=0      key=369    name_bytes=1
+   m36    anchor_start=0      key=378    name_bytes=1
+   m37    anchor_start=0      key=383    name_bytes=1
+   m39    anchor_start=0      key=401    name_bytes=8
+   m41    anchor_start=0      key=427    name_bytes=8
+   m42    anchor_start=0      key=444    name_bytes=1
+   m43    anchor_start=0      key=446    name_bytes=1
+   m44    anchor_start=0      key=457    name_bytes=1
+   m44    anchor_start=0      key=466    name_bytes=1
+   m45    anchor_start=0      key=471    name_bytes=1
+   m46    anchor_start=0      key=487    name_bytes=1
+   m48    anchor_start=0      key=504    name_bytes=1
+   m49    anchor_start=0      key=507    name_bytes=1
+   m50    anchor_start=0      key=523    name_bytes=1
+   m51    anchor_start=0      key=527    name_bytes=1
+   m52    anchor_start=0      key=538    name_bytes=1
+   m52    anchor_start=0      key=545    name_bytes=1
+   m53    anchor_start=0      key=550    name_bytes=1
+   m55    anchor_start=0      key=568    name_bytes=1
+   m56    anchor_start=0      key=579    name_bytes=1
+   m57    anchor_start=0      key=588    name_bytes=1
+   m59    anchor_start=0      key=607    name_bytes=1
+   m61    anchor_start=0      key=623    name_bytes=1
+   m62    anchor_start=0      key=639    name_bytes=1
+   m63    anchor_start=0      key=643    name_bytes=1
+   m64    anchor_start=0      key=658    name_bytes=1
+   m64    anchor_start=0      key=667    name_bytes=1
+   m65    anchor_start=0      key=672    name_bytes=1
+   m67    anchor_start=0      key=696    name_bytes=1
+   m71    anchor_start=0      key=733    name_bytes=1
+   m72    anchor_start=0      key=746    name_bytes=1
+   m72    anchor_start=0      key=753    name_bytes=1
+   m73    anchor_start=0      key=757    name_bytes=1
+   m75    anchor_start=0      key=773    name_bytes=8
+   m76    anchor_start=0      key=783    name_bytes=8
+   m78    anchor_start=0      key=799    name_bytes=1
+   m79    anchor_start=0      key=816    name_bytes=1
+   m80    anchor_start=0      key=819    name_bytes=1
+   m81    anchor_start=0      key=829    name_bytes=1
+   m82    anchor_start=0      key=831    name_bytes=8
+   m83    anchor_start=0      key=846    name_bytes=1
+   m84    anchor_start=0      key=861    name_bytes=1
+   m86    anchor_start=0      key=874    name_bytes=1
+   m90    anchor_start=0      key=918    name_bytes=1
+   m90    anchor_start=0      key=923    name_bytes=1
+   m92    anchor_start=0      key=941    name_bytes=1
+   m94    anchor_start=0      key=951    name_bytes=1
+   m95    anchor_start=0      key=956    name_bytes=1
+   m96    anchor_start=0      key=958    name_bytes=1
+   m98    anchor_start=0      key=966    name_bytes=1
+   m99    anchor_start=0      key=983    name_bytes=8
+   m100   anchor_start=0      key=993    name_bytes=1
+   m100   anchor_start=0      key=1000   name_bytes=1
+   m101   anchor_start=0      key=1005   name_bytes=1
+   m103   anchor_start=0      key=1028   name_bytes=1
+   m104   anchor_start=0      key=1041   name_bytes=1
+   m105   anchor_start=0      key=1044   name_bytes=1
+   m106   anchor_start=0      key=1059   name_bytes=1
+   m106   anchor_start=0      key=1068   name_bytes=1
+   m107   anchor_start=0      key=1073   name_bytes=1
+
+==============================================================================
+EMITTED HARMONIES (P1)
+==============================================================================
+count in output      : 91
+measures with one    : 79
+
+per-measure comparison (only where the two disagree):
+   none - every chord symbol in the source reached the output
+
+==============================================================================
+MEASURES WHOSE SOUNDED CONTENT RUNS PAST THEIR SIGNATURE
+==============================================================================
+overrunning measures : 109
+   m94    signature=240    content_end=480    chord=1
+   m95    signature=240    content_end=960    chord=1
+   m96    signature=240    content_end=960    chord=1
+   m97    signature=240    content_end=960    chord=0
+   m98    signature=240    content_end=960    chord=1
+   m99    signature=180    content_end=720    chord=1
+   m100   signature=180    content_end=720    chord=2
+   m101   signature=180    content_end=720    chord=1
+   m102   signature=180    content_end=720    chord=0
+   m103   signature=180    content_end=720    chord=1
+   m104   signature=180    content_end=360    chord=1
+   m105   signature=180    content_end=720    chord=1
+   m106   signature=180    content_end=720    chord=2
+   m107   signature=180    content_end=720    chord=1
+   m108   signature=180    content_end=720    chord=0
+   m109   signature=180    content_end=720    chord=0

@@ -1,0 +1,44 @@
+==============================================================================
+TICK BUDGET
+==============================================================================
+whole_tick (per quarter): 240
+   6/8 -> tpm = 720
+   4/4 -> tpm = 960
+   3/4 -> tpm = 720
+
+==============================================================================
+DROPPED role==0 REFERENCES (read_meas counts these, CSMMeas::Read drops them)
+==============================================================================
+total dropped refs in staff1 : 0
+   in measures >= 100        : 0
+any resolved to a 0x45 key?  : no way to tell - the key is what got dropped
+
+distinct 0x45 node keys      : 91
+
+==============================================================================
+MEASURE BUDGET vs CONTENT, LAST 14
+==============================================================================
+m96    4/4 tpm=960   content_end=960   notes=[on=0 dur=960 k=76]
+m97    4/4 tpm=960   content_end=960   notes=[on=0 dur=960 k=76]
+m98    4/4 tpm=960   content_end=960   notes=[on=120 dur=120 k=74] [on=240 dur=120 k=74] [on=360 dur=120 k=74] [on=480 dur=120 k=74] [on=600 dur=120 k=74] [on=720 dur=240 k=74]
+m99    6/8 tpm=720   content_end=720   notes=[on=0 dur=120 k=72] [on=120 dur=120 k=74] [on=240 dur=240 k=76] [on=480 dur=240 k=76]
+m100   6/8 tpm=720   content_end=720   notes=[on=0 dur=120 k=74] [on=120 dur=120 k=72] [on=240 dur=120 k=74] [on=360 dur=120 k=76] [on=480 dur=240 k=76]
+m101   6/8 tpm=720   content_end=720   notes=[on=0 dur=120 k=74] [on=120 dur=120 k=74] [on=240 dur=120 k=74] [on=360 dur=120 k=74] [on=480 dur=240 k=74]
+m102   6/8 tpm=720   content_end=720   notes=[on=0 dur=240 k=74] [on=240 dur=120 k=72] [on=360 dur=120 k=69] [on=480 dur=240 k=72]
+m103   6/8 tpm=720   content_end=720   notes=[on=0 dur=120 k=64] [on=120 dur=240 k=64] [on=360 dur=120 k=67] [on=480 dur=240 k=69]
+m104   6/8 tpm=720   content_end=360   notes=[on=0 dur=30 k=67] [on=0 dur=360 k=64] [on=23 dur=30 k=69] [on=84 dur=30 k=67]
+m105   6/8 tpm=720   content_end=720   notes=[on=0 dur=120 k=69] [on=120 dur=120 k=69] [on=240 dur=120 k=69] [on=360 dur=120 k=72] [on=480 dur=120 k=69] [on=600 dur=120 k=72]
+m106   6/8 tpm=720   content_end=720   notes=[on=0 dur=120 k=74] [on=120 dur=120 k=74] [on=240 dur=120 k=72] [on=360 dur=240 k=76] [on=600 dur=120 k=76]
+m107   6/8 tpm=720   content_end=720   notes=[on=0 dur=120 k=69] [on=120 dur=120 k=69] [on=240 dur=120 k=67] [on=360 dur=120 k=69] [on=480 dur=120 k=69] [on=600 dur=120 k=72]
+m108   6/8 tpm=720   content_end=720   notes=[on=0 dur=720 k=69]
+m109   6/8 tpm=720   content_end=720   notes=[on=0 dur=720 k=69]
+
+==============================================================================
+EMITTED P1 NOTE DURATIONS, LAST 6 MEASURES
+==============================================================================
+  m104   G/4 d=None A/4 d=None G/4 d=None HARMONY E/4 d=720
+  m105   HARMONY A/4 d=120 A/4 d=120 A/4 d=120 C/5 d=120 A/4 d=120 C/5 d=120
+  m106   HARMONY D/5 d=120 D/5 d=120 C/5 d=120 HARMONY E/5 d=240 E/5 d=120
+  m107   HARMONY A/4 d=120 A/4 d=120 G/4 d=120 A/4 d=120 A/4 d=120 C/5 d=120
+  m108   A/4 d=720
+  m109   A/4 d=720

@@ -1,0 +1,55 @@
+==============================================================================
+TITLE AND AUTHORS
+==============================================================================
+file                     : 500KFS-0041.smc
+SYMP title_raw           : b'\x8c\xc4\x8a}\x96\xa7 \x89\xcf\x8b\xb5'
+SYMP title decoded       : '바다의 노래'
+SYMP extra_str           : b'448\x00'
+staff name (part name)   : b''
+emitted movement-title   : '바다의 노래'
+emitted creators         : []
+emitted part-names       : [('P1', 'Music'), ('A1', 'Drums (6/8GudGoRi-2 #1)'), ('A2', '6/8GudGoRi-2 #2 Acoustic Grand'), ('A3', '6/8GudGoRi-2 #3 Vibraphone')]
+
+all NUL-separated strings in the SYMP header (0x000-0x590):
+   @0x000 len=2    b'\x8c\x05'  -> '谅'
+   @0x004 len=2    b'\x8c\x05'  -> '谅'
+   @0x008 len=17   b'SYMP\x04 \x8c\xc4\x8a}\x96\xa7 \x89\xcf\x8b\xb5'  -> 'SYMP\x04 바다의 노래'
+   @0x592 len=2    b'44'  -> '44'
+
+==============================================================================
+LAST MEASURES - every harmony and direction, with its onset
+==============================================================================
+total measures in P1: 109
+  measure 96    notes=1   
+        on=0      direction smc-type-8
+        on=0      harmony   A minor
+  measure 97    notes=1   
+        (no harmony, no direction)
+  measure 98    notes=7   
+        on=0      direction 좀 느리게
+        on=0      direction smc-type-8
+        on=0      harmony   D minor
+  measure 99    notes=4   
+        on=0      harmony   C major
+  measure 100   notes=5   
+        on=0      harmony   D minor
+        on=360    harmony   E minor
+  measure 101   notes=5   
+        on=0      harmony   D minor
+  measure 102   notes=4   
+        on=0      direction mf
+  measure 103   notes=4   
+        on=0      harmony   A minor
+  measure 104   notes=4   
+        on=0      harmony   E minor
+  measure 105   notes=6   
+        on=0      harmony   A minor
+  measure 106   notes=5   
+        on=0      harmony   D minor
+        on=360    harmony   E minor
+  measure 107   notes=6   
+        on=0      harmony   A minor
+  measure 108   notes=1   
+        (no harmony, no direction)
+  measure 109   notes=1   
+        (no harmony, no direction)

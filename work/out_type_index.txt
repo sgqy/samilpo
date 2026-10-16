@@ -1,0 +1,33 @@
+   ... 2000/8451
+   ... 4000/8451
+   ... 6000/8451
+   ... 8000/8451
+==============================================================================
+SAMPLES
+==============================================================================
+symbols with a fingering root : 148017
+type_index distribution among the rootless : [(0, 8097), (1, 3860), (4, 3700), (2, 3664), (5, 3543), (3, 3527), (6, 3501)]
+
+==============================================================================
+PREDICTION ACCURACY: root_pc == (tonic + SCALE[type_index]) % 12
+==============================================================================
+   major / major-key          15735 / 147627  =  10.66%
+   major / minor-key           9229 / 147627  =   6.25%
+   nat-minor / major-key      13835 / 147627  =   9.37%
+   nat-minor / minor-key       7167 / 147627  =   4.85%
+   harm-minor / major-key     14106 / 147627  =   9.56%
+   harm-minor / minor-key      8543 / 147627  =   5.79%
+   chromatic / major-key      12649 / 147627  =   8.57%
+   chromatic / minor-key      11263 / 147627  =   7.63%
+
+==============================================================================
+CONTROL: does type_index instead index the CHORD's own degree?
+==============================================================================
+   interval (root_pc - key_tonic) vs type_index, for major key & ktype==1:
+   type_index=0   n=111983  top intervals [(10, '10%'), (6, '10%'), (0, '10%')]
+   type_index=1   n=6031    top intervals [(7, '38%'), (2, '20%'), (9, '18%')]
+   type_index=2   n=5570    top intervals [(6, '39%'), (11, '30%'), (4, '13%')]
+   type_index=3   n=6385    top intervals [(10, '36%'), (8, '23%'), (1, '15%')]
+   type_index=4   n=6453    top intervals [(0, '28%'), (7, '20%'), (2, '17%')]
+   type_index=5   n=5737    top intervals [(4, '28%'), (2, '26%'), (11, '24%')]
+   type_index=6   n=5468    top intervals [(8, '25%'), (1, '24%'), (6, '23%')]

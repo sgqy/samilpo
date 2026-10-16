@@ -73,8 +73,12 @@ def load_ir_lines(line_iter, origin='<memory>'):
         if k == 'score':
             score = rec
         elif k == 'part':
-            parts.append({'id': rec['id'], 'name': rec.get('name'),
-                          'n_staves': rec.get('n_staves', 1)})
+            # Keep every field the IR carries: an accompaniment part declares
+            # its role, MIDI channel, program and percussion flag, and dropping
+            # them here would silently turn a separate track into plain staff.
+            p = dict(rec)
+            p.setdefault('n_staves', 1)
+            parts.append(p)
         elif k == 'measure':
             part_measures.setdefault(rec['part'], []).append(rec)
             events_of.setdefault((rec['part'], rec['n']), [])
@@ -108,6 +112,14 @@ def build(score, parts, part_measures, events_of, span_index, software):
     root = ET.Element('score-partwise', {'version': '4.0'})
     sub(root, 'movement-title', score.get('title') or None)
     ident = sub(root, 'identification')
+    # The author credit has no field of its own in the source; it is recovered
+    # from the page text (see smc2ir.parse_credit). MusicXML keeps it here so the
+    # names survive as data, in source order, instead of only as drawn text.
+    # Order follows the MusicXML DTD: creator*, rights*, encoding?, source?,
+    # relation*, miscellaneous*.
+    for c in (score.get('creators') or []):
+        if c.get('name'):
+            sub(ident, 'creator', c['name'], type=c.get('role') or 'other')
     sub(ident, 'encoding').append(_software(software))
     src = score.get('source', {})
     if src.get('path'):
@@ -118,11 +130,38 @@ def build(score, parts, part_measures, events_of, span_index, software):
     for p in parts:
         sp = sub(part_list, 'score-part', id=p['id'])
         sub(sp, 'part-name', p.get('name') or 'Music')
+        # An accompaniment track is a real independent voice. Naming it in the
+        # score-part and routing it to its own MIDI channel keeps it legible as
+        # a separate track instead of being folded into the melody.
+        if p.get('role') == 'accompaniment':
+            sub(sp, 'part-name-display').append(_display(p.get('name') or 'Accompaniment'))
+            sub(sp, 'score-instrument', id='%s-I1' % p['id']).append(
+                _instrument_name(p.get('name') or 'Accompaniment'))
+            midi = sub(sp, 'midi-instrument', id='%s-I1' % p['id'])
+            # Engine channels are 0-based; MIDI output channels are 1-based.
+            ch = (p.get('channel') or 0) + 1
+            sub(midi, 'midi-channel', min(max(ch, 1), 16))
+            if p.get('program') is not None:
+                sub(midi, 'midi-program', p['program'] + 1)
+            if p.get('percussion'):
+                sub(midi, 'midi-unpitched', 1)
 
     for p in parts:
         write_part(root, p, part_measures.get(p['id'], []), events_of,
                    span_index, div)
     return root
+
+
+def _display(text):
+    el = ET.Element('display-text')
+    el.text = text
+    return el
+
+
+def _instrument_name(text):
+    el = ET.Element('instrument-name')
+    el.text = text
+    return el
 
 
 def _software(name):
@@ -638,6 +677,15 @@ def write_voice(el, mrec, staff, voice, vnotes, spans_of, div, n_staves,
             sub(note_el, 'grace')
         if n.get('rest'):
             sub(note_el, 'rest')
+        elif n.get('unpitched'):
+            # A percussion track names a drum, not a pitch. MusicXML keeps the
+            # General MIDI drum number so the track stays playable and the
+            # identity of the drum is not lost.
+            up = sub(note_el, 'unpitched')
+            sub(up, 'display-step', n.get('display_step') or 'B')
+            sub(up, 'display-octave', n.get('display_octave') or 4)
+            if n.get('instrument_id'):
+                sub(note_el, 'instrument', id=n['instrument_id'])
         else:
             pitch = sub(note_el, 'pitch')
             sub(pitch, 'step', n['step'] or 'C')
