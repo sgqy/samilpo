@@ -1,0 +1,15 @@
+idx	font_byte	count	files	container	dy	name_zh	name_ko_or_ja	category	musicxml	placement	notes
+1	0x5D	91	55	measure:85;note:6	dy<0:91	?	?	?	?	?	
+8	0x57	16	8	measure:3;note:13	dy<0:16	?	?	?	?	?	
+10	0x59	2	2	note:2	dy<0:2	?	?	?	?	?	
+11	0x5C	588	376	measure:579;note:9	dy<0:588	?	?	?	?	?	
+13	0x55	3764	615	measure:2052;note:1712	dy<0:3748;dy>0:16	?	?	?	?	?	
+14	0x4E	425	67	measure:185;note:240	dy<0:324;dy=0:1;dy>0:100	?	?	?	?	?	
+16	0x2C	1331	385	measure:736;note:595	dy<0:1120;dy=0:14;dy>0:197	?	?	?	?	?	
+25	0x73	7	4	measure:4;note:3	dy<0:7	?	?	?	?	?	
+29	0x63	435	316	measure:222;note:211;rest:2	dy<0:435	?	?	?	?	?	
+30	0x64	3	3	measure:1;note:2	dy>0:3	?	?	?	?	?	
+33	0x77	27	8	measure:21;note:6	dy<0:27	?	?	?	?	?	
+35	0x78	2	2	note:2	dy<0:2	?	?	?	?	?	
+43	0xD2	11	5	measure:10;note:1	dy<0:11	?	?	?	?	?	
+45	0xD4	5	2	measure:5	dy<0:5	?	?	?	?	?	

@@ -1,0 +1,1568 @@
+{
+ "files": 8451,
+ "marks": 6707,
+ "total": {
+  "11": 588,
+  "13": 3764,
+  "16": 1331,
+  "29": 435,
+  "14": 425,
+  "1": 91,
+  "33": 27,
+  "25": 7,
+  "8": 16,
+  "10": 2,
+  "30": 3,
+  "43": 11,
+  "45": 5,
+  "35": 2
+ },
+ "owner": {
+  "11": {
+   "note": 9,
+   "measure": 579
+  },
+  "13": {
+   "note": 1712,
+   "measure": 2052
+  },
+  "16": {
+   "note": 595,
+   "measure": 736
+  },
+  "29": {
+   "measure": 222,
+   "note": 211,
+   "rest": 2
+  },
+  "14": {
+   "measure": 185,
+   "note": 240
+  },
+  "1": {
+   "measure": 85,
+   "note": 6
+  },
+  "33": {
+   "note": 6,
+   "measure": 21
+  },
+  "25": {
+   "measure": 4,
+   "note": 3
+  },
+  "8": {
+   "note": 13,
+   "measure": 3
+  },
+  "10": {
+   "note": 2
+  },
+  "30": {
+   "note": 2,
+   "measure": 1
+  },
+  "43": {
+   "note": 1,
+   "measure": 10
+  },
+  "45": {
+   "measure": 5
+  },
+  "35": {
+   "note": 2
+  }
+ },
+ "dysign": {
+  "11": {
+   "dy<0": 588
+  },
+  "13": {
+   "dy<0": 3748,
+   "dy>0": 16
+  },
+  "16": {
+   "dy<0": 1120,
+   "dy>0": 197,
+   "dy=0": 14
+  },
+  "29": {
+   "dy<0": 435
+  },
+  "14": {
+   "dy<0": 324,
+   "dy>0": 100,
+   "dy=0": 1
+  },
+  "1": {
+   "dy<0": 91
+  },
+  "33": {
+   "dy<0": 27
+  },
+  "25": {
+   "dy<0": 7
+  },
+  "8": {
+   "dy<0": 16
+  },
+  "10": {
+   "dy<0": 2
+  },
+  "30": {
+   "dy>0": 3
+  },
+  "43": {
+   "dy<0": 11
+  },
+  "45": {
+   "dy<0": 5
+  },
+  "35": {
+   "dy<0": 2
+  }
+ },
+ "files_per_index": {
+  "11": 376,
+  "13": 615,
+  "16": 385,
+  "29": 316,
+  "14": 67,
+  "1": 55,
+  "33": 8,
+  "25": 4,
+  "8": 8,
+  "10": 2,
+  "30": 3,
+  "43": 5,
+  "45": 2,
+  "35": 2
+ },
+ "samples": {
+  "11": [
+   {
+    "file": "110SSS-001.smc",
+    "staff": 0,
+    "measure": 2,
+    "container": "note",
+    "dx": -11,
+    "dy": -20,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=720 dur=240",
+    "off": 3235
+   },
+   {
+    "file": "110SSS-001.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "note",
+    "dx": 13,
+    "dy": -19,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=480 dur=168",
+    "off": 19544
+   },
+   {
+    "file": "110SSS-001.smc",
+    "staff": 0,
+    "measure": 14,
+    "container": "note",
+    "dx": -10,
+    "dy": -26,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=720 dur=240",
+    "off": 23005
+   },
+   {
+    "file": "110SSS-001.smc",
+    "staff": 0,
+    "measure": 18,
+    "container": "note",
+    "dx": -17,
+    "dy": -15,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=720 dur=216",
+    "off": 30496
+   },
+   {
+    "file": "122DLS-007.smc",
+    "staff": 0,
+    "measure": 3,
+    "container": "measure",
+    "dx": 156,
+    "dy": -27,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 3497
+   },
+   {
+    "file": "122DLS-007.smc",
+    "staff": 0,
+    "measure": 7,
+    "container": "measure",
+    "dx": 152,
+    "dy": -27,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 8274
+   },
+   {
+    "file": "122DLS-007.smc",
+    "staff": 0,
+    "measure": 15,
+    "container": "measure",
+    "dx": 165,
+    "dy": -28,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 18327
+   },
+   {
+    "file": "150ALS-01GA-0009.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "measure",
+    "dx": 175,
+    "dy": -27,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 15579
+   },
+   {
+    "file": "150ALS-01GA-0014.smc",
+    "staff": 0,
+    "measure": 16,
+    "container": "measure",
+    "dx": 75,
+    "dy": -26,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 18936
+   },
+   {
+    "file": "150ALS-01GA-0014.smc",
+    "staff": 0,
+    "measure": 22,
+    "container": "measure",
+    "dx": 167,
+    "dy": -26,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 26010
+   }
+  ],
+  "13": [
+   {
+    "file": "110SSS-001.smc",
+    "staff": 0,
+    "measure": 11,
+    "container": "note",
+    "dx": -2,
+    "dy": -6,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=240 dur=148",
+    "off": 16024
+   },
+   {
+    "file": "110SSS-001.smc",
+    "staff": 0,
+    "measure": 16,
+    "container": "note",
+    "dx": -1,
+    "dy": -8,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=720 dur=162",
+    "off": 26517
+   },
+   {
+    "file": "110SSS-001.smc",
+    "staff": 0,
+    "measure": 19,
+    "container": "note",
+    "dx": 0,
+    "dy": -6,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=720 dur=240",
+    "off": 32005
+   },
+   {
+    "file": "110SSS-001.smc",
+    "staff": 0,
+    "measure": 19,
+    "container": "note",
+    "dx": 0,
+    "dy": -8,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=480 dur=240",
+    "off": 31394
+   },
+   {
+    "file": "121GLS-002.smc",
+    "staff": 0,
+    "measure": 13,
+    "container": "note",
+    "dx": -1,
+    "dy": -13,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=180",
+    "off": 12972
+   },
+   {
+    "file": "121GLS-002.smc",
+    "staff": 0,
+    "measure": 14,
+    "container": "note",
+    "dx": -1,
+    "dy": -7,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=180",
+    "off": 14035
+   },
+   {
+    "file": "130RVS-068.smc",
+    "staff": 0,
+    "measure": 25,
+    "container": "note",
+    "dx": -3,
+    "dy": -10,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=120 dur=360",
+    "off": 20319
+   },
+   {
+    "file": "130RVS-068.smc",
+    "staff": 0,
+    "measure": 26,
+    "container": "note",
+    "dx": -2,
+    "dy": -11,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=120 dur=360",
+    "off": 20815
+   },
+   {
+    "file": "130RVS-068.smc",
+    "staff": 0,
+    "measure": 27,
+    "container": "note",
+    "dx": -2,
+    "dy": -10,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=240 dur=240",
+    "off": 21375
+   },
+   {
+    "file": "130RVS-068.smc",
+    "staff": 0,
+    "measure": 27,
+    "container": "note",
+    "dx": -2,
+    "dy": -10,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 21153
+   }
+  ],
+  "16": [
+   {
+    "file": "121GLS-002.smc",
+    "staff": 0,
+    "measure": 5,
+    "container": "note",
+    "dx": 1,
+    "dy": -4,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 4699
+   },
+   {
+    "file": "121GLS-002.smc",
+    "staff": 0,
+    "measure": 8,
+    "container": "note",
+    "dx": 0,
+    "dy": -6,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 7755
+   },
+   {
+    "file": "121GLS-002.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "note",
+    "dx": 0,
+    "dy": -4,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 12400
+   },
+   {
+    "file": "122DLS-004.smc",
+    "staff": 0,
+    "measure": 24,
+    "container": "note",
+    "dx": 1,
+    "dy": -2,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=600 dur=120",
+    "off": 29942
+   },
+   {
+    "file": "122DLS-004.smc",
+    "staff": 0,
+    "measure": 24,
+    "container": "note",
+    "dx": 1,
+    "dy": -2,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=360 dur=240",
+    "off": 29720
+   },
+   {
+    "file": "123KTS-001.smc",
+    "staff": 0,
+    "measure": 14,
+    "container": "note",
+    "dx": -4,
+    "dy": 4,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=480 dur=480",
+    "off": 18571
+   },
+   {
+    "file": "123KTS-001.smc",
+    "staff": 0,
+    "measure": 14,
+    "container": "note",
+    "dx": 0,
+    "dy": 4,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=360 dur=120",
+    "off": 18341
+   },
+   {
+    "file": "123KTS-001.smc",
+    "staff": 0,
+    "measure": 14,
+    "container": "note",
+    "dx": 0,
+    "dy": 4,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=240 dur=120",
+    "off": 18055
+   },
+   {
+    "file": "123KTS-001.smc",
+    "staff": 0,
+    "measure": 14,
+    "container": "note",
+    "dx": 0,
+    "dy": 13,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=120 dur=120",
+    "off": 17851
+   },
+   {
+    "file": "123KTS-001.smc",
+    "staff": 0,
+    "measure": 14,
+    "container": "note",
+    "dx": -1,
+    "dy": 9,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=120",
+    "off": 17378
+   }
+  ],
+  "29": [
+   {
+    "file": "123KTS-002.smc",
+    "staff": 0,
+    "measure": 1,
+    "container": "measure",
+    "dx": 118,
+    "dy": -35,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 1745
+   },
+   {
+    "file": "141BLP-0001.smc",
+    "staff": 0,
+    "measure": 41,
+    "container": "measure",
+    "dx": -27,
+    "dy": -31,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 28362
+   },
+   {
+    "file": "141BLP-0009.smc",
+    "staff": 0,
+    "measure": 30,
+    "container": "note",
+    "dx": -4,
+    "dy": -16,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=720 dur=240",
+    "off": 28451
+   },
+   {
+    "file": "141BLP-0039.smc",
+    "staff": 0,
+    "measure": 34,
+    "container": "measure",
+    "dx": 179,
+    "dy": -28,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 25480
+   },
+   {
+    "file": "141BLP-0049.smc",
+    "staff": 0,
+    "measure": 16,
+    "container": "note",
+    "dx": -3,
+    "dy": -13,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=360",
+    "off": 17673
+   },
+   {
+    "file": "141BLP-0064.smc",
+    "staff": 0,
+    "measure": 21,
+    "container": "measure",
+    "dx": 81,
+    "dy": -39,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 15388
+   },
+   {
+    "file": "141BLP-0071.smc",
+    "staff": 0,
+    "measure": 6,
+    "container": "measure",
+    "dx": 183,
+    "dy": -34,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 6769
+   },
+   {
+    "file": "141BLP-0071.smc",
+    "staff": 0,
+    "measure": 8,
+    "container": "measure",
+    "dx": 190,
+    "dy": -33,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 9439
+   },
+   {
+    "file": "141BLP-0071.smc",
+    "staff": 0,
+    "measure": 28,
+    "container": "measure",
+    "dx": 182,
+    "dy": -33,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 28097
+   },
+   {
+    "file": "141BLP-0074.smc",
+    "staff": 0,
+    "measure": 14,
+    "container": "note",
+    "dx": -5,
+    "dy": -16,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 15026
+   }
+  ],
+  "14": [
+   {
+    "file": "142BLC-0023.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "measure",
+    "dx": 7,
+    "dy": -21,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 12859
+   },
+   {
+    "file": "142BLC-0023.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "measure",
+    "dx": 70,
+    "dy": -21,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 13081
+   },
+   {
+    "file": "142BLC-0023.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "measure",
+    "dx": 133,
+    "dy": -21,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 13303
+   },
+   {
+    "file": "142BLC-0044.smc",
+    "staff": 0,
+    "measure": 2,
+    "container": "note",
+    "dx": 2,
+    "dy": -23,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=240 dur=240",
+    "off": 1946
+   },
+   {
+    "file": "142BLC-0044.smc",
+    "staff": 0,
+    "measure": 2,
+    "container": "note",
+    "dx": 2,
+    "dy": -23,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 1724
+   },
+   {
+    "file": "142BLC-0044.smc",
+    "staff": 0,
+    "measure": 4,
+    "container": "note",
+    "dx": 5,
+    "dy": -32,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=240 dur=240",
+    "off": 3565
+   },
+   {
+    "file": "142BLC-0044.smc",
+    "staff": 0,
+    "measure": 4,
+    "container": "note",
+    "dx": 5,
+    "dy": -32,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 3343
+   },
+   {
+    "file": "142BLC-0044.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "note",
+    "dx": 6,
+    "dy": -26,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=240 dur=240",
+    "off": 10656
+   },
+   {
+    "file": "142BLC-0044.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "note",
+    "dx": 6,
+    "dy": -25,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 10434
+   },
+   {
+    "file": "150ALS-01GA-0247.smc",
+    "staff": 0,
+    "measure": 46,
+    "container": "note",
+    "dx": 2,
+    "dy": -5,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=480 dur=240",
+    "off": 26695
+   }
+  ],
+  "1": [
+   {
+    "file": "150ALS-01GA-0129.smc",
+    "staff": 0,
+    "measure": 6,
+    "container": "measure",
+    "dx": 174,
+    "dy": -33,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 7631
+   },
+   {
+    "file": "150ALS-01GA-0231.smc",
+    "staff": 0,
+    "measure": 2,
+    "container": "measure",
+    "dx": 173,
+    "dy": -27,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 3639
+   },
+   {
+    "file": "150ALS-01GA-0231.smc",
+    "staff": 0,
+    "measure": 6,
+    "container": "measure",
+    "dx": 176,
+    "dy": -27,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 8939
+   },
+   {
+    "file": "150ALS-01GA-0231.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "measure",
+    "dx": 150,
+    "dy": -28,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 17235
+   },
+   {
+    "file": "150ALS-01GA-0231.smc",
+    "staff": 0,
+    "measure": 14,
+    "container": "note",
+    "dx": 33,
+    "dy": -17,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=720",
+    "off": 19727
+   },
+   {
+    "file": "150ALS-01GA-0281.smc",
+    "staff": 0,
+    "measure": 3,
+    "container": "measure",
+    "dx": 180,
+    "dy": -27,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 4009
+   },
+   {
+    "file": "150ALS-01GA-0281.smc",
+    "staff": 0,
+    "measure": 7,
+    "container": "measure",
+    "dx": 188,
+    "dy": -26,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 9197
+   },
+   {
+    "file": "150ALS-01GA-0281.smc",
+    "staff": 0,
+    "measure": 11,
+    "container": "measure",
+    "dx": 181,
+    "dy": -25,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 14021
+   },
+   {
+    "file": "150ALS-02NA-0005.smc",
+    "staff": 0,
+    "measure": 15,
+    "container": "note",
+    "dx": 19,
+    "dy": -13,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=480 dur=240",
+    "off": 16284
+   },
+   {
+    "file": "150ALS-02NA-0111.smc",
+    "staff": 0,
+    "measure": 11,
+    "container": "measure",
+    "dx": 168,
+    "dy": -27,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 12266
+   }
+  ],
+  "33": [
+   {
+    "file": "150ALS-01GA-0247.smc",
+    "staff": 0,
+    "measure": 52,
+    "container": "note",
+    "dx": -4,
+    "dy": -11,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 30465
+   },
+   {
+    "file": "150ALS-01GA-0247.smc",
+    "staff": 0,
+    "measure": 54,
+    "container": "note",
+    "dx": -4,
+    "dy": -5,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 32125
+   },
+   {
+    "file": "150ALS-01GA-0247.smc",
+    "staff": 0,
+    "measure": 55,
+    "container": "note",
+    "dx": -4,
+    "dy": -5,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 32930
+   },
+   {
+    "file": "150ALS-01GA-0247.smc",
+    "staff": 0,
+    "measure": 56,
+    "container": "note",
+    "dx": -4,
+    "dy": -12,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 33735
+   },
+   {
+    "file": "150ALS-19AA-0190.smc",
+    "staff": 0,
+    "measure": 16,
+    "container": "measure",
+    "dx": 98,
+    "dy": -29,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 46956
+   },
+   {
+    "file": "150ALS-19AA-0190.smc",
+    "staff": 1,
+    "measure": 1,
+    "container": "measure",
+    "dx": 108,
+    "dy": -29,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 55450
+   },
+   {
+    "file": "150ALS-19AA-0190.smc",
+    "staff": 2,
+    "measure": 1,
+    "container": "measure",
+    "dx": 18,
+    "dy": -31,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 56487
+   },
+   {
+    "file": "500KFS-0003.smc",
+    "staff": 0,
+    "measure": 21,
+    "container": "note",
+    "dx": -3,
+    "dy": -13,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=120",
+    "off": 26901
+   },
+   {
+    "file": "500KFS-0003.smc",
+    "staff": 0,
+    "measure": 25,
+    "container": "note",
+    "dx": -4,
+    "dy": -19,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=360 dur=180",
+    "off": 34426
+   },
+   {
+    "file": "500KFS-0039.smc",
+    "staff": 0,
+    "measure": 3,
+    "container": "measure",
+    "dx": 135,
+    "dy": -33,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 8086
+   }
+  ],
+  "25": [
+   {
+    "file": "150ALS-01GA-0247.smc",
+    "staff": 0,
+    "measure": 82,
+    "container": "measure",
+    "dx": 9,
+    "dy": -38,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 52600
+   },
+   {
+    "file": "150ALS-01GA-0247.smc",
+    "staff": 0,
+    "measure": 83,
+    "container": "note",
+    "dx": -2,
+    "dy": -6,
+    "voice": 2,
+    "start": 0,
+    "ctx": "note start=0 dur=720",
+    "off": 53750
+   },
+   {
+    "file": "150ALS-02NA-0219.smc",
+    "staff": 0,
+    "measure": 50,
+    "container": "note",
+    "dx": -2,
+    "dy": -12,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=720",
+    "off": 63696
+   },
+   {
+    "file": "150ALS-02NA-0219.smc",
+    "staff": 0,
+    "measure": 52,
+    "container": "note",
+    "dx": -1,
+    "dy": -5,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=720",
+    "off": 65156
+   },
+   {
+    "file": "150ALS-06BA-0153.smc",
+    "staff": 0,
+    "measure": 53,
+    "container": "measure",
+    "dx": -8,
+    "dy": -43,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 43161
+   },
+   {
+    "file": "150ALS-06BA-0153.smc",
+    "staff": 0,
+    "measure": 64,
+    "container": "measure",
+    "dx": -13,
+    "dy": -60,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 50161
+   },
+   {
+    "file": "150ALS-13HA-0167.smc",
+    "staff": 0,
+    "measure": 38,
+    "container": "measure",
+    "dx": 66,
+    "dy": -28,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 35101
+   }
+  ],
+  "8": [
+   {
+    "file": "150ALS-01GA-0304.smc",
+    "staff": 0,
+    "measure": 13,
+    "container": "note",
+    "dx": -2,
+    "dy": -15,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=720 dur=240",
+    "off": 14566
+   },
+   {
+    "file": "150ALS-02NA-0151.smc",
+    "staff": 0,
+    "measure": 9,
+    "container": "note",
+    "dx": -2,
+    "dy": -5,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=600 dur=360",
+    "off": 11435
+   },
+   {
+    "file": "150ALS-02NA-0151.smc",
+    "staff": 0,
+    "measure": 13,
+    "container": "note",
+    "dx": -2,
+    "dy": -5,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=600 dur=360",
+    "off": 16808
+   },
+   {
+    "file": "150ALS-05MA-0055.smc",
+    "staff": 0,
+    "measure": 138,
+    "container": "note",
+    "dx": -2,
+    "dy": -23,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=480 dur=480",
+    "off": 82614
+   },
+   {
+    "file": "150ALS-05MA-0055.smc",
+    "staff": 0,
+    "measure": 139,
+    "container": "note",
+    "dx": -2,
+    "dy": -23,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=480 dur=480",
+    "off": 83746
+   },
+   {
+    "file": "150ALS-05MA-0055.smc",
+    "staff": 0,
+    "measure": 139,
+    "container": "note",
+    "dx": -2,
+    "dy": -23,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=480",
+    "off": 83168
+   },
+   {
+    "file": "150ALS-05MA-0055.smc",
+    "staff": 0,
+    "measure": 140,
+    "container": "note",
+    "dx": 0,
+    "dy": -6,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=960",
+    "off": 84632
+   },
+   {
+    "file": "150ALS-06BA-0268.smc",
+    "staff": 0,
+    "measure": 17,
+    "container": "note",
+    "dx": -2,
+    "dy": -16,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=240",
+    "off": 22818
+   },
+   {
+    "file": "SongChonGang-0001.smc",
+    "staff": 0,
+    "measure": 24,
+    "container": "note",
+    "dx": -1,
+    "dy": -8,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=600 dur=120",
+    "off": 25172
+   },
+   {
+    "file": "SongChonGang-0001.smc",
+    "staff": 0,
+    "measure": 24,
+    "container": "note",
+    "dx": -2,
+    "dy": -4,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=480 dur=120",
+    "off": 24950
+   }
+  ],
+  "10": [
+   {
+    "file": "150ALS-03DA-0077.smc",
+    "staff": 0,
+    "measure": 11,
+    "container": "note",
+    "dx": 0,
+    "dy": -1,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=120 dur=240",
+    "off": 11554
+   },
+   {
+    "file": "310FFS-03DA-005-0001.smc",
+    "staff": 0,
+    "measure": 27,
+    "container": "note",
+    "dx": -2,
+    "dy": -5,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=0 dur=180",
+    "off": 24847
+   }
+  ],
+  "30": [
+   {
+    "file": "150ALS-14GG-0026.smc",
+    "staff": 0,
+    "measure": 30,
+    "container": "note",
+    "dx": -7,
+    "dy": 25,
+    "voice": 2,
+    "start": 0,
+    "ctx": "note start=600 dur=120",
+    "off": 40411
+   },
+   {
+    "file": "150ALS-19AA-0202.smc",
+    "staff": 0,
+    "measure": 24,
+    "container": "note",
+    "dx": -5,
+    "dy": 31,
+    "voice": 2,
+    "start": 0,
+    "ctx": "note start=660 dur=60",
+    "off": 35219
+   },
+   {
+    "file": "150ALS-19AA-0236.smc",
+    "staff": 0,
+    "measure": 35,
+    "container": "measure",
+    "dx": -4,
+    "dy": 11,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 35831
+   }
+  ],
+  "43": [
+   {
+    "file": "500KFS-0003.smc",
+    "staff": 0,
+    "measure": 25,
+    "container": "note",
+    "dx": 0,
+    "dy": -13,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=360 dur=180",
+    "off": 34572
+   },
+   {
+    "file": "500KFS-0043.smc",
+    "staff": 0,
+    "measure": 6,
+    "container": "measure",
+    "dx": 167,
+    "dy": -39,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 6931
+   },
+   {
+    "file": "500KFS-0069.smc",
+    "staff": 0,
+    "measure": 4,
+    "container": "measure",
+    "dx": 4,
+    "dy": -39,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 7551
+   },
+   {
+    "file": "500KFS-0069.smc",
+    "staff": 0,
+    "measure": 9,
+    "container": "measure",
+    "dx": 171,
+    "dy": -40,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 17068
+   },
+   {
+    "file": "500KFS-0069.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "measure",
+    "dx": 10,
+    "dy": -37,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 21376
+   },
+   {
+    "file": "500KFS-0069.smc",
+    "staff": 0,
+    "measure": 25,
+    "container": "measure",
+    "dx": 8,
+    "dy": -39,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 41954
+   },
+   {
+    "file": "500KFS-0069.smc",
+    "staff": 0,
+    "measure": 41,
+    "container": "measure",
+    "dx": 19,
+    "dy": -37,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 68801
+   },
+   {
+    "file": "500KFS-0069.smc",
+    "staff": 0,
+    "measure": 53,
+    "container": "measure",
+    "dx": 11,
+    "dy": -46,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 90424
+   },
+   {
+    "file": "500KFS-0071.smc",
+    "staff": 0,
+    "measure": 48,
+    "container": "measure",
+    "dx": 79,
+    "dy": -41,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 49686
+   },
+   {
+    "file": "500KFS-0071.smc",
+    "staff": 0,
+    "measure": 69,
+    "container": "measure",
+    "dx": 188,
+    "dy": -38,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 86015
+   }
+  ],
+  "45": [
+   {
+    "file": "500KFS-0071.smc",
+    "staff": 0,
+    "measure": 8,
+    "container": "measure",
+    "dx": 171,
+    "dy": -32,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 8769
+   },
+   {
+    "file": "500KFS-0071.smc",
+    "staff": 0,
+    "measure": 12,
+    "container": "measure",
+    "dx": 113,
+    "dy": -30,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 12767
+   },
+   {
+    "file": "500KFS-0071.smc",
+    "staff": 0,
+    "measure": 40,
+    "container": "measure",
+    "dx": 106,
+    "dy": -30,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 41604
+   },
+   {
+    "file": "500KFS-0071.smc",
+    "staff": 0,
+    "measure": 56,
+    "container": "measure",
+    "dx": 100,
+    "dy": -31,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 58719
+   },
+   {
+    "file": "500KFS-0083.smc",
+    "staff": 1,
+    "measure": 1,
+    "container": "measure",
+    "dx": 191,
+    "dy": -41,
+    "voice": 1,
+    "start": 0,
+    "ctx": "",
+    "off": 16475
+   }
+  ],
+  "35": [
+   {
+    "file": "500KFS-0083.smc",
+    "staff": 1,
+    "measure": 1,
+    "container": "note",
+    "dx": -6,
+    "dy": -4,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=1080 dur=240",
+    "off": 16615
+   },
+   {
+    "file": "500KFS-0091.smc",
+    "staff": 0,
+    "measure": 6,
+    "container": "note",
+    "dx": -6,
+    "dy": -7,
+    "voice": 1,
+    "start": 0,
+    "ctx": "note start=360 dur=180",
+    "off": 10019
+   }
+  ]
+ },
+ "sample_file": {
+  "path": "C:\\Program Files (x86)\\Samilpo 2.0\\8000Songs\\500KFS\\500KFS-0041.smc",
+  "rows": [
+   {
+    "staff": 0,
+    "measure": 39,
+    "container": "measure",
+    "idx": 29,
+    "byte": 99,
+    "dx": 130,
+    "dy": -36,
+    "voice": 1,
+    "note": "",
+    "off": 39500
+   },
+   {
+    "staff": 0,
+    "measure": 69,
+    "container": "measure",
+    "idx": 13,
+    "byte": 85,
+    "dx": 2,
+    "dy": -32,
+    "voice": 1,
+    "note": "",
+    "off": 69148
+   },
+   {
+    "staff": 0,
+    "measure": 69,
+    "container": "measure",
+    "idx": 13,
+    "byte": 85,
+    "dx": 35,
+    "dy": -31,
+    "voice": 1,
+    "note": "",
+    "off": 69212
+   },
+   {
+    "staff": 0,
+    "measure": 85,
+    "container": "measure",
+    "idx": 13,
+    "byte": 85,
+    "dx": 2,
+    "dy": -32,
+    "voice": 1,
+    "note": "",
+    "off": 83557
+   },
+   {
+    "staff": 0,
+    "measure": 94,
+    "container": "note",
+    "idx": 13,
+    "byte": 85,
+    "dx": 1,
+    "dy": -9,
+    "voice": 1,
+    "note": "start=0 dur=480",
+    "off": 91705
+   },
+   {
+    "staff": 0,
+    "measure": 96,
+    "container": "measure",
+    "idx": 13,
+    "byte": 85,
+    "dx": 4,
+    "dy": -29,
+    "voice": 1,
+    "note": "",
+    "off": 92677
+   },
+   {
+    "staff": 0,
+    "measure": 98,
+    "container": "measure",
+    "idx": 29,
+    "byte": 99,
+    "dx": 185,
+    "dy": -28,
+    "voice": 1,
+    "note": "",
+    "off": 94234
+   }
+  ]
+ }
+}
