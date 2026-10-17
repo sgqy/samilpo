@@ -117,6 +117,14 @@ python work/probe8.py  --max 0                # keysig_type 取值调查
 python work/probe9.py  --max 0                # 时值粒度与三连音统计
 python work/verify_read.py --max 0            # 与 tools/smc_walk.py 交叉校验
 python work/_diff_notes.py <file.smc> <meas>  # 逐音符比对 IR 与 XML
+python work/probe49.py                       # type 0x08 全语料普查（索引/headLen/voice/dxdy）
+python work/probe50.py                       # type 0x08 按父容器分类
+python work/probe52.py                       # type 0x08 与音符上下文的交叉统计
+python work/probe54.py                       # type 0x08 每文件索引集合与出现顺序
+python work/_probe_marktb.py                 # 解码 MarkTB（51 项 × 6 字节）
+python work/_probe_marktb_geom.py <idx...>   # MarkTB 字形的字体空间轮廓
+python work/_probe_sheet.py <png> <idx,...>  # MarkTB 字形对照图
+python work/make_mark_questionnaire.py       # 生成记号识别问卷（HTML + TSV + JSON）
 ```
 
 全部脚本的 `--dir` 默认 `<安装目录>\8000Songs` 并**递归**收集 `.smc`；`--max 0` 表示不限量。
@@ -143,5 +151,10 @@ python work/_diff_notes.py <file.smc> <meas>  # 逐音符比对 IR 与 XML
 - [ ] 谱号类别枚举（C4）与力度码映射（E4）仍是推断，等待新证据。
 - [ ] 节拍器 `head[2]` 判定为 BPM/10（§12），需静态确认 `DrawMetronome`。
 - [ ] `DrawMark`（`type 0x08`）目前写成 `<words>smc-type-8</words>`，
-      必须换成真正的 MusicXML 元素（首选 `<fermata>`）。
+      必须换成真正的 MusicXML 元素。**结构已全部解出**（`docs/smc-format.md` §6.13b）：
+      `MsgHdr+0x06` = `MarkTB` 索引、`+0x16/+0x18` = X/Y、`headLen` 恒 0。
+      已定案 `29` = 正立延长记号、`30` = 倒立延长记号；其余 12 个索引
+      （1/8/10/11/13/14/16/25/33/35/43/45）的含义需人工判形——
+      见 `work/mark-questionnaire.html`，答卷填 `work/mark-questionnaire.tsv`，
+      统计在 `work/mark-stats.json`。
 - [ ] `part_merge=auto` 对"合唱分谱"应拆成多个 part（§14），判据待定。
