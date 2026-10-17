@@ -338,7 +338,7 @@ playTime = (0x100 >> (MsgHdr+0x08 & 0x1F)) * doc+0xA0 >> 5
 | 0x04 | DrawMultiText | 文本框（文档级） | 8342 |
 | 0x05 | DrawMetronome | 节拍器记号 | 1640 |
 | 0x06 | DrawMultiText | **文本框** | 42031 |
-| 0x08 | DrawMark | 标记 | 6707 |
+| 0x08 | DrawMark | **单字符记号**（弓法/奏法/延长记号等，见 §6.9） | 6707 |
 | 0x09 | （登记 tie 表） | **连音线（tie）** | 26295 |
 | 0x0A | （登记 slur 表） | **圆滑线（slur）** | 62202 |
 | 0x0C | DrawCoda | Coda 记号 | 165 |
@@ -548,6 +548,84 @@ head 为 **TLV** 串（标签 + 长度 + 值），见 `docs/lyrics.md` §6 [E]�
 - `DrawLongrest` 0x100595B0 以 `codeLongRestBar` 绘制长休止条，并存**中间打印十进制数字**：
   `CString::Format(..., *(i16*)(msg + 0x1C))` → **小节数在 `MsgHdr+0x1C`** [E]。
 - headLen 60 的 head 内部字段未解析 [?]（`docs/unknown-fields.md` B2）。
+
+### 6.13b type 0x08（单字符记号，`CScoreView::DrawMark`）
+
+`DrawMark`（0x10065570）是全类型中最简单的一条：**只画 1 个字符**，字形由
+`MarkTB[MsgHdr+0x06]` 决定，位置由 `MsgHdr+0x16/+0x18` 给出 [E]。
+
+**绘制路径**（0x10065570 汇编逐条核对）[E]：
+
+```
+if MsgHdr+0x05 == 2:                       ; 绝对定位（跨小节拖放后的记号）
+    x = view+0xF4 + CSMMeas::MeasXToAbsX(parent_meas, MsgHdr+0x16)
+else:
+    x = view+0xF4 + (i16)MsgHdr+0x16
+y = view+0xF8 + MulDiv((i16)MsgHdr+0x18, view+0x13E, 100)     ; 0x13E = 纵向缩放
+glyph = MarkTB[(u16)MsgHdr+0x06].code                          ; IMUL 0x6 -> 6 字节步长
+DrawTextOut(view, x, y, &glyph, 1, 0)                          ; 画 1 个字符
+```
+
+**字形表** `MarkTB`（导出符号 `?MarkTB@@3PAUSTMARK@@A`，0x1010059C）[E]：
+
+```
+STMARK :=         ; 6 字节
+    code : u8     ; 字体码：在 KAYAKUMA.TTF 中渲染为 U+F000+code
+    pad  : [u8; 5]; 本版本全 0（预留的 dx/dy/附加笔画）
+```
+
+51 项。`CSMView::SMOpen`（0x10049810）预先把每项字形度量两次
+（`FUN_1000DEC0`，写入 `doc+0xED8 + i*8` 与 `doc+0xEDC + i*8`），
+并对 **索引 13 的宽度加倍**（`if (local_18 == 0xd) local_38 <<= 1`）[E]——
+这说明索引 13 在本程序里被视为**较宽的字形**，与它在语料中出现 3764 次
+（占全部 type 0x08 的 56%）一致。
+
+**字段语义**：
+
+| 偏移 | 类型 | 含义 | 评级 |
+|---|---|---|---|
+| `MsgHdr+0x06` | `i16` | **`MarkTB` 索引**（0..50） | [E] |
+| `MsgHdr+0x16` | `i16` | X 偏移；`+0x05==2` 时为小节内绝对 X | [E] |
+| `MsgHdr+0x18` | `i16` | Y 偏移（乘纵向缩放） | [E] |
+| `MsgHdr+0x05` | `u8` | `2` = 绝对定位分支 | [E] |
+| `headLen` | — | 恒 0：记号不携带 head | [E] |
+| `MsgHdr+0x0A` | `i16` | 恒 0：无标志位 | [E] |
+
+**语料分布**（8451 文件、6707 条）[E]：直接挂在 `Meas` 下 3903 条、
+挂在音符 `0x01` 下 2802 条、挂在休止符 `0x03` 下 2 条。
+`dy < 0` 占 6551 条（向上偏移，即画在音符/谱表上方），
+`voice` 1/2/3 = 6699/6/2。
+
+**已用的 14 个索引**（`work/mark-stats.json` 为机器可读版）[E]：
+
+| 索引 | 字体码 | 条数 | 文件数 | 容器 | 说明 |
+|---|---|---|---|---|---|
+| 1 | 0x5D | 91 | 55 | meas 85 / note 6 | 未定 [?] |
+| 8 | 0x57 | 16 | 8 | meas 3 / note 13 | 未定 [?] |
+| 10 | 0x59 | 2 | 2 | note 2 | 未定 [?] |
+| 11 | 0x5C | 588 | 376 | meas 579 / note 9 | 未定 [?] |
+| 13 | 0x55 | 3764 | 615 | meas 2052 / note 1712 | **最常用**，宽度在 `SMOpen` 中被加倍 [E] |
+| 14 | 0x4E | 425 | 67 | meas 185 / note 240 | dy>0 有 100 条，是唯一上下都用得较多的 [?] |
+| 16 | 0x2C | 1331 | 385 | meas 736 / note 595 | 未定 [?] |
+| 25 | 0x73 | 7 | 4 | meas 4 / note 3 | 字形为 `tr` 连笔 [E] |
+| 29 | 0x63 | 435 | 316 | meas 222 / note 211 / rest 2 | **正立延长记号**（弧+点，开口向下）[E] |
+| 30 | 0x64 | 3 | 3 | meas 1 / note 2 | **倒立延长记号**（`29` 的上下翻转，dy 恒 >0）[E] |
+| 33 | 0x77 | 27 | 8 | meas 21 / note 6 | 锯齿波形 [E] |
+| 35 | 0x78 | 2 | 2 | note 2 | 锯齿波形（更长）[E] |
+| 43 | 0xD2 | 11 | 5 | meas 10 / note 1 | 字形为数字 `2` [E] |
+| 45 | 0xD4 | 5 | 2 | meas 5 | 字形为数字 `4` [E] |
+
+**字形与含义的分离**：字形可从 `KAYAKUMA.TTF` 精确还原（`work/_probe_sheet.py`、
+`work/marktb.png`），但**程序内没有任何字符串资源给出记号名称**——
+已对 `MusicBook.exe` 与 `engine.dll` 全量搜索 Shift-JIS、889F、UTF-16LE 三种编码，
+未发现「アクセント／フェルマータ／악센트」等词（仅 3 条 `RT_STRING`，
+其余 UI 为 169 个位图按钮）[E]。因此索引 1/8/10/11/13/14/16/25/33/35/43/45
+的音乐含义仍需人工对照程序画面确认 [?]，问卷见
+`work/mark-questionnaire.html`（答卷 `work/mark-questionnaire.tsv`）。
+
+**已确认的两条**：`29`/`30` 是延长记号的正/倒立形态——轮廓为半圆弧 + 分离的
+圆点，`30` 恰为 `29` 绕水平轴翻转，且 `30` 的 `dy` 全为正、`29` 的 `dy` 全为负，
+符合「弧开口朝向符头」的画法 [E]。
 
 ### 6.14 type 0x42（MIDI 短消息）
 
