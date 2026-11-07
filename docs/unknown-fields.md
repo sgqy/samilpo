@@ -146,3 +146,35 @@
    Meas 尾块 0x60 字节中的约 20 字节；Block 的 `staffRef.b` 项。
 3. **已知长度、结构已定、内部未定**：`RtmData` 的事件块与第二段；`FretInfo` 的 8 字节对；
    type 0x2C 的 60 字节 head；type 0x0C 的 head。
+
+## G. 索引文件（`IndexFiles/`，2026-11-07 新开）
+
+入口证据：MusicBook.exe `FUN_0041B840`（主窗口初始化）→ `FUN_00414AA0`（装载分发：
+SHIF=`FUN_00411210`、SSIF=`FUN_004168E0`、SCIF=`FUN_004165E0`、SOTF=`FUN_00416BE0`，
+后三者带 magic 校验）[E]。
+
+| 文件 | magic | 条数 | 状态 |
+|---|---|---|---|
+| `Score.sci` | `SSIF` | 8449（≈语料 8451） | **全解** [E] |
+| `CREATOR.CRI` | `SCIF` | 290 | 记录类与 SSIF 不同（含 ANSI 串如 "WKLGothic"），待 `FUN_004165E0` 记录推导 [?] |
+| `SamIlPo.idx` | `SHIF` | 9690 | 装载器 `FUN_00411210`（无 magic 校验参数），记录推导待做 [?] |
+| `SPEECH.OTX` | `SOTF` | 0 | 10 字节空文件 [E] |
+
+**SSIF 容器**：`magic[4]` + `u16 ver=0x200` + `u32 count` + `count × 记录` [E]。
+**记录**（虚 Read `FUN_00413030`，对象 0x1B8）：
+
+```
+u8 f0; u8 f1                                   ; 0x00 0x00
+group0                                         ; FUN_00412C30 → FUN_004052D0
+blob  u16 nbytes; nbytes raw                   ; FUN_00401580；= 01 00 + ASCII 相对路径
+group ×4                                       ; +0x74/+0xC4/+0x114/+0x164
+u16   year                                     ; 0xFFFF = 未知
+```
+
+**group**（`FUN_004052D0`）：`wstr name`（`FUN_00401B70`：u16 字符数 + ×2 UTF-16LE）+
+`u16 n; n × item`（`FUN_00402100`：u16+u16+u32+wstr+u16，变长）+ `u16 m; m × u16` [E]。
+
+**已知语义**（8449 条精确消耗验证，0 残余 [E]）：g0.name = 曲名（UTF-16，与
+SMC 内 889F 曲名一一对应）、g1.name = 작사（作词）、g2.name = 작곡（作曲）、
+year = 创作年份（1945–2003，428 条 0xFFFF）。提取器与单页查询应用：
+`smctools index extract`（开放 JSON + 自包含 HTML）。

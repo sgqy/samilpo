@@ -24,9 +24,13 @@ from . import __version__, pipeline, paths
 from . import verify as verify_mod
 
 
-def _add_converter_params(ap):
+def _add_output_params(ap):
     ap.add_argument('-o', '--out-dir', required=True,
                     help='output directory (batch: subsets are kept as subdirectories)')
+
+
+def _add_converter_params(ap):
+    _add_output_params(ap)
     ap.add_argument('--cod',
                     help='code table for Samilpo 2.0 files (889F.cod from the '
                          'install dir). The original Music Score Viewer format '
@@ -171,8 +175,25 @@ def cmd_verify(a):
 
 
 def cmd_index(a):
-    from .index import run
-    return run(a.index_args)
+    from . import index
+    if a.action != 'extract':
+        sys.stderr.write('index: unknown action %r (only "extract" is '
+                         'implemented; SHIF/SamIlPo.idx not yet derived)\n' % a.action)
+        return 2
+    install = paths.resolve_install(a.install_dir)
+    if not install:
+        sys.stderr.write('index: needs --install-dir or %s.\n' % paths.INSTALL_ENV)
+        return 2
+    os.makedirs(a.out_dir, exist_ok=True)
+    s = index.extract(os.path.join(install, 'IndexFiles'),
+                      os.path.join(a.out_dir, 'score-index.json'),
+                      None if a.no_html else os.path.join(a.out_dir, 'index.html'))
+    print('songs: %d  creators: %d' % (s['songs'], s['creators']))
+    for w in s['written']:
+        print('written: %s' % w)
+    for n in s['notes']:
+        print('note: %s' % n)
+    return 0
 
 
 def main():
@@ -195,8 +216,17 @@ def main():
     vp.add_argument('xml')
     vp.set_defaults(func=cmd_verify)
 
-    ip = sub.add_parser('index', help='index conversion / score query (placeholder)')
-    ip.add_argument('index_args', nargs='*')
+    ip = sub.add_parser('index',
+                        help='convert the install indexes into open storage + '
+                             'a single-page query app')
+    ip.add_argument('action', nargs='?', default='extract',
+                    help='only "extract" is implemented')
+    ip.add_argument('--install-dir', default=None,
+                    help='install directory; default: the SAMILPO_INSTALL '
+                         'environment variable')
+    ip.add_argument('--no-html', action='store_true',
+                    help='skip the single-page query app (JSON only)')
+    _add_output_params(ip)
     ip.set_defaults(func=cmd_index)
 
     a = ap.parse_args()
