@@ -2,6 +2,9 @@
 
 > Use AI Translation to convert the docs to your native language.
 
+> 研究状态：**暂时封稿**（2026-11-07）——转换器已落地为独立项目 `smctools/`；
+> 本家（Music Score 原始格式）数据不可考，重启条件见 `project/research-state.md` 封稿节。
+
 RTFM: `docs/smc-format.md`
 
 ## 使用工具

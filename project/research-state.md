@@ -1,8 +1,36 @@
 # 研究状态
 
-最后更新：2026-11-07（type 0x08 记号含义定案；工作区迁至 A:\samilpo）。
+最后更新：2026-11-07（**暂时封稿**——type 0x08 记号含义定案、转换器 `smctools/` 落地、
+本家数据不可考；重启条件见下文「封稿」一节）。
 
 > 凡例见 `docs/smc-format.md` §0。本文件是本项目的**恢复入口**：任何会话中断后，从这里判断进度与下一步。
+
+## 封稿状态（2026-11-07）
+
+乐谱恢复研究**暂时封稿**。触发：转换工具已落地为独立项目 `smctools/`
+（SMC→IR→MusicXML，与 work/ 管线字节级一致；CLI `score`/`verify`/`index`），
+type 0x08 记号 14 个语料索引全部定案，文档覆盖达到可用程度
+（核心层结构 92.9% / 语义 78.8%）。
+
+**项目定位**：终极目标是回归本家——シルバースタージャパン《Music Score》内核
+（`Music Score Viewer` 为其原始引擎形态），Samilpo 2.0 是加装了码表层的发行版。
+码表因此为**可选项**（见 `docs/encoding.md` §9 与 `smctools/README.md`）。
+
+**尾巴（重启研究的触发点）**：
+
+1. **本家格式支持**：`smctools` 目前仅落实本家的**文本解码层**（UTF-16LE）。
+   结构层差异（头部布局、msg 字段语义）需要真实本家 `.smc` 文件验证——
+   现无任何本家数据，已不可考。若日后获得本家文件：先用 `smctools` 的
+   `smcfile.py` 帧假设试读，再在 `docs/unknown-fields.md` 立新调查条目。
+2. **MarkTB 剩余 37 项**（51 项中语料未出现的索引）：本家/其他发行版的内容
+   可能用到。识别流程可复用（`work/make_mark_questionnaire.py` 生成器 +
+   `work/mark-xml-reference.html` 图形参照 + 人工填答）。
+3. **`msv_manual.pdf` 未提取**（3.3 MB；本机当时无 poppler/Python PDF 栈）——
+   本家研究的未开采线索，可能载有记号名称与格式说明。
+4. 下表 10 项未完成调查**保持原样挂起**，作为重启入口；`open-questions.md`、
+   `function-index.md`、`debugging-plan.md` 同步封存。
+
+恢复步骤（下节）在重启时原样适用。
 
 ## 全局
 
