@@ -12,11 +12,11 @@ Samilpo 2.0 乐谱格式（SMC）的独立转换工具集，uv 项目，仅标�
 ## 用法
 
 ```bash
-# 单曲模式：给出 smc 路径，输出 IR 和 XML（码表参数可选，默认 <安装目录>/889F.cod）
-uv run smctools score "A:\samilpo-res\Samilpo 2.0\8000Songs\500KFS\500KFS-0041.smc" -o out
+# 单曲模式：给出 smc 路径，输出 IR 和 XML（码表按上文优先级解析）
+uv run smctools score "<安装目录>\8000Songs\500KFS\500KFS-0041.smc" -o out
 
 # 全量模式：输入安装目录，自动读取码表，输出全部 smc 转换（按子集分子目录）
-uv run smctools score --install-dir "A:\samilpo-res\Samilpo 2.0" -o out
+uv run smctools score --install-dir "<安装目录>" -o out
 
 # 继承自 work/ 设计的全部参数（parameters.md H 的六个参数 + 覆盖项）
 uv run smctools score FILE.smc -o out --extent musical --accidental-policy transposed \
@@ -38,11 +38,21 @@ IR/MusicXML 校验（`--no-verify` 关闭）。
 但映射表未覆盖的符号）时，向 stderr 输出 WARNING（含索引、字形码、位置），
 记号以 `<words>smc-type-8</words>` 保留，不丢弃。全量模式汇总里给出索引直方图。
 
+**两种文本方言，码表可选**：终极目标是回归本家（Music Score Viewer）格式，
+Samilpo 2.0 是其中一个发行版。本家格式的文本按 UTF-16 存储（原始引擎
+`CSMLyricMsg::DrawMsg` 直接 `TextOutW` 绘制，无需码表），所以不给码表时
+smctools 按 UTF-16LE 解码文本并继续运行（stderr 有提示）。处理 **Samilpo 2.0**
+文件时必须装载其码表 `889F.cod`（`--cod`，或 `--install-dir`/`SAMILPO_INSTALL`
+自动定位），否则文本字符会错。两代引擎均无 CP932 回退（REA/Ghidra 查证，
+依据见 `docs/encoding.md` §9），本工具同样不做 CP932 降级。
+注：本家方言目前落实在**文本解码层**；完整本家格式支持（结构层差异）待真实
+MSV 文件验证。
+
 ## 与 work/ 草稿的关系（迁移与去重）
 
 | 本项目模块 | 来源 | 变更 |
 |---|---|---|
-| `smcfile.py` | `work/smc_read.py` | 码表拆出；安装路径常量移到 `paths.py` |
+| `smcfile.py` | `work/smc_read.py` | 码表拆出；安装路径改为 `paths.py` 解析（env/参数，不硬编码） |
 | `codtable.py` | `work/smc_read.py` 尾部（与 `tools/smc_text.py` 同型） | 三处码表解码合并为唯一实现 |
 | `to_ir.py` | `work/smc2ir.py` | 码表路径参数化（`opts.cod`）；去掉 `sys.path` 补丁与独立 main |
 | `to_musicxml.py` | `work/ir2musicxml.py` | 删除死代码 `smc_text_payload`/`_tlv_words`/`_load_cod`（TLV 解码已统一在 IR 侧）；MarkTB 表改为导入 `marks.py`；新增未知记号警告 |

@@ -5,12 +5,12 @@ forward table (code -> Unicode), each a "CCodeTable":
     u16 n, u16 lo, u16 hi, then n * ( u16 start, u16 end, u16 data[...] )
 
 This is the single decoder for the whole package; the IR stage, the side-text
-export and the standalone text tools all decode through here.
+export and the standalone text tools all decode through here. The table path
+is always caller-resolved (CLI: --cod / --install-dir / SAMILPO_INSTALL) —
+there is no machine default to fall back to.
 """
 
 import struct
-
-from .paths import default_cod
 
 
 class CodeTable:
@@ -48,8 +48,9 @@ def _read_cod_table(b, p):
     return CodeTable(n, lo, hi, starts, ends, data), p
 
 
-def load_cod(path=None):
-    b = open(path or default_cod(), 'rb').read()
+def load_cod(path):
+    """Load a code table from an explicit path (caller-resolved)."""
+    b = open(path, 'rb').read()
     t, _ = _read_cod_table(b, 0)
     return t
 

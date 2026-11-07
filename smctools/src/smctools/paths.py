@@ -1,21 +1,34 @@
-"""Filesystem anchors — the single place that knows default locations.
+"""Filesystem anchors — resolving the Samilpo install directory.
 
-Old scratch scripts hardcoded install paths in several files (and two of them
-still pointed at a removed `C:\Program Files (x86)` install). Everything here
-resolves through this module so the paths can be overridden or relocated in
-one place.
+The package carries no machine-specific path. The install directory comes
+from, in falling priority:
+
+  1. explicit CLI options (``--install-dir`` / ``--cod``, resolved by the
+     caller),
+  2. the ``SAMILPO_INSTALL`` environment variable.
+
+With neither there is no usable default: callers must report what is missing
+instead of guessing at a location or silently degrading text decoding.
 """
 
 import os
 
-DEFAULT_INSTALL = r'A:\samilpo-res\Samilpo 2.0'
+INSTALL_ENV = 'SAMILPO_INSTALL'
 
 
-def default_cod(install=None):
+def resolve_install(explicit=None):
+    """Install directory from an explicit argument or the environment;
+    ``None`` when neither is available."""
+    if explicit:
+        return explicit
+    return os.environ.get(INSTALL_ENV) or None
+
+
+def cod_path(install):
     """Path of the primary code table (889F.cod) under an install directory."""
-    return os.path.join(install or DEFAULT_INSTALL, '889F.cod')
+    return os.path.join(install, '889F.cod')
 
 
-def default_songs(install=None):
+def songs_dir(install):
     """Directory holding the .smc corpus of an install."""
-    return os.path.join(install or DEFAULT_INSTALL, '8000Songs')
+    return os.path.join(install, '8000Songs')

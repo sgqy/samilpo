@@ -139,3 +139,38 @@ TextOutW(hdc, x, y, dst, cnt)
    —— 第四阶段已确认：889F 表**没有**码位映射到 U+F000–U+F0FF，音乐符号走独立路径（见 `docs/font-resources.md`）。
 3. `KorCode.cod`（10 字节/条、5 并列数组）与 `KcgInfo.kbd` 的具体用途（键盘输入法映射？）未展开 [E 结构 / ? 语义]。
 4. `F040.cod`（5122 字节）不含 `CCodeTable` 头，用途未知；本版本启动流程未加载 [E / ?]。
+
+## 9. 缺表行为与原始引擎对照（2026-11-07 补查）
+
+问题：「没有码表时，引擎是否默认按 CP932 转换？」——**否，两代引擎均无此回退** [E]。
+
+| 引擎 | 证据（REA/Ghidra 反编译） | 缺表/无表时的行为 |
+|---|---|---|
+| `engine.dll`（Samilpo 魔改） | `CKCConv::Open` 0x10030B10 | `CFile::Open` 失败 → `AfxMessageBox("Can't open Korean Code File!")` → 返回 0，表保持未加载；**无任何替代转换路径** |
+| 同上 | `CKCConv::ToUnicode` 0x10030D90 + 查表 `FUN_100308C0`（§4） | 未加载表的 lo/hi = 0 → ≥0x80 码位查表**原样返回码位**（渲染原始码位，靠字体自身字形区），不转 CP932 |
+| `SMScore.dll`（Music Score Viewer，原始引擎） | 过程名全量检索：**无 `CKCConv`**；字符串检索：无 "Korean Code"、无 `.cod`（过程名检索完备；字符串仅覆盖 Ghidra 已定义项） | 原始引擎**没有码表机制** |
+
+原始引擎的文本绘制路径（`CSMLyricMsg::DrawMsg` 0x100E78A0 反编译 [E]）：
+
+```
+strcmp(font_name, "KayakumC") == 0
+    → MyDrawTextOut(dc, x, y, (char*)text, len)      ; KayakumC 音乐符号字体：单字节码路径（内部未展开）
+else
+    → 复制到宽缓冲 → TextOutW(hdc, x, y, buf, wcslen(buf))   ; 其余字体：文本按 UTF-16 宽字符直接绘制
+    → GetTextExtentPoint32W(...)                      ; 同样按宽字符测宽
+```
+
+推论：
+
+1. **码表体系（`CKCConv`/`.cod`）是 Samilpo 魔改新增的层**；原始引擎的歌词文本按
+   UTF-16 宽字符绘制，无需任何码表，也就不存在「缺表回退」问题。
+2. 「CP932 转换」只是码位形状的巧合：889F 码位取自 CP932 双字节区段（§6），
+   把 889F 字节**当** CP932 解码会得到合法但**错误**的日文汉字。实证
+   （212OPS-0012.smc 曲名 raw `96BF 89D4 8AC7 96A7 …`）：
+   889F 表 → `왜놈들의 흉계를 부셔 버리자`（正确）；
+   CP932 → `盟花管密 歎泳共 喉再 鈷峡飼`（合法日文汉字，错误）。
+3. 因此 CP932 不能作为缺表回退（会产出合法但错误的文本）。转换工具 `smctools`
+   的策略（2026-11-07 定）：码表**可选**——项目终极目标是回归本家格式
+   （文本为 UTF-16，无需码表），Samilpo 2.0 作为一个发行版，处理其文件必须
+   装载 `889F.cod`（工具参数帮助中已写明）；缺表时按本家方言以 UTF-16LE
+   解码文本，并提示调用者。

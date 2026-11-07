@@ -200,14 +200,11 @@ def convert(path, opts, fh):
     em = Emitter(fh)
     wt = doc.system.whole_tick
     divisions = wt            # parameters.md G1: 1 tick = 1 divisions unit
-    cod = None
-    if opts.cod:
-        cod = codtable.load_cod(opts.cod)   # explicit --cod: errors propagate
-    else:
-        try:
-            cod = codtable.load_cod()       # default install table; tolerant
-        except Exception:
-            cod = None
+    # The caller resolves the code table (CLI: --cod / --install-dir /
+    # SAMILPO_INSTALL). No silent fallback: a missing table would degrade every
+    # text payload to latin-1, so the CLI refuses to run without one instead of
+    # letting this happen quietly.
+    cod = codtable.load_cod(opts.cod) if getattr(opts, 'cod', None) else None
 
     sha = hashlib.sha256(open(path, 'rb').read()).hexdigest()
 
@@ -393,14 +390,23 @@ def parse_credit(text):
 
 
 def decode_text(raw, cod):
+    """Decode one text payload.
+
+    With a code table: 889F-style table decode (the Samilpo 2.0 dialect).
+    Without one: UTF-16LE — the original Music Score Viewer engine draws text
+    as wide characters (SMScore.dll CSMLyricMsg::DrawMsg 0x100E78A0, see
+    docs/encoding.md §9), so table-less input is interpreted as the original
+    dialect. Samilpo files decoded without a table yield wrong characters by
+    design; pass the table for them.
+    """
     if not raw:
         return ''
-    try:
-        if cod is not None:
+    if cod is not None:
+        try:
             return codtable.decode(raw, cod)
-    except Exception:
-        pass
-    return raw.decode('latin-1')
+        except Exception:
+            pass
+    return raw.decode('utf-16-le', errors='replace')
 
 
 # MsgHdr+0x00 of a type 0x05 metronome mark: which note value gets the beat.
