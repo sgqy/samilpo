@@ -14,6 +14,9 @@
 - 目标程序：`A:\samilpo-res\Samilpo 2.0\MusicBook.exe`（PE32 x86）与 `engine.dll`（备用引擎源：同目录 `Music Score Viewer`）。
 - 样本：`<安装目录>\8000Songs\`（5 个子集，共 **8451** 个 `.smc`）。
 - 分析环境：REA MCP + Ghidra 12.1.4（`engine.dll` 基址 `0x10000000`）；Python 经 `uv run python` 调用（本机无独立 Python；`tools/`、`work/` 脚本均为标准库）。
+- 工具链：`smctools/`——独立 uv project（2026-11-07 从 `work/` 草稿抽出并去重），
+  CLI `smctools score`（单曲/全量两模式）与 `smctools index`（占位）；
+  转换产物已与 `work/` 管线字节级一致。`work/` 保留为出处与探针档案。
 
 ## 阶段进度
 
