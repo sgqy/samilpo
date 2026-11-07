@@ -1,0 +1,174 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<title>MusicXML 标记符号图形参照（供 MarkTB 问卷人工比对）</title>
+<style>
+html{background:#fff}
+body{font:14px/1.55 -apple-system,"Segoe UI",Roboto,"Noto Sans CJK SC",sans-serif;margin:24px auto;max-width:1180px;color:#1b1b1b;background:#fff}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:30px 0 8px;border-bottom:2px solid #ddd;padding-bottom:4px}
+table{border-collapse:collapse;width:100%;margin:8px 0 4px}
+th,td{border:1px solid #cfcfcf;padding:6px 8px;vertical-align:middle;text-align:left}
+th{background:#f3f3f3;font-weight:600;font-size:13px}
+td.glyph{width:120px;text-align:center;background:#fff}
+td.glyph img{max-width:110px;max-height:80px}
+td.el{width:190px}
+code{background:#f4f4f4;padding:1px 4px;border-radius:3px;font-size:12px}
+.note{background:#f7f9fc;border-left:3px solid #4a7fb5;padding:8px 12px;margin:10px 0}
+.warn{background:#fff6f4;border-left:3px solid #c0563a;padding:8px 12px;margin:10px 0}
+.mut{color:#666;font-size:12px}
+</style></head><body>
+<h1>MusicXML 标记符号图形参照</h1>
+<p>用途：与 <code>work/mark-questionnaire.html</code> 第 2 节的 14 个 <code>MarkTB</code> 字形做<b>人工比对</b>。本页只收集 MusicXML 标准记号的名称与官方配图，<b>不含任何自动匹配结论</b>；候选元素名与问卷第 4 节对应，比对后请自行填入 <code>work/mark-questionnaire.tsv</code>。</p>
+<div class="note"><b>比对建议</b>：先看问卷字形的形状类别（楔形/横线/圆点/波线/V 形/字母数字/弧加点），再在本页对应类别的表里扫「长相」列，把候选元素名记入 TSV 的 <code>musicxml</code> 列。同一元素在不同乐谱字体里笔画粗细略有差异，以<b>形状骨架</b>为准。</div>
+<div class="warn"><b>更正一处问卷第 4 节</b>：MusicXML 4.0 <b>没有独立的 <code>&lt;marcato&gt;</code> 元素</b>（已查官方元素索引确认）。竖向楔形记号（^）应填 <code>&lt;strong-accent&gt;</code>（type 属性 up/down）。</div>
+<div class="note"><b>图片来源</b>：长相列全部使用 <a href="https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/">MusicXML 4.0 官方参考</a>的元素配图（2026-11-07 下载到本地 <code>work/mark-xml-img/</code>，共 45 张）。官方未提供配图的 6 个元素——<code>harmonic</code>、<code>fingering</code>、<code>string</code>、<code>bend</code>、<code>wedge</code>、<code>words</code>——长相列<b>留空</b>，形状请按「长相描述与放置」列文字理解。</div>
+
+<h2>A. 奏法 articulations —— <code>&lt;notations&gt;&lt;articulations&gt;</code> 子元素</h2>
+<table>
+<tr><th>长相</th><th>元素</th><th>名称</th><th>长相描述与放置</th></tr>
+<tr><td class="glyph"><img src="mark-xml-img/accent.png" alt="accent"></td>
+<td class="el"><code>&lt;accent&gt;</code></td><td>重音记号 / accent</td><td>实心 <b>＞</b> 形横楔。符头上/下方。与渐弱 hairpin 的区别：此为<b>实心</b>楔。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/strong-accent.png" alt="strong-accent"></td>
+<td class="el"><code>&lt;strong-accent&gt;</code><br><span class="mut">（即 marcato ^）</span></td><td>强重音 / marcato</td><td>实心 <b>∧</b> 形竖楔，尖朝符头方向（type="up"/"down"）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/staccato.png" alt="staccato"></td>
+<td class="el"><code>&lt;staccato&gt;</code></td><td>断音 / staccato</td><td>小实心<b>圆点</b>。符头上/下方。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/tenuto.png" alt="tenuto"></td>
+<td class="el"><code>&lt;tenuto&gt;</code></td><td>持续音 / tenuto</td><td>短<b>横线</b>一段。符头上/下方。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/detached-legato.png" alt="detached-legato"></td>
+<td class="el"><code>&lt;detached-legato&gt;</code></td><td>断连音 / detached legato</td><td><b>横线＋圆点</b>竖排（上方放置时线在上、点在下）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/staccatissimo.png" alt="staccatissimo"></td>
+<td class="el"><code>&lt;staccatissimo&gt;</code></td><td>特短断音 / staccatissimo</td><td>小<b>竖楔</b>（尖朝符头）或画作极小点。比 staccato 更短促。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/spiccato.png" alt="spiccato"></td>
+<td class="el"><code>&lt;spiccato&gt;</code></td><td>跳弓记号 / spiccato</td><td>短撇/水滴形<b>斜笔</b>。规范原文："a stroke articulation, as opposed to a dot or a wedge"。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/stress.png" alt="stress"></td>
+<td class="el"><code>&lt;stress&gt;</code></td><td>加重 / stress</td><td>官方配图为小的<b>斜置楔笔</b>（比 accent 窄小）。规范仅文字描述。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/unstress.png" alt="unstress"></td>
+<td class="el"><code>&lt;unstress&gt;</code></td><td>减重 / unstress</td><td>官方配图为小 <b>U 形弧</b>（开口朝上）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/soft-accent.png" alt="soft-accent"></td>
+<td class="el"><code>&lt;soft-accent&gt;</code><br><span class="mut">（4.0 新增）</span></td><td>软重音 / soft accent</td><td><b>空心菱形</b>（官方配图）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/scoop.png" alt="scoop"></td>
+<td class="el"><code>&lt;scoop&gt;</code></td><td>起音上滑 / scoop</td><td>从符头<b>左下方弧线滑入</b>音头（起音前）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/plop.png" alt="plop"></td>
+<td class="el"><code>&lt;plop&gt;</code></td><td>坠入音 / plop</td><td>波线从<b>上方坠入</b>音头（官方配图；起音装饰）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/doit.png" alt="doit"></td>
+<td class="el"><code>&lt;doit&gt;</code></td><td>上扬甩音 / doit</td><td>从音尾向<b>右上方扬出</b>的波线（官方配图）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/falloff.png" alt="falloff"></td>
+<td class="el"><code>&lt;falloff&gt;</code></td><td>坠落音 / falloff</td><td>从音尾<b>短促急落</b>，比 doit 更陡更短。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/breath-mark.png" alt="breath-mark"></td>
+<td class="el"><code>&lt;breath-mark&gt;</code></td><td>换气记号 / breath mark</td><td><b>逗号</b>形（4.0 亦可用 tick/燕尾形等取值）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/caesura.png" alt="caesura"></td>
+<td class="el"><code>&lt;caesura&gt;</code></td><td>完全停顿 / caesura</td><td><b>双斜轨 "//"</b>（railroad tracks）。</td></tr>
+</table>
+
+<h2>B. 弓法 / 技术记号 technical —— <code>&lt;notations&gt;&lt;technical&gt;</code> 子元素</h2>
+<table>
+<tr><th>长相</th><th>元素</th><th>名称</th><th>长相描述与放置</th></tr>
+<tr><td class="glyph"><img src="mark-xml-img/up-bow.png" alt="up-bow"></td>
+<td class="el"><code>&lt;up-bow&gt;</code><br><span class="tag">弓法</span></td><td>上弓 / up-bow</td><td><b>V</b> 形两笔线。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/down-bow.png" alt="down-bow"></td>
+<td class="el"><code>&lt;down-bow&gt;</code><br><span class="tag">弓法</span></td><td>下弓 / down-bow</td><td><b>П</b> 形（上横杠＋两竖脚，开口朝下）。</td></tr>
+<tr><td class="glyph"></td>
+<td class="el"><code>&lt;harmonic&gt;</code></td><td>泛音 / harmonic</td><td>空心<b>小圆</b>（自然泛音）。<span class="mut">官方无配图。</span></td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/open-string.png" alt="open-string"></td>
+<td class="el"><code>&lt;open-string&gt;</code></td><td>空弦 / open string</td><td>空心小圆——注意与 harmonic <b>同形</b>，需靠上下文（是否伴随指法/弦号）区分。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/thumb-position.png" alt="thumb-position"></td>
+<td class="el"><code>&lt;thumb-position&gt;</code></td><td>拇指把位 / thumb position</td><td>空心圆<b>下方带短竖柄</b>。</td></tr>
+<tr><td class="glyph"></td>
+<td class="el"><code>&lt;fingering&gt;</code></td><td>指法 / fingering</td><td><b>裸数字</b>（左手手指 1–5；0=空弦），直接以字符渲染。<span class="mut">官方无配图。</span></td></tr>
+<tr><td class="glyph"></td>
+<td class="el"><code>&lt;string&gt;</code></td><td>弦号 / string number</td><td><b>圆圈内的数字</b>。<span class="mut">官方无配图。</span></td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/pluck.png" alt="pluck"></td>
+<td class="el"><code>&lt;pluck&gt;</code></td><td>拨奏指示 / pluck</td><td><b>文字</b>（如 pizz.）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/stopped.png" alt="stopped"></td>
+<td class="el"><code>&lt;stopped&gt;</code></td><td>按弦止音 / stopped</td><td><b>十字 ＋</b>。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/snap-pizzicato.png" alt="snap-pizzicato"></td>
+<td class="el"><code>&lt;snap-pizzicato&gt;</code></td><td>巴尔托克拨弦 / snap pizz.</td><td>空心圆＋上方<b>两撇须</b>。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/double-tongue.png" alt="double-tongue"></td>
+<td class="el"><code>&lt;double-tongue&gt;</code></td><td>双吐 / double tongue</td><td><b>两道</b>短斜杠竖向叠置。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/triple-tongue.png" alt="triple-tongue"></td>
+<td class="el"><code>&lt;triple-tongue&gt;</code></td><td>三吐 / triple tongue</td><td><b>三道</b>短斜杠竖向叠置。</td></tr>
+<tr><td class="glyph"></td>
+<td class="el"><code>&lt;bend&gt;</code></td><td>推弦 / bend</td><td><b>上弯箭头</b>。<span class="mut">官方无配图。</span></td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/arrow.png" alt="arrow"></td>
+<td class="el"><code>&lt;arrow&gt;</code></td><td>箭头 / arrow</td><td>通用<b>箭头</b>（方向可变）。</td></tr>
+<tr><td colspan="4" class="mut">罕见/文字型（不配图，仅列名，供排查用）：<code>&lt;open&gt;</code>(o)、<code>&lt;half-muted&gt;</code>(○加斜线)、<code>&lt;harmon-mute&gt;</code>、<code>&lt;hole&gt;</code>、<code>&lt;handbell&gt;</code>、<code>&lt;golpe&gt;</code>、<code>&lt;heel&gt;</code>、<code>&lt;toe&gt;</code>、<code>&lt;fingernails&gt;</code>、<code>&lt;flip&gt;</code>、<code>&lt;smear&gt;</code>、<code>&lt;brass-bend&gt;</code>、<code>&lt;hammer-on&gt;</code>、<code>&lt;pull-off&gt;</code>、<code>&lt;fret&gt;</code>(品号)、<code>&lt;tap&gt;</code>、<code>&lt;other-technical&gt;</code></td></tr>
+</table>
+
+<h2>C. 装饰音 ornaments —— <code>&lt;notations&gt;&lt;ornaments&gt;</code> 子元素</h2>
+<table>
+<tr><th>长相</th><th>元素</th><th>名称</th><th>长相描述与放置</th></tr>
+<tr><td class="glyph"><img src="mark-xml-img/trill-mark.png" alt="trill-mark"></td>
+<td class="el"><code>&lt;trill-mark&gt;</code></td><td>颤音 / trill</td><td>斜体 <b>tr</b>（长颤音后接水平波线，见下）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/wavy-line.png" alt="wavy-line"></td>
+<td class="el"><code>&lt;wavy-line&gt;</code></td><td>波线 / wavy line</td><td><b>水平波线</b>（tr 的延伸段；也可表长颤音/滑音）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/mordent.png" alt="mordent"></td>
+<td class="el"><code>&lt;mordent&gt;</code></td><td>下波音 / mordent</td><td>锯齿波＋<b>中间竖线穿过</b>（线上下越出波纹；long 属性为加长波纹）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/inverted-mordent.png" alt="inverted-mordent"></td>
+<td class="el"><code>&lt;inverted-mordent&gt;</code></td><td>上波音 / inverted mordent</td><td><b>纯锯齿波，无竖线</b>（pralltriller）。与 mordent 的区分就在这条竖线。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/turn.png" alt="turn"></td>
+<td class="el"><code>&lt;turn&gt;</code> / <code>&lt;delayed-turn&gt;</code></td><td>回音 / turn</td><td><b>横躺 S</b>（双环曲线）。delayed-turn 字形相同、演奏时机不同。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/inverted-turn.png" alt="inverted-turn"></td>
+<td class="el"><code>&lt;inverted-turn&gt;</code> / <code>&lt;delayed-inverted-turn&gt;</code></td><td>回音（倒） / inverted turn</td><td>与 turn <b>互为上下翻转</b>的横躺 S（官方配图无竖线；另有 vertical-turn 变体）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/schleifer.png" alt="schleifer"></td>
+<td class="el"><code>&lt;schleifer&gt;</code></td><td>滑奏装饰 / schleifer</td><td><b>长而斜的锯齿</b>（快速滑入）。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/tremolo.png" alt="tremolo"></td>
+<td class="el"><code>&lt;tremolo&gt;</code></td><td>震音 / tremolo</td><td>符干侧 <b>1–3 道斜杠</b>。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/shake.png" alt="shake"></td>
+<td class="el"><code>&lt;shake&gt;</code> <span class="mut">（罕见）</span></td><td>摇摆音 / shake</td><td>一段<b>波线</b>（旧式摇摆颤音；官方配图与 wavy-line 形似）。</td></tr>
+<tr><td colspan="4" class="mut">极罕见：<code>&lt;haydn&gt;</code>（海顿装饰）、<code>&lt;vertical-turn&gt;</code>/<code>&lt;inverted-vertical-turn&gt;</code>（竖排回音变体）、<code>&lt;other-ornament&gt;</code>；装饰音旁可附 <code>&lt;accidental-mark&gt;</code>（♯ ♭ ♮ 临时记号）。</td></tr>
+</table>
+
+<h2>D. 波线与滑线 —— <code>&lt;notations&gt;</code> 直属元素（易与 C 类混淆）</h2>
+<table>
+<tr><th>长相</th><th>元素</th><th>名称</th><th>长相描述与放置</th></tr>
+<tr><td class="glyph"><img src="mark-xml-img/arpeggiate.png" alt="arpeggiate"></td>
+<td class="el"><code>&lt;arpeggiate&gt;</code></td><td>琶音线 / arpeggio</td><td><b>竖向</b>波线，跨多个音符。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/non-arpeggiate.png" alt="non-arpeggiate"></td>
+<td class="el"><code>&lt;non-arpeggiate&gt;</code></td><td>禁止琶音 / non-arpeggio</td><td><b>竖方括号</b>。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/glissando.png" alt="glissando"></td>
+<td class="el"><code>&lt;glissando&gt;</code></td><td>滑音 / glissando</td><td><b>斜直线</b>（可带 "gliss." 文字或箭头），连接两音。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/slide.png" alt="slide"></td>
+<td class="el"><code>&lt;slide&gt;</code></td><td>滑奏 / slide</td><td>外观同为直线——与 glissando <b>同形不同义</b>（铜管/竖琴滑音）。</td></tr>
+</table>
+
+<h2>E. 延长记号 fermata —— <code>&lt;notations&gt;&lt;fermata&gt;</code></h2>
+<table>
+<tr><th>长相</th><th>元素</th><th>名称</th><th>长相描述与放置</th></tr>
+<tr><td class="glyph"><img src="mark-xml-img/fermata.png" alt="fermata"></td>
+<td class="el"><code>&lt;fermata&gt;</code><br><span class="mut">type="upright"（默认）</span></td><td>延长记号（正） / fermata</td><td><b>上拱弧＋弧内点</b>。倒立形用 type="inverted"（官方无单独配图，形状为上下翻转）。</td></tr>
+</table>
+
+<h2>F. 力度 dynamics 与渐变 wedge</h2>
+<table>
+<tr><th>长相</th><th>元素</th><th>名称</th><th>长相描述与放置</th></tr>
+<tr><td class="glyph"><img src="mark-xml-img/dynamics.png" alt="dynamics"></td>
+<td class="el"><code>&lt;dynamics&gt;</code> → <code>p</code> <code>pp</code> <code>mp</code> <code>mf</code> <code>f</code> <code>ff</code> <code>sf</code> <code>sfz</code> <code>fz</code> <code>fp</code> <code>rfz</code> …</td><td>力度符号 / dynamics</td><td><b>衬线粗斜体字母</b>组合；非字母组合用 <code>&lt;other-dynamics&gt;</code>。</td></tr>
+<tr><td class="glyph"></td>
+<td class="el"><code>&lt;notations&gt;&lt;wedge type="crescendo"&gt;</code></td><td>渐强 / crescendo hairpin</td><td><b>两条细实线</b>张开（渐弱 diminuendo 反向收拢）。注意与<b>实心</b> accent 楔区分。<span class="mut">官方无配图。</span></td></tr>
+</table>
+
+<h2>G. 其他（direction / 兜底）</h2>
+<table>
+<tr><th>长相</th><th>元素</th><th>名称</th><th>长相描述与放置</th></tr>
+<tr><td class="glyph"><img src="mark-xml-img/segno.png" alt="segno"></td>
+<td class="el"><code>&lt;direction&gt;&lt;segno&gt;</code></td><td>反复起始 / segno</td><td><b>粗斜线＋S＋上下两点</b>。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/coda.png" alt="coda"></td>
+<td class="el"><code>&lt;direction&gt;&lt;coda&gt;</code></td><td>尾声 / coda</td><td><b>椭圆＋十字</b>。</td></tr>
+<tr><td class="glyph"><img src="mark-xml-img/pedal.png" alt="pedal"></td>
+<td class="el"><code>&lt;direction&gt;&lt;pedal&gt;</code></td><td>踏板 / pedal</td><td>起始 <b>Ped.</b>＋续线或花线，放开以 <b>✱</b>（或 ^）结束。</td></tr>
+<tr><td class="glyph"></td>
+<td class="el"><code>&lt;direction&gt;&lt;words&gt;</code></td><td>文字记号 / words</td><td><b>任意文字</b>（速度/表情术语；无法归类时的兜底）。<span class="mut">官方无配图。</span></td></tr>
+</table>
+
+<h2>同形易混对照（人工比对时最先出错的几组）</h2>
+<table>
+<tr><th>形状家族</th><th>成员与区分点</th></tr>
+<tr><td><b>楔形</b></td><td><code>accent</code>（实心＞）vs <code>wedge</code> 渐强/渐弱（两条<b>细线</b>）vs <code>strong-accent</code>（竖向 ∧）vs <code>staccatissimo</code>（小竖楔）</td></tr>
+<tr><td><b>空心圆</b></td><td><code>harmonic</code> vs <code>open-string</code>（官方图同形）vs <code>&lt;open&gt;</code>(弱音器开孔) vs <code>thumb-position</code>（圆下带短柄）vs segno 上的点——靠上下文与附加笔画区分</td></tr>
+<tr><td><b>波线家族</b></td><td><code>arpeggiate</code>（<b>竖</b>向）vs <code>wavy-line</code>（<b>横</b>向）vs <code>mordent</code>（<b>中央竖线穿过</b>）vs <code>inverted-mordent</code>（<b>无竖线</b>）vs <code>schleifer</code>（长斜锯齿）</td></tr>
+<tr><td><b>V 形</b></td><td><code>up-bow</code>（两笔<b>线</b>）vs <code>accent</code>（<b>实心</b>楔）vs hairpin 渐弱（两条细线合拢）</td></tr>
+<tr><td><b>横线</b></td><td><code>tenuto</code>（短线一段）vs pedal 续线（<b>跨小节长线</b>，常配 Ped.）vs <code>glissando</code>（<b>斜</b>直线）</td></tr>
+<tr><td><b>圆点</b></td><td><code>staccato</code>（独立小点）vs fermata 弧内的点（必伴随弧）</td></tr>
+<tr><td><b>数字/字母</b></td><td><code>fingering</code>（裸数字）vs <code>string</code>（圈内数字）vs <code>tremolo</code> 斜杠条数 vs 力度字母（衬线粗斜体）</td></tr>
+</table>
+
+<p class="mut">生成说明：为 SMC type 0x08（MarkTB）识别问卷人工比对编制。配图取自 MusicXML 4.0 官方参考（w3.org，2026-11-07 下载）；官方未提供配图的元素留空。已查证的规范事实：无独立 marcato 元素；spiccato 原文 "a stroke articulation, as opposed to a dot or a wedge"；strong-accent 原文 "a vertical accent mark"；fermata type 仅 upright/inverted。</p>
+</body></html>

@@ -41,7 +41,8 @@
 - 已定案：`29` = 正立延长记号、`30` = 倒立延长记号（轮廓互为垂直翻转，
   `29` 的 `dy` 全负、`30` 全正，符合「弧口朝符头」画法）[E]。
 - 待人工确认：其余 12 项。问卷 `work/mark-questionnaire.html`，
-  答卷 `work/mark-questionnaire.tsv`，统计数据 `work/mark-stats.json`。
+  答卷 `work/mark-questionnaire.tsv`，统计数据 `work/mark-stats.json`，
+  MusicXML 图形参照（供人工比对，无自动匹配结论）`work/mark-xml-reference.html`。
 - 状态：`Blocked`（需人眼看程序画面或纸谱，无法从字节与轮廓推出）。
 
 ### B3. type 0x0C（Coda）headLen ∈ {5, 8, 9, 11}
