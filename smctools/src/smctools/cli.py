@@ -187,7 +187,8 @@ def cmd_index(a):
     os.makedirs(a.out_dir, exist_ok=True)
     s = index.extract(os.path.join(install, 'IndexFiles'),
                       os.path.join(a.out_dir, 'score-index.json'),
-                      None if a.no_html else os.path.join(a.out_dir, 'index.html'))
+                      None if a.no_html else os.path.join(a.out_dir, 'index.html'),
+                      template=a.template)
     print('songs: %d  creators: %d' % (s['songs'], s['creators']))
     for w in s['written']:
         print('written: %s' % w)
@@ -226,6 +227,9 @@ def main():
                          'environment variable')
     ip.add_argument('--no-html', action='store_true',
                     help='skip the single-page query app (JSON only)')
+    ip.add_argument('--template',
+                    help='custom query-app template (string.Template with a '
+                         '$payload placeholder); default: the bundled one')
     _add_output_params(ip)
     ip.set_defaults(func=cmd_index)
 

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>Samilpo index query</title>
+<style>
+body{font:14px/1.5 system-ui,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;margin:20px auto;max-width:980px;color:#1b1b1b}
+h1{font-size:20px}input{font:16px inherit;padding:6px 10px;width:60%}
+table{border-collapse:collapse;width:100%;margin-top:12px}
+th,td{border:1px solid #ccc;padding:4px 8px;text-align:left;font-size:13px}
+th{background:#f3f3f3;position:sticky;top:0}
+td.num{font-variant-numeric:tabular-nums}
+.c{color:#888;font-size:12px}
+</style></head><body>
+<h1>Samilpo乐谱索引查询 <span class="c" id="n"></span></h1>
+<p><input id="q" placeholder="曲名 / 作词 / 作曲 / 年份 / 路径…（支持正则）" autofocus></p>
+<table><thead><tr><th>#</th><th>曲名</th><th>作词</th><th>作曲</th><th>年份</th><th>路径</th></tr></thead>
+<tbody id="rows"></tbody></table>
+<script>
+const DATA = $payload;
+const rows = document.getElementById('rows'), q = document.getElementById('q');
+document.getElementById('n').textContent = '(' + DATA.songs.length + ' 首)';
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+function render(){
+  let re = null;
+  try { re = new RegExp(q.value, 'i'); } catch(e) { re = null; }
+  const out = [];
+  for (const s of DATA.songs) {
+    const hay = s.title + '\n' + s.lyricist + '\n' + s.composer + '\n' + (s.year ?? '') + '\n' + s.path;
+    if (q.value && !(re ? re.test(hay) : hay.includes(q.value))) continue;
+    out.push('<tr><td class="num">' + s.i + '</td><td>' + esc(s.title) + '</td><td>' +
+      esc(s.lyricist) + '</td><td>' + esc(s.composer) + '</td><td class="num">' +
+      (s.year ?? '?') + '</td><td class="c">' + esc(s.path) + '</td></tr>');
+    if (out.length >= 500) { out.push('<tr><td colspan=6 class="c">… 仅显示前 500 条，请继续输入缩小范围</td></tr>'); break; }
+  }
+  rows.innerHTML = out.join('');
+}
+q.addEventListener('input', render); render();
+</script></body></html>

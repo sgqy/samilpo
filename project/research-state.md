@@ -29,10 +29,12 @@ type 0x08 记号 14 个语料索引全部定案，文档覆盖达到可用程度
    本家研究的未开采线索，可能载有记号名称与格式说明。
 4. 下表 10 项未完成调查**保持原样挂起**，作为重启入口；`open-questions.md`、
    `function-index.md`、`debugging-plan.md` 同步封存。
-5. **索引研究（2026-11-07 部分解封）**：`Score.sci`（SSIF，8449 曲目：曲名/路径/
-   作词/作曲/年份）已全解并入 `smctools index extract`（开放 JSON + 单页查询应用）；
-   未解：`SamIlPo.idx`（SHIF，9690 条）、`CREATOR.CRI`（SCIF，290 条，记录类不同）、
-   `KcgInfo.kbd` 语义——详见 `docs/unknown-fields.md` §G。
+5. **索引研究（2026-11-07 解封，当日完成主体）**：四个索引文件中三个全解——
+   `Score.sci`（SSIF，8449 曲目：曲名/路径/作词/作曲/年份）、`CREATOR.CRI`
+   （SCIF，290 创作者：名称/封面/简介）、`SamIlPo.idx`（SHIF，9690 节点的
+   DFS 分类树，根《조선노래대전집》）——全部精确消耗验证，并入
+   `smctools index extract`（开放 JSON + 单页查询应用，模板可自定义）。
+   仅余 `KcgInfo.kbd`（键盘映射表）语义未展开——详见 `docs/unknown-fields.md` §G。
 
 恢复步骤（下节）在重启时原样适用。
 

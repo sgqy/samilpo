@@ -156,8 +156,8 @@ SHIF=`FUN_00411210`、SSIF=`FUN_004168E0`、SCIF=`FUN_004165E0`、SOTF=`FUN_0041
 | 文件 | magic | 条数 | 状态 |
 |---|---|---|---|
 | `Score.sci` | `SSIF` | 8449（≈语料 8451） | **全解** [E] |
-| `CREATOR.CRI` | `SCIF` | 290 | 记录类与 SSIF 不同（含 ANSI 串如 "WKLGothic"），待 `FUN_004165E0` 记录推导 [?] |
-| `SamIlPo.idx` | `SHIF` | 9690 | 装载器 `FUN_00411210`（无 magic 校验参数），记录推导待做 [?] |
+| `CREATOR.CRI` | `SCIF` | 290 | **全解** [E]（记录 Read `FUN_004132F0`：u8×2 + group0 + blob + group1，**无尾 u16**） |
+| `SamIlPo.idx` | `SHIF` | 9690 | **全解** [E]（DFS 序树，见下） |
 | `SPEECH.OTX` | `SOTF` | 0 | 10 字节空文件 [E] |
 
 **SSIF 容器**：`magic[4]` + `u16 ver=0x200` + `u32 count` + `count × 记录` [E]。
@@ -178,3 +178,18 @@ u16   year                                     ; 0xFFFF = 未知
 SMC 内 889F 曲名一一对应）、g1.name = 작사（作词）、g2.name = 작곡（作曲）、
 year = 创作年份（1945–2003，428 条 0xFFFF）。提取器与单页查询应用：
 `smctools index extract`（开放 JSON + 自包含 HTML）。
+
+**SCIF 记录**（Read `FUN_004132F0`，对象 0xC4）：与 SSIF 同基类但只有
+`u8×2 + group0 + blob + group1`——group0.name = 创作者名、blob = `01 00` +
+`IMAGE\Creator\CRP-xx\….jpg` 封面路径、group1.name = 简介文本（含 CR LF），
+无尾 u16（290 条精确消耗 [E]）。注意：条目（`FUN_00402100`）内的字符串是
+**FUN_00401580 原始字节串**（如字体名 "WKLGothic"），不是宽串。
+
+**SHIF 树**（`SamIlPo.idx`）：根节点由 `FUN_00410FA0` 读入
+（`u16 flag` + `u16 child_count` + group + 变体列表），随后 `FUN_00411550`
+按 **DFS 序**递归：每个节点读完后若计数未达 9690 则递归读其
+`child_count` 个子节点（`FUN_004111F0` = 取节点 +0x20 的子计数）[E]。
+变体列表（`FUN_00412890` → `FUN_00412530`）：`u16 n` + n 个**类型分派值**
+（u8 type：0 = n×2B UTF-16 串、1/2/3 = u32、4/5 = n×1B ANSI 串）[E]。
+根 = 《조선노래대전집》（10 个子分类：가요편/가극노래편/영화노래편…，
+含 5 个空 "New Score" 占位）；9690 节点精确消耗 [E]。
