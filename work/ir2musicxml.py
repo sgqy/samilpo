@@ -28,6 +28,30 @@ TYPE_NAME = {0: 'long', 1: 'whole', 2: 'half', 3: 'quarter', 4: 'eighth',
 ACC_TEXT = {'sharp': 'sharp', 'flat': 'flat', 'natural': 'natural',
             'double-sharp': 'double-sharp', 'flat-flat': 'flat-flat'}
 
+# MarkTB index -> MusicXML <notations> for type 0x08 marks. Human-confirmed via
+# work/mark-questionnaire.tsv (2026-11-07); reference imagery in
+# work/mark-xml-reference.html, wording in docs/music-fields.md and
+# docs/smc-format.md 6.13b. Each entry is a list of (group, element, attrs);
+# group None places the element directly under <notations> (fermata).
+MARK_XML = {
+    1:  [('technical', 'up-bow', None)],
+    11: [('technical', 'up-bow', None)],
+    8:  [('articulations', 'accent', None), ('articulations', 'tenuto', None)],
+    10: [('articulations', 'accent', None), ('articulations', 'staccato', None)],
+    13: [('articulations', 'accent', None)],
+    14: [('articulations', 'staccato', None)],
+    16: [('articulations', 'tenuto', None)],
+    25: [('ornaments', 'trill-mark', None)],
+    29: [(None, 'fermata', {'type': 'upright'})],
+    30: [(None, 'fermata', {'type': 'inverted'})],
+    33: [('ornaments', 'inverted-mordent', None)],
+    35: [('ornaments', 'shake', None)],
+}
+# Indices 43/45 are time-signature digit glyphs ("2"/"4" of the time-signature
+# font; the signature itself is carried by <time> from the Meas tail). The drawn
+# digit survives as words; nothing else is inferred.
+MARK_WORDS = {43: '2', 45: '4'}
+
 
 def sub(parent, tag, text=None, **attrs):
     el = ET.SubElement(parent, tag)
@@ -531,6 +555,17 @@ def write_direction(measure_el, e):
             sub(m, 'per-minute', d['bpm'])
             sub(el, 'sound', tempo=str(d['bpm']))
     else:
+        if d.get('smc_type') == 0x08:
+            code = d.get('code')
+            if code in MARK_XML:
+                # Confirmed mapping, but no note accepted it (e.g. onset at or
+                # past the last note of the voice): keep the mapped name as
+                # words rather than dropping the sign.
+                sub(body, 'words', ' '.join(n for _, n, _ in MARK_XML[code]))
+                return
+            if code in MARK_WORDS:
+                sub(body, 'words', MARK_WORDS[code])
+                return
         # Marks with no MusicXML counterpart (breath, coda, long rest, ...) are
         # kept as words so the information survives into the product.
         label = d.get('smc') or ('smc-type-%s' % d.get('smc_type'))
@@ -631,6 +666,49 @@ def _load_cod():
     return _COD or None
 
 
+def split_attachable(items):
+    """Split pending markings: type 0x08 marks with a confirmed MusicXML
+    mapping become <notations> on a note (write_voice flushes them onto the
+    first note at or after their onset in this voice); everything else stays
+    a direction."""
+    att, rest = [], []
+    for kind, e in items:
+        d = e.get('d') or {}
+        if (kind == 'direction' and d.get('type') == 'symbol'
+                and d.get('smc_type') == 0x08 and d.get('code') in MARK_XML):
+            att.append(e)
+        else:
+            rest.append((kind, e))
+    return att, rest
+
+
+def flush_mark_notations(note_el, buf):
+    """Attach buffered marks as <notations> children of note_el (MusicXML puts
+    articulations/ornaments/fermata on the note, not in a direction)."""
+    if not buf:
+        return
+    nots = note_el.find('notations')
+    if nots is None:
+        nots = sub(note_el, 'notations')
+    for e in buf:
+        d = e.get('d') or {}
+        plc = e.get('placement')
+        for group, name, attrs in MARK_XML.get(d.get('code'), []):
+            if group:
+                g = nots.find(group)
+                if g is None:
+                    g = sub(nots, group)
+                nel = sub(g, name)
+            else:
+                nel = sub(nots, name)
+            if attrs:
+                for k2, v2 in attrs.items():
+                    nel.set(k2, str(v2))
+            if plc:
+                nel.set('placement', plc)
+    buf.clear()
+
+
 def write_voice(el, mrec, staff, voice, vnotes, spans_of, div, n_staves,
                 markings=None):
     """Emit one voice stream; return (tick reached, issues).
@@ -638,12 +716,18 @@ def write_voice(el, mrec, staff, voice, vnotes, spans_of, div, n_staves,
     `markings` are the direction/harmony records for this voice. They are
     interleaved at their own onset, before the note that starts there, so a
     tempo marking or chord symbol lands on the beat it belongs to.
+
+    Type 0x08 marks with a confirmed mapping (MARK_XML) are attached as
+    <notations> to the first note at or after their onset in this voice; when
+    no such note exists (e.g. past the last note) they fall back to words via
+    write_direction.
     """
     tpm = measure_length(mrec)
     events, issues = plan_voice(vnotes, tpm)
     pending = collections.defaultdict(list)
     for kind, e in (markings or []):
         pending[e.get('on', 0)].append((kind, e))
+    attach_buf = []
     cursor = 0
     for ev in events:
         n = ev['n']
@@ -660,7 +744,9 @@ def write_voice(el, mrec, staff, voice, vnotes, spans_of, div, n_staves,
                     f = sub(el, 'forward')
                     f.append(_dur(k - cursor))
                     cursor = k
-                write_markings(el, pending.pop(k))
+                att, rest = split_attachable(pending.pop(k))
+                write_markings(el, rest)
+                attach_buf.extend(att)
         note_el = sub(el, 'note')
         if ev['kind'] == 'rest':
             sub(note_el, 'rest')
@@ -669,6 +755,7 @@ def write_voice(el, mrec, staff, voice, vnotes, spans_of, div, n_staves,
             t = TYPE_NAME.get(_exp_for(ev['dur']))
             if t:
                 sub(note_el, 'type', t)
+            flush_mark_notations(note_el, attach_buf)
             cursor = ev['on'] + ev['dur']
             continue
         if n.get('chord') and not n['attrs'].get('grace'):
@@ -753,6 +840,7 @@ def write_voice(el, mrec, staff, voice, vnotes, spans_of, div, n_staves,
             nots.append(_slur('start', i + 1))
         for i in range(n_stop):
             nots.append(_slur('stop', i + 1))
+        flush_mark_notations(note_el, attach_buf)
         ly = n.get('lyric')
         if ly and ly.get('text') is not None:
             lyr = sub(note_el, 'lyric')

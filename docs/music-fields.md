@@ -136,18 +136,48 @@ NoteHead :=
 - `CSMDynamicMsg::DrawMsg` 0x10094D80 同表 [E]。
 - 语料 17132 条 [E]。
 
-## 8. 节奏型 Msg（type 0x47）
+## 8. 单字符记号 Msg（type 0x08）
+
+- `MarkTB` 索引在 **`MsgHdr+0x06`**（符头类型槽位复用；`DrawMark` 0x10065570
+  从该处取索引画 1 个字符），不是通用的"类型相关索引" +0x08 [E]。
+- 位置 `+0x16/+0x18`（X/Y），`headLen` 恒 0；结构详见 `docs/smc-format.md` §6.13b。
+- 语料 6707 条 [E]。
+- **14 个语料索引的音乐含义已人工定案**（问卷 `work/mark-questionnaire.html`、
+  答卷 `work/mark-questionnaire.tsv`、图形参照 `work/mark-xml-reference.html`，
+  2026-11-07）[H]：
+
+| MarkTB 索引 | 含义 | MusicXML 发射（`ir2musicxml.py` `MARK_XML`/`MARK_WORDS`） |
+|---|---|---|
+| 1 / 11 | 上弓 up-bow（1 与 11 同形同义） | `<technical><up-bow/>` |
+| 8 | 重音＋持续音 | `<articulations><accent/><tenuto/>` |
+| 10 | 重音＋断音 | `<articulations><accent/><staccato/>` |
+| 13 | 重音 accent | `<articulations><accent/>` |
+| 14 | 断音 staccato | `<articulations><staccato/>` |
+| 16 | 持续音 tenuto | `<articulations><tenuto/>` |
+| 25 | 颤音 trill-mark | `<ornaments><trill-mark/>` |
+| 29 | 正立延长记号 | `<fermata type="upright"/>` |
+| 30 | 倒立延长记号 | `<fermata type="inverted"/>` |
+| 33 | 上波音 inverted-mordent | `<ornaments><inverted-mordent/>` |
+| 35 | 摇摆音 shake | `<ornaments><shake/>` |
+| 43 / 45 | 拍号字体数字 2 / 4 字形 | `<words>2</words>` / `<words>4</words>`（拍号本体由 `<time>` 承载） |
+
+- 发射规则：可映射记号挂到同声部「起点在此记号 `on` 处或之后」的第一个
+  音符/休止符的 `<notations>` 上（该起点之后无音符时退化为
+  `<direction><words>` 保留记号名）；`dy<=0` → `placement="above"`，
+  否则 `below`；其余 symbol 类型维持 `<words>smc-type-N</words>` 兜底。
+
+## 9. 节奏型 Msg（type 0x47）
 
 - headLen 0；数据在 `CRhythm` / `CRtmData` 结构中 [E]。
 - 完整字段表见 `docs/smc-format.md` §6.9（RtmData），以及 `docs/unknown-fields.md` B4（事件体语义）。
 - 语料 12716 条；其中 101 条作为 0x45 的 `Rhythm` 部分内嵌 [E]。
 
-## 9. 谱表名 Msg（type 0x49）
+## 10. 谱表名 Msg（type 0x49）
 
 - head 固定 5 字节：`04 00 00 00 00`（语料 79 条样本一致），另有 headLen 11 的少量样本 [E]。
 - 名称文本由 `CSMStaffNameMsg::DrawMsg` 0x100BFA70 读取（head 指针 +0x20、长度 +0x1E）[E]。
 
-## 10. 演奏控制：连音线与圆滑线（type 0x09 / 0x0A / 0x12）
+## 11. 演奏控制：连音线与圆滑线（type 0x09 / 0x0A / 0x12）
 
 - 挂在其父对象下；`MsgHdr+0x20`（+0x70）与对象 `+0x18` 保存**两个端点键** [E]。
 - 读取时（`CSMSystem::Read`）对键做 `GetKey` 重映射 [E]。
@@ -155,21 +185,21 @@ NoteHead :=
 - 0x12（小节级连音符）由 `DrawMeasTuplet` 绘制，并参与 `CalcWholeCount` 的分段表 [E]。
 - 语料：0x09 → 26295、0x0A → 62202、0x12 → 1786 [E]。
 
-## 11. MIDI 短消息（type 0x42）
+## 12. MIDI 短消息（type 0x42）
 
 - `CSMDoc::EncToSMC_MidiMsg` 0x10022D20 构造：type = **0x42**；
   对象 `+0x18` = **3 字节 MIDI 消息**（status/data1/data2）[E]。
 - `DrawMidiShortMsg` 0x10066290 绘制 [E]。
 - 用途：精确播放控制（不经音符实时生成）[I]。
 
-## 12. 文档级消息（type 0x3F / 0x40 / 0x04）
+## 13. 文档级消息（type 0x3F / 0x40 / 0x04）
 
 - 每文件各出现一次（0x3F 8451、0x40 8451、0x04 8342）[E]。
 - 均无 head（headLen 0）[E]。
 - 语义未定；0x04 亦在 `SMDrawMsg` 中映射到 `DrawMultiText` [E]。
 - 详见 `docs/unknown-fields.md` B6。
 
-## 13. 范围说明
+## 14. 范围说明
 
 本文件覆盖全部高频消息类型。低频类型（0x2C 长休止、0x0C Coda、0x46 指板、0x47 节奏）的
 head 内部字段见 `docs/smc-format.md` §6.8/§6.9/§6.13 与 `docs/unknown-fields.md`。

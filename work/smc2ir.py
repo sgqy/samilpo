@@ -842,8 +842,12 @@ def direction_record(msg, pid, mi, dclass, opts, staff=1, voice=1, cod=None):
         if opts.extent == 'debug':
             rec['d']['head_hex'] = b.hex()
     else:
+        # type 0x08: the MarkTB index lives in MsgHdr+0x06 (the head_type slot;
+        # DrawMark 0x10065570 reads it from there, docs/smc-format.md 6.13b),
+        # not in the generic type-related index at +0x08.
+        code = msg.head_type if msg.type == 0x08 else msg.type_index
         rec['d'] = {'type': 'symbol', 'smc_type': msg.type,
-                    'code': msg.type_index,
+                    'code': code,
                     'bars': (msg.rect_r if msg.type == 0x2C else None)}
     if opts.extent == 'debug':
         rec['ext'] = {'dx': msg.dx, 'dy': msg.dy, 'flags': msg.flags}

@@ -10,7 +10,7 @@ Not a deliverable: this is converter scaffolding under work/.
 import struct
 from types import SimpleNamespace
 
-INSTALL = r'C:\Program Files (x86)\Samilpo 2.0'
+INSTALL = r'A:\samilpo-res\Samilpo 2.0'
 DEFAULT_COD = INSTALL + r'\889F.cod'
 
 

@@ -1,19 +1,19 @@
 # 研究状态
 
-最后更新：第四阶段定稿（2026-10-14）。
+最后更新：2026-11-07（type 0x08 记号含义定案；工作区迁至 A:\samilpo）。
 
 > 凡例见 `docs/smc-format.md` §0。本文件是本项目的**恢复入口**：任何会话中断后，从这里判断进度与下一步。
 
 ## 全局
 
 - 目标：恢复 Samilpo 2.0 的 SMC 乐谱文件格式（数字遗产保存），产出可由第三方独立使用的规范。
-- 工作区：`C:\research\samilpo`
+- 工作区：`A:\samilpo`
   - `docs/`：交付文档（SMC 格式规范及各专题）。
   - `project/`：工程过程记录（研究状态、任务书 `project/steps/`、阶段日志、未解问题、函数索引、调试方案）。
   - `tools/`：验证脚本；`raw/`：原始证据与探针输出。
-- 目标程序：`C:\Program Files (x86)\Samilpo 2.0\MusicBook.exe`（PE32 x86）与 `engine.dll`。
+- 目标程序：`A:\samilpo-res\Samilpo 2.0\MusicBook.exe`（PE32 x86）与 `engine.dll`（备用引擎源：同目录 `Music Score Viewer`）。
 - 样本：`<安装目录>\8000Songs\`（5 个子集，共 **8451** 个 `.smc`）。
-- 分析环境：REA MCP + Ghidra 12.1.4（`engine.dll` 基址 `0x10000000`）；辅以本地 Python 3.15。
+- 分析环境：REA MCP + Ghidra 12.1.4（`engine.dll` 基址 `0x10000000`）；Python 经 `uv run python` 调用（本机无独立 Python；`tools/`、`work/` 脚本均为标准库）。
 
 ## 阶段进度
 
@@ -36,6 +36,9 @@
 8. 拍号：Meas 尾块 +0x56 分子 / +0x58 分母；`tickPerMeas = wholeTick * 分子 * 4 / 分母`。
 9. 文件尾部 4 字节 = bodyLen 的冗余副本，由 `CSMDoc::Save` 写入。
 10. 覆盖度：核心层结构覆盖 92.9% / 语义覆盖 78.8%（`docs/field-coverage.md`）。
+11. type 0x08 单字符记号的 14 个语料索引含义已人工定案（问卷 2026-11-07，[H]）；
+    `ir2musicxml.py` 按确认表发射 `<notations>`，43/45（拍号字体数字字形）以
+    `<words>` 保留（`docs/music-fields.md` §8）。
 
 ## 验证基线
 
