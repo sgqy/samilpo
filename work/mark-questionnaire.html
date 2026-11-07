@@ -14,6 +14,7 @@ code{background:#f4f4f4;padding:1px 4px;border-radius:3px;font-size:12px}
 .warn{background:#fff6f4;border-left:3px solid #c0563a;padding:8px 12px;margin:10px 0}
 img.atlas{width:100%;border:1px solid #ccc}
 ol{margin:6px 0 6px 22px}li{margin:6px 0}
+.ans{background:#f2f8f2;font-size:13px}.ansimg{background:#fff;text-align:center}.aimg{margin:4px 0}.aimg img{max-width:100px;max-height:64px;display:block;margin:0 auto 2px}.aimg code{font-size:11px}
 </style></head><body>
 <h1>SMC <code>type 0x08</code> 记号识别问卷</h1>
 <p>目标：为 <b>Samilpo 2.0</b> 的 <code>type 0x08</code>（<code>CScoreView::DrawMark</code>）逐项确认音乐含义，以便映射到 MusicXML。字形本身只有轮廓可依据——程序里没有任何字符串资源给出记号名称（已全量搜索 Shift-JIS / 889F / UTF-16 三种编码），所以必须由人眼判定。</p>
@@ -26,13 +27,13 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <li><code>CSMMsg::Read</code> 把 <code>type 0x41</code> 重映射为 <code>0x08</code>，但本语料中不存在 0x41。</li>
 <li><code>obj+0x74</code>/<code>obj+0x75</code>（= <code>MsgHdr+0x03</code>/<code>+0x04</code>）另有一套「音符上/下方记号」槽位，<code>&amp;0x7F</code> 是索引、<code>&amp;0x80</code> 是加圆括号；本语料中该两个字节全为 0，未使用。</li>
 </ul>
-<h2>2. 需要您判定的 14 个索引</h2>
-<div class="note">每行请填写：<b>名称</b>（中文/한국어/日本語任一）、<b>类别</b>（弓法 bowing / 奏法 articulation / 装饰音 ornament / 力度 dynamic / 延音 fermata / 其他）、<b>MusicXML 元素</b>（见第 4 节候选清单）。示例文件名后以〈…〉标注曲名（读谱软件里看到的即曲名）。答案请直接填在 <code>work/mark-questionnaire.tsv</code>（最后一列备注可自由填写）。</div>
+<h2>2. 需要您判定的 14 个索引（答卷已回填 2026-11-07）</h2>
+<div class="note">以下「答卷」两列取自 <code>work/mark-questionnaire.tsv</code>（2026-11-07 回填）；「官方配图」列直接引用 <code>mark-xml-img/</code> 现有图片，未做任何处理。原始问题每行请填写：<b>名称</b>（中文/한국어/日本語任一）、<b>类别</b>（弓法 bowing / 奏法 articulation / 装饰音 ornament / 力度 dynamic / 延音 fermata / 其他）、<b>MusicXML 元素</b>（见第 4 节候选清单）。示例文件名后以〈…〉标注曲名（读谱软件里看到的即曲名）。答案请直接填在 <code>work/mark-questionnaire.tsv</code>（最后一列备注可自由填写）。</div>
 <table><tr>
 <th style="width:104px">字形</th><th style="width:74px">索引</th>
 <th style="width:64px">出现次数</th><th style="width:104px">所属容器</th>
 <th style="width:96px">dy 分布</th><th style="width:56px">文件数</th>
-<th>语料中的典型位置</th></tr>
+<th>语料中的典型位置</th><th style="min-width:150px">答卷（TSV 回填）</th><th style="min-width:130px">答卷·官方配图</th></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACdUlEQVR4nO2YQYrDQBAD3Wb//2Ut5BQIWbz22GqpVeeAA9WqwxSALfDYid8OEcAnCyATAWQigEwEkIkAMhFAJgLIRACZCCDzc+RHVXX6A9y3pvr+z5s8gmUBCgKuHMuV9diffxbAJwkSESBXoVLoTxbAJwnSESBUoRLpTxbAJwmSEiBRodLpTxbAxy1BxXv5eEiARIVU+mO4ADmsBJRaf04KUKwQWvbHbQGK+Agowf6cF6BVIXTtj9UCRDERUJr9uSRApUJo3B+fBejiIKBk+3NVQP8KoXd/TBYgjbyAUu7PAgGdK4T2/XFYgDraAkq8P2sE9KwQFPqjvYDSP39tAR6sEdCtQhDpj/ACyqI/wgJsWCagT4Wg0x/VBZRLf1QFOLFSQIcKQao/kgsoo/5ICjBjsQBuhaDWH70FlFd/9AT4sV4Aq0IQ7I/YAsquP2ICLLlFwPMVgmZ/lBZQjv25UcCTJwnZ82+6gPo4dtfzbypgFLt6GaDcn74LqLfmGPenr4A57NJ9gHh/Wi+gXuXx7k9rAUO4XcB9lYB+f7ovoNz7013ABJ4QcEcrYNGfLIBPEjRDwNpiwKU/WQCfJGiMgFXdgFF/sgA+SdAkAdfrAa/+ZAF8kqBhAq40BHb9yQL4JEHzBJwrCRz7kwXwSYJGCvhvT2DanyyATxI0VcDxqsC3P1kAnyRosAAcaIt3f7IAPknQbAH4szD2/eELCBGwTReAL52Z0J8WAoYTAWRaCMBHbYb0p4uAyUQAmS4C8NacOf1pJGAsEUCmkQC8yjOqP70EzKSXAAw7/3YCBhIBZCKATASQiQAyEUAmAshEAJkIIBMBG5dfP5XeqECH/o8AAAAASUVORK5CYII=" width="96" height="96" alt="MarkTB[1]"></td>
 <td class="num"><b>1</b><br><code>0x5D</code><br>U+F05D</td>
@@ -41,7 +42,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x91</td>
 <td class="num">55</td>
 <td style="font-size:12px">150ALS-01GA-0129.smc〈군대부터 찾는대요〉 第6小节 measure dx=174 dy=-33<br>150ALS-01GA-0231.smc〈그이 따라 나갈 때〉 第2小节 measure dx=173 dy=-27<br>150ALS-01GA-0231.smc〈그이 따라 나갈 때〉 第6小节 measure dx=176 dy=-27<br>150ALS-01GA-0231.smc〈그이 따라 나갈 때〉 第12小节 measure dx=150 dy=-28</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;up-bow&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/up-bow.png" alt="up-bow"><code>up-bow</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAB6ElEQVR4nO3dyW7CQBQFUR7i/3+52bY3iMGm3lC1juLkHrWwhBNirXUzrjt4bROAzxMAJwCcAHACwAkAJwCcAHACwAkAJwCcAHACwAkAJwCcAHACwAkAJwCcAHACwAkAJ0AFgIi4/icZ2uPNr9sNfJgOANgTAwbYEwMG2BMDBtgTAwbYE+NF8ektzYm3pMs/TfgCQIxEABcdjjXpZJwJcPi+YrAAh2uIwQIcricGC3C4dviagQJc4ZHn16kHMBMjKcAcjAIAvTGKAfTDKAxwugcyRR+Aohg9AQph9AdIjjELICHGXIBzPb6eUQAYQwAY4x9vypcr/ngCBIBfA0YDBDT6aIDIcfc5CyCSjT4CIBKP3hYgiozeCiAKjl4eIIqPXhIgGo1eBiBavOlYDCAGjJ4OIIaNngJg8ugYgKMDAI4OAPjYMwDg6ACAowMAjg4AOHrhu6AGt+r1ABydAXB3AMDRAQBHBwAcnfyvia5/Xf7fUDgB4ASAEwBOADgB4ASAEwBOADgB4ASAEwBOADgB4ASAEwBOADgB4ASAEwBOADgB4ATo9XDutM9dXT8/++0JgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgPMTNOA8AXACwAkAJwCcAHACwAkAJwCcAHAC3NieQSnn26ZOSTEAAAAASUVORK5CYII=" width="96" height="96" alt="MarkTB[8]"></td>
 <td class="num"><b>8</b><br><code>0x57</code><br>U+F057</td>
@@ -50,7 +51,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x16</td>
 <td class="num">8</td>
 <td style="font-size:12px">150ALS-01GA-0304.smc〈김일성대원수님을 영원히 높이 모시리〉 第13小节 note dx=-2 dy=-15 · note start=720 dur=240<br>150ALS-02NA-0151.smc〈노래하자 우리 희망〉 第9小节 note dx=-2 dy=-5 · note start=600 dur=360<br>150ALS-02NA-0151.smc〈노래하자 우리 희망〉 第13小节 note dx=-2 dy=-5 · note start=600 dur=360<br>150ALS-05MA-0055.smc〈만풍년의 우리 조국 온 세상에 자랑하세〉 第138小节 note dx=-2 dy=-23 · note start=480 dur=480</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;accent&gt; + &lt;tenuto&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/accent.png" alt="accent"><code>accent</code></div><div class="aimg"><img src="mark-xml-img/tenuto.png" alt="tenuto"><code>tenuto</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACTUlEQVR4nO3c0U7CUBAGYdb4/q9cEy9MUaOVFmf/PTPXBOx+PQVpaW3bdjOuF/C1TQA+VwCcAHACwAkAJwCcAHACwAkAJwCcAHACwAkAJwCcAHACwAkAJwCcAHACwAkAJwCcAHACwAkAJwCcAHACJABU1fP/kkV7Pfi4vYFXtAMA+8SAAfaJAQN8i+ExigH4yGUBA+wT4+fqr4eLqz6Seph6EGCfGDDA3RO5MliAuycVgwW4HGOb+2vypwPcvZgYLMDdC4vBAuyrhTFaAKyM0Q5gNYzWANdi9NzSGICpGJEAkzDiAdIxRgEkYowFSMFYAqAzxnIAF2JcMrqlATpgCABjCABjPP2qiMTqH1eAAPB7wLoA1ePz6FoA1WPoawFUv6HPB6jeQ58JUDlDHwJQI05YhgHUiKGHAdS4oQcA1OihNwWoZYbeBaC8iPr/ARw6AODQAQCHTv5OeLU3Ugzgwpt4bCsN/RSAQwcAHHr2p6BlDy8kgEMHABw6AODQAQCHDgA4dPKuiU7/eXnfUDgB4ASAEwBOADgB4ASAEwCu0XVBD/TpREXiP4yRP9Kr306FBm1U2CGo3jvysFtISQD1l7EepMKLAaiHptnfIAZgahkAdWJHbr4IMgAGFwBQp3fhzosgAGB2AsAJACcAnABwAsAJABcAsJ3+brnzt9MBALPLANhO7MKdd/8YgNujc2w+/SSAqeWdE65j36ylbFfeCtgOTDZl+pEr4GtVwVuRtwK+ljv9IQDRCQAnAJwAcALACQAnAJwAcALACXBjewO1uhTlILQMoQAAAABJRU5ErkJggg==" width="96" height="96" alt="MarkTB[10]"></td>
 <td class="num"><b>10</b><br><code>0x59</code><br>U+F059</td>
@@ -59,7 +60,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x2</td>
 <td class="num">2</td>
 <td style="font-size:12px">150ALS-03DA-0077.smc〈당의 손길 따라 천지개벽 일어나네〉 第11小节 note dx=0 dy=-1 · note start=120 dur=240<br>310FFS-03DA-005-0001.smc〈달려라 《소년호》〉 第27小节 note dx=-2 dy=-5 · note start=0 dur=180</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;accent&gt; + &lt;staccato&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/accent.png" alt="accent"><code>accent</code></div><div class="aimg"><img src="mark-xml-img/staccato.png" alt="staccato"><code>staccato</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACk0lEQVR4nO2b0WrjQBAENeH+/5fnIA9HIGdFjlbbPTNVrzZ4odRlW9iRmQfo+BC+NiBADwsQgwAxCBCDADEIEIMAMQgQgwAxCBDz58qTIuLVQ+a3ksL+5CyggoCTi+XkEpMT9pc/C9BDgooIKFehqNAfFqCHBNURUKhCUaQ/LEAPCSoloESFok5/WIAeElRNgHmFolR/WIAeElRQgG2Folp/WIAeElRTgGGFomB/WEDTBO0fQRh8BdktwHnXhc7Jm3BTATubEGX7c1eA+bqPCickQX0F7ClDVO7PAgHOG0/js/2DBLUW8HQfonh/1gjwXHpanuo7JKi7gOcqEfX7s0yA297T7DwnkKABAp5oRbToz0oBPqtPm5NcgQTNELC2GNGlP4sFOGw/Dc7wFiRojIBV3YhG/VkvQFuArNYfEjTsPeB+PaJXfx4RoOpAFuwPCZr3MfROQ6Jdf54SsL8GWbM/JKhvgpb/gSBq/vz/R7gVIQYBfQUsrFA07Q8L0EOCWgtYUqHo2x8WMDtBcWEELW8/bBXwXCWyfn9I0DH9U1CcFqZ9fzYJeKIV2aI/+gWAXkC86MyE/uxbwNpiZJf+kCA9+gQd/6vNkP5sFbCqG9moPy4LmIyLgPjSnDn92S3gfj2yV3+MFjAWIwHxWZ5R/REIuNOQbNcfrwXMxEtADOuPRsDvSpId+2O3gIEgYKSAd3uSTfvDAvSQoKkCrlcl+/aHBeghQYMF5IW29O4PC9BDgmYLyNPCtO+PXgAg4JguIF90ZkJ/LAQMBwFiLATkt9oM6Y+LgMkgQIyLgPzSnDn9MRIwFgSIMRKQn+UZ1R8vATPxEpDDLn87AQNBgBgEiEGAGASIQYAYBIhBgBgEiEHAoeUvjF3eyY0EaaoAAAAASUVORK5CYII=" width="96" height="96" alt="MarkTB[11]"></td>
 <td class="num"><b>11</b><br><code>0x5C</code><br>U+F05C</td>
@@ -68,7 +69,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x588</td>
 <td class="num">376</td>
 <td style="font-size:12px">110SSS-001.smc〈김일성장군의 노래〉 第2小节 note dx=-11 dy=-20 · note start=720 dur=240<br>110SSS-001.smc〈김일성장군의 노래〉 第12小节 note dx=13 dy=-19 · note start=480 dur=168<br>110SSS-001.smc〈김일성장군의 노래〉 第14小节 note dx=-10 dy=-26 · note start=720 dur=240<br>110SSS-001.smc〈김일성장군의 노래〉 第18小节 note dx=-17 dy=-15 · note start=720 dur=216</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;up-bow&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/up-bow.png" alt="up-bow"><code>up-bow</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAB3UlEQVR4nO3dy6rCQBQFUY/4/7/cTjsT0ZBY51E1vhjdi2CDF4211sO4nuC1TQA+7wA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBOgAkBE3P9Mhvb68u92A39yAADYEwMG2BMDBtgTAwbYEwMG2BPjQ/HrkebCI+nyB5xOAIiRCOCmm2NNujOuBDg8rhgswOEaYrAAh+uJwQIcrh2+Z6AAd3jkeTn1AGZiJAWYg1EAoDdGMYB+GIUBLvdApugDUBSjJ0AhjP4AyTFmASTEmAtwrcfpGQWAMQSAMf7xoXy54o93gADwe8BogIBGHw0QOU6fswAi2egjACLx6G0BosjorQCi4OjlAaL46CUBotHoZQCixYeOxQBiwOjpAGLY6CkAJo+OATg6AODoAID/9gwAODoA4OgAgKMDAI5e+BTU4KheD8DRGQB3BwAcHQBwdADA0clvTXT9+/J7Q+EEgBMATgA4AeAEgBMATgA4AeAEeLC9Ac+X4d1ONwLDAAAAAElFTkSuQmCC" width="96" height="96" alt="MarkTB[13]"></td>
 <td class="num"><b>13</b><br><code>0x55</code><br>U+F055</td>
@@ -77,7 +78,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x3748<br>dy>0 x16</td>
 <td class="num">615</td>
 <td style="font-size:12px">110SSS-001.smc〈김일성장군의 노래〉 第11小节 note dx=-2 dy=-6 · note start=240 dur=148<br>110SSS-001.smc〈김일성장군의 노래〉 第16小节 note dx=-1 dy=-8 · note start=720 dur=162<br>110SSS-001.smc〈김일성장군의 노래〉 第19小节 note dx=0 dy=-6 · note start=720 dur=240<br>110SSS-001.smc〈김일성장군의 노래〉 第19小节 note dx=0 dy=-8 · note start=480 dur=240</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;accent&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/accent.png" alt="accent"><code>accent</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACmUlEQVR4nO2dUXLbMAwFyUzvf2X0t+M0E1sCuIS4e4AYeEtAtjyxZkQM4fgCX1sUwOMEwCgARgEwCoBRAIwCYBQAowAYBcD8GXsz57z5Fza/2TX3rG/ezv07m3a6T1mzIPSf2KhrvJS5MPfv4O1/nZz+2KEA5Ajgbf8XJorFr7pn9P+yOJClK2j/9MfyIhdNQIvoX1iTzIoJ6Jj+WFV2uYCm6S8rvnAFtY7+hbqUqibgSemPynZKBDws/dKmklfQI6N/ITcxvw+AyRRwwvEf2W2mCTgk/fRmcwQclX5uy14DYBIEHHj8Exu/K+DY9LPavyXg8PRTQvAaAHNdgMc/JYqLAkw/KxBXEMwVAR7/xFicABgFdBPg/skN5zMBpp8ekSsIRgF9BLh/KoJyAmAUAKOAJgK8AHzE+3E5ATAK6CDA/XOBN0NzAmAUAKMAGAXAKABGATAKgFEAjAJgFACjAPhuhALgf2hVAIwCYBQAowAYBcAoAEYBMAqAUUAHAfgPLHfkzdCcABgFNBHgFvqI9+NyAmAUAKOAPgK8DFQE5QTAKKCVALdQekQfT4AOcsNxBcEooKEAt1BiLE4AzEUBDkFWINcnQAcpUbiCYG4JcAjG7RDuTsDhDuJ2+wkr6FgHkdG41wCYHAEHDkEktZw2AUc5iLxmM1fQIQ7CJ+k9iZLH2T71B56iIKuSd0GP3EVR01TV29CHOYi6x15XJ9V9HUVxPuUfxFqPQtQXv+KTcFMHsaTs8hXUcR3FwkyW3gtqMQqxtsilE7D5KAQSBXsq5wYm2ATg29FBLyW8AHgCqGnYqOt9SqmWsWmne5aVaGL3Bjev71fm7N1C+++Eo3P6TxDQHQXAKABGATAKgFEAjAJgFACjABgFDJa/kiHquFWvqLoAAAAASUVORK5CYII=" width="96" height="96" alt="MarkTB[14]"></td>
 <td class="num"><b>14</b><br><code>0x4E</code><br>U+F04E</td>
@@ -86,7 +87,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x324<br>dy=0 x1<br>dy>0 x100</td>
 <td class="num">67</td>
 <td style="font-size:12px">142BLC-0023.smc〈봄〉 第12小节 measure dx=7 dy=-21<br>142BLC-0023.smc〈봄〉 第12小节 measure dx=70 dy=-21<br>142BLC-0023.smc〈봄〉 第12小节 measure dx=133 dy=-21<br>142BLC-0044.smc〈해볕은 쨍쨍〉 第2小节 note dx=2 dy=-23 · note start=240 dur=240</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;staccato&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/staccato.png" alt="staccato"><code>staccato</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAABQ0lEQVR4nO3YMQrDQAwAQcvk/19WfmCnORbCTC04waLmZncvOnf4NgL0XEBMgJgAMQFiAsQEiAkQEyAmQEyAmAAxAWICxASICRATICZATICYADEBYgLEBIgJEBMgJkBMgJgAMQFiAsQEiAkQEyAmQEyAmAAxAWICxASICRATICZATICYADEBYgLEBIgJEBMgJkBMgJgAMQFiAsQEiAkQEyAmQEyAmAAxAWICxASICRATICZATICYADEBYgLEBIgJEBMgJkBMgJgAMQFiAsQEiAkQEyAmQEyAmAAxAWICxASICRATICZATICYADEBYgLEBIgJEBMgJkBMgJgAMQFiAsQ+vwzNzPlN/tPuPg+4gJgAMQFiAsQEiAkQEyAmQEyAmAAxAWICxOb1t4ijXEBMgJgAMQFiAsQEiAkQEyAmQEyAq/UFMycJ+y/WQP0AAAAASUVORK5CYII=" width="96" height="96" alt="MarkTB[16]"></td>
 <td class="num"><b>16</b><br><code>0x2C</code><br>U+F02C</td>
@@ -95,7 +96,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x1120<br>dy=0 x14<br>dy>0 x197</td>
 <td class="num">385</td>
 <td style="font-size:12px">121GLS-002.smc〈꽃 파는 처녀〉 第5小节 note dx=1 dy=-4 · note start=0 dur=240<br>121GLS-002.smc〈꽃 파는 처녀〉 第8小节 note dx=0 dy=-6 · note start=0 dur=240<br>121GLS-002.smc〈꽃 파는 처녀〉 第12小节 note dx=0 dy=-4 · note start=0 dur=240<br>122DLS-004.smc〈대동강의 해맞이〉 第24小节 note dx=1 dy=-2 · note start=600 dur=120</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;tenuto&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/tenuto.png" alt="tenuto"><code>tenuto</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAADK0lEQVR4nO2d0Y7qMAxEO4j//2WvxIqX3aokNMl4nDmvd9UWH48TCvQiIg7D40E8t7EAPk4AGQsgYwFkLICMBZCxADIWQMYCyFgAGQsgYwFkLICMBZCxADIWQMYCyFgAGQsgYwFkLICMBZCxADLCAgAc+jwPQVCi9KoJwLv6Nb5UqZQAFGp8vQSgYvU1EoCz0teYPwIJQNHGF0gAqpc+rwB8Kn2Z+ZNxBGGPxs+YAGxW+lwJQHP1K82fFAnAlo2fLgHb8tBq/6g1f/gCjAVsLAB7L796CYhyC4CYgJLQBHj+iCUgKs4fmgC3v14CqqIhIIrOH87NON35g8sr/65L+HdD83+s39gxv3/WqwHr073mBhwGfcDwRV67Lni1gLGvB4Om2ekp7hy8I159umTH9zX/i3D/lTYWVmMXNJs/5V7ZZx0Cqrb/JBrLtcUuKN7ToKUoi/ussoDo319cVL/L4ngBWvMnhu5c/xwtIgZWo1QCYvSW+uYBgc+bzCICoqFS1237/1/v62w5wjPt/InX1bcM5XlnP4WzBmx1HzQWnvS57IK4yziyfvd00TthlW/AxfLz+lYEmS0EoC1/Y9s/0c04lflDYYsEjLXe8pftR6svABN2X9f17Urw9PcBEvMn+k866jrrJyA5FlBaAP0mNhougLvpcgLI5BIQQ5sxf/unE7AhZQWAvfzwBeR/BxDs+VM5ASrUFACR+TNRgOfP1gkQYooAt387TgCZggKgswLXFCCx/Z8oIP8CkIpqCYDU/BkvQO7106mWALmJ99jtA4BsMAXElrc/JwpQbEA6ddYAaOqvI0Bx/owUwH3/Bc32L5IAyFZf4Ddio+qec/4MS8D6+QPlrtdOACY/QWkxYmsAqjS+XgJQrvQaAlC07gJPzsWLNT/p2jEBp08SQfPvScskgzmC8FURk3c0ZwQtK0p0nii/reyL8Gkpy8yfkYvwvF6LF0dRHhs+UrXsCPr4jKsvjnYHidxMeXb0TQehULjUI+jO1I6dqr/o6ekSPxdlQfj/A7oeq1mevb4XlJDs29DyWAAZCyBjAWQsgIwFkLEAMhZAxgLIWMDB5QdEXjAiJofkAQAAAABJRU5ErkJggg==" width="96" height="96" alt="MarkTB[25]"></td>
 <td class="num"><b>25</b><br><code>0x73</code><br>U+F073</td>
@@ -104,7 +105,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x7</td>
 <td class="num">4</td>
 <td style="font-size:12px">150ALS-01GA-0247.smc〈금수강산〉 第82小节 measure dx=9 dy=-38<br>150ALS-01GA-0247.smc〈금수강산〉 第83小节 note dx=-2 dy=-6 · note start=0 dur=720<br>150ALS-02NA-0219.smc〈내 고향의 봄〉 第50小节 note dx=-2 dy=-12 · note start=0 dur=720<br>150ALS-02NA-0219.smc〈내 고향의 봄〉 第52小节 note dx=-1 dy=-5 · note start=0 dur=720</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;trill-mark&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/trill-mark.png" alt="trill-mark"><code>trill-mark</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACyklEQVR4nO2c207EMAwF62r//5eDtBISYktJ08Rju2deQdQ+UydLL2uttU1w7OCxhQTwaAJgJABGAmAkAEYCYCQARgJgJABGAmAkAEYCYCQARgJgJABGAmAkAEYCYCQARgJgJABGAmAkAEYCYCQARgJgJABGAmAkAEYCYCQARgJgJABGAmAkAEYCYCQARgJgJABGAmAkAEYCYCQARgJgJABGAmAkAEYCYCQARgJgJABGAmAkAEYCYCQARgJgJABGAmBeWxLMrP+XE30htoWt1a4kfk7YHiMKsHm5HxKu3yAF2eLcPwnSOL8J2xvkuFsAYAGGpkC5DyEgQvMhTgJkKQwS/Sf+aXgLCBv9TzwzcV2CUqS/+dbpJyBL+s7V7o/aby/hU/NyARmj9yx+rYDU6fu0sEpA0mXnkKWN8JciHu5giYAy575DU/P/EVtUaLtYZ5AyvAWEvYtiUQt7PeQyQPv+s9GWx5kTcLO35ngFJk6p0wQMt9TQO1N42eTH0PYGLOBODbOWsjl7wNVq8NwP60G2hwkTkD199pPu3T2g5PNS5tiU3x6QJf3N+fPYnYN1nimJovdvcHwCyqe/dRd/ZzNYuwSlTt+nhUEBPc4LpN/fyPAQrJqAMumvbmeJgGLpL21qRMD5uJVMv6e1sVVo8gQUTn9Rg5cFnHgun/6/bQ4MwbQJeEj605vVUxEw1wT8NWKPOv3PuboKaQLgneCV8qUGCzGIrbX7twQuCDg8WKj3O+z901zrYaYlyPpON887i/dl7yUfJLE8DnJMgAV7mmoie9UIjH4DefkE5NrrwpJgCbLww7f8nnD8CALSGVqCCWil17pBAbVD8STBBIzhf1misoBWd+ByCCgsbK+XacuTfiYBW9/LFLnSj/iS3r/8itgsyvcOftJTW9zqH0KmJagkEgAjATASACMBMBIAIwEwEgAjATASsLF8AWsvBfcVp1q0AAAAAElFTkSuQmCC" width="96" height="96" alt="MarkTB[29]"></td>
 <td class="num"><b>29</b><br><code>0x63</code><br>U+F063</td>
@@ -113,7 +114,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x435</td>
 <td class="num">316</td>
 <td style="font-size:12px">123KTS-002.smc〈자장가〉 第1小节 measure dx=118 dy=-35<br>141BLP-0001.smc〈가려나〉 第41小节 measure dx=-27 dy=-31<br>141BLP-0009.smc〈그리운 고향〉 第30小节 note dx=-4 dy=-16 · note start=720 dur=240<br>141BLP-0039.smc〈배사공의 안해〉 第34小节 measure dx=179 dy=-28</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;fermata&gt;</code></div><div><b>备注:</b> type="upright"</div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/fermata.png" alt="fermata"><code>fermata</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAC5klEQVR4nO2cwY7bMAwFTaP//8ss0MOibbBZWaI0JPPmuBvAJEeUZNmJufslOG7w2kICeNQBMBIAIwEwEgAjATASACMBMBIAIwEwEgAjATASACMBMBIAIwEwEgAjATASACMBMBIAIwEwEgAjATASACMBMBIAIwEwEgAjATASACMBMBIAIwEwEgAjATASACMBMBIAIwEwEgAjATASACMBMBIAIwEwEgAjATASACMBMBIAIwEwEgAjATASACMBMBIAIwEwv0Y+ZGb//YX9xWl7iSdtVD+GNCQgD/ZN6f/+b56fIx+J5G5T/acfS0IZAfakrIUclBHwlCoO7hLpWZFqTtC2A6ogAXCPDgnIs7ErNHENFu1uPC97hXGjKSiAlbEoATB3iXb251evEvBSB5xcBjzrhL5YhNUpKKcDz2qr/BrgP1XW/5D8CLrwcfT1b3rs+XNI9z/ogO/yBG8I/Ox4zzsF5b8payKg+nBL+Fg0bBH+qCawuGQjd0Ef4sBC03ws4H2LtXdgbxOcmKJnOuBjHVh09XfdiLV0YHuS2nUn3MyBbUtn41FEGwc2kMj0Bn1SwOD1GjiwzSnMd8C4g7oabCzylfvTQ6eh5RzY8LhZPB1YEvDo2oUc2MFQVzugnwN7EuT64VjAFNTJgZ2tPvNA5itJT3O2Cg6LmEV4rpSWoxvmwogaPRY4DKcL6tWeKQYGnOKZsJ2dlJJ0XnwHBObme0yEhBdcsfBUw8eXr0UYG098uXaMtTM97i/vp5y8Yqs1oMFUnussqMHrOq9symjjYVwbB75zPO09DW3gwDenUOzl3H5sF1C6CXx/8Fu2oQ02LX6qLOemoEKt4AdDPboGlNie+tkIgUU4rQMnxgezC0rYCk4diWcohKHfsblQUtwHOFGFJF2YQsB1vBwZSp9oCjozKSXNNGdYqZ6bb6WGgDeY1U4hyxowTenqdxBQHQmAkQAYCYCRABgJgJEAGAmAkQAYCbhYfgPkGh3QR18mBgAAAABJRU5ErkJggg==" width="96" height="96" alt="MarkTB[30]"></td>
 <td class="num"><b>30</b><br><code>0x64</code><br>U+F064</td>
@@ -122,7 +123,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy>0 x3</td>
 <td class="num">3</td>
 <td style="font-size:12px">150ALS-14GG-0026.smc〈꿈을 주셨네 사랑을 주셨네〉 第30小节 note dx=-7 dy=25 · note start=600 dur=120<br>150ALS-19AA-0202.smc〈여보시오〉 第24小节 note dx=-5 dy=31 · note start=660 dur=60<br>150ALS-19AA-0236.smc〈영웅들에게 영광이 있으라〉 第35小节 measure dx=-4 dy=11</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;fermata&gt;</code></div><div><b>备注:</b> type="inverted"</div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/fermata.png" alt="fermata"><code>fermata</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAC2UlEQVR4nO2d227bMBAFtUT//5dZwEUBp21ciVxyVvbMU4LYPOSOeLFkINF7P4SjgdmiAB5nAIwCYBQAowAYBcAoAEYBMAqAUQCMAmAUAKMAGAXAKABGATAKgFEAjAJgFACjABgFwCgARgEwCoBRAIwCYBQAowAYBcAoAEYBMAqAUQCMAmAUAKMAGAXAKABGATAKgFEAjAJgFACjABgFwCgARgEwCoBRAIwCYBQAowAYBcAoAEYBMAqAUQCMAmAUAKMAGAXAKABGATAKgFEAjAJgFACjAJgfe2Ii4tcP+/9rVvyORtL5GRAPnn9dnfjMH3Gb04suQWwVopiDhox2TxUCTecFvB7n6ipEpSp/3Cko/lf9OnpWCTgzwnAzWCTgfGVjgQM2nRdwdVSRWoUKNb3UmRJ7QCRVbaCddcJOtpwsYHg8MV0IMHqmzfYe0z/mosFlME0AeAmnQKWX2AMmq3C7jTdfQGIJgjtEIZM4QUD6BRjcQX6mwbH3zgpYNP2D+yC9eRlsn3nsqbMM1tqEy26t6/rZKhcouBv6JyPme9KKX57x9Ynm5ujJFs48gm63WBzikfi3jD25Y389+QWA/D2gP3j7LSEyqj8i4EXwc+kLfgFkjH+ON6v6lwW8rv5MPypPweelL30ZjPN9HdO+eenoX7uxf+G66r6tTt05Dzo9Cwfi2orF5+oLUvguZZuDsaC2uvqXXraIDenDEVNLUJ2jTkdn4UzjbVvquhL0O0+vrTfjVlSqn26TTU8WMBycW4VeZhZuFTA5jKwq9KF2Eh2kNNWQ1Fuv2rlDaDe9fPqd317liVhHN5Ii29gFAUVOER2dhelFaPc6xffsbrDpZwUUOb31+2/dRb8V0d+xsncScJS/mbMuvYqAg36oQKUXEnB8M1T2hv7q9FoCPnB7uPBMeCcRZMd2phcV8DlUX4LeHgXAKABGATAKgFEAjAJgFACjABgFHCw/AezZMBFtn6V4AAAAAElFTkSuQmCC" width="96" height="96" alt="MarkTB[33]"></td>
 <td class="num"><b>33</b><br><code>0x77</code><br>U+F077</td>
@@ -131,7 +132,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x27</td>
 <td class="num">8</td>
 <td style="font-size:12px">150ALS-01GA-0247.smc〈금수강산〉 第52小节 note dx=-4 dy=-11 · note start=0 dur=240<br>150ALS-01GA-0247.smc〈금수강산〉 第54小节 note dx=-4 dy=-5 · note start=0 dur=240<br>150ALS-01GA-0247.smc〈금수강산〉 第55小节 note dx=-4 dy=-5 · note start=0 dur=240<br>150ALS-01GA-0247.smc〈금수강산〉 第56小节 note dx=-4 dy=-12 · note start=0 dur=240</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;inverted-mordent&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/inverted-mordent.png" alt="inverted-mordent"><code>inverted-mordent</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACyUlEQVR4nO2d207lMAwAj6v9/182EitWrOAccnMmFTNPPFDb8TRpkyIRmfkQjgvMLQrgcQbAKABGATAKgFEAjAJgFACjABgFwCgARgEwCoBRAIwCYBQAowAYBcAoAEYBMAqAUQCMAmAUAKMAGAXAKABGATAKgFEAjAJgFACjABgFwCgARgEwCoBRAIwCYBQAowAYBcAoAEYBMAqAUQCMAmAUAKMAGAXAKABGATAKgFEAjAJgFACjABgFwCgARgEwCoBRAIwCYBQAowAYBcAoAEYBMAqAUQCMAmAUAKMAGAXAKABGATAKgFEAjAJg/lQEjYh/P9f9w+j4yFKUYs8oymfA52GcH3Zb/EIBX0tfPpj4P2B1/FIfiwU8K3ThAOK7UNXx6xzc7CEcz7uwbdE4V8DrFsw3KH6KUJ2iwvEyAS3FzQwg2q6tTrHcwRoB7WVtWChiKAU1hAUCegsaGEAc9tK5sB7mIdw1gDhP2MIUF1VH9ZoeJ62KVQImS4/it5pD3guqBJy2Lp/5ZlwlYFX3A9o5bxjCbXbCsf3saDkz8UcE3K5BD+L8rvXC3pPumx65/CUz6+of+2bQNwOeVZ/vPI4nKu+eseDXku7v0ZDHOx5wcC1vSkWb8kNtteD5e6jXwTUT91mtd5wH+SnspIYuB1fRzFrYptwyyVryVjC+BLFdyKXZl2dpv2UHBbRUNt+jfBlhlYMNf9WyWEB7xdWzJIsdbxhCt4DegoYHkG0XzjSoOkXLJOgTMFbKwFXZc8mGp1HdwDcdxlU3NOsvKfr9a9uNdtQ+No95OF07Ky59d8r6V4PGDVpX/OuomzfrJ9lRExH4IPNi/LlrkpWm6C3g+lXrbxbv3QbiM58kq4938rto1Sl2fJApImtOsHemGN+snfZQuh0RUz08Ygbcmsk7WAEwCoBRAIwCYBQAowAYBcAoAEYBMAp4sLwBQ/Y467sf9hoAAAAASUVORK5CYII=" width="96" height="96" alt="MarkTB[35]"></td>
 <td class="num"><b>35</b><br><code>0x78</code><br>U+F078</td>
@@ -140,7 +141,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x2</td>
 <td class="num">2</td>
 <td style="font-size:12px">500KFS-0083.smc〈풍구타령〉 第1小节 note dx=-6 dy=-4 · note start=1080 dur=240<br>500KFS-0091.smc〈해녀의 노래〉 第6小节 note dx=-6 dy=-7 · note start=360 dur=180</td>
-</tr>
+<td class="ans"><div><b>MusicXML:</b> <code>&lt;shake&gt;</code></div></td><td class="ansimg"><div class="aimg"><img src="mark-xml-img/shake.png" alt="shake"><code>shake</code></div></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAADVElEQVR4nO2dyXLkMAxDDZX//5c5VTmk5jDJuK0FAEmck24Kj9TalhERV4unQfzuVgPgqyuArAZAVgMgqwGQ1QDIagBkNQCyGgBZDYCsm/KtAOY/JFLsYuFkM5b4nozECQCbfM/BYyOAw76bYtgCgGu9F4mR2/3rKx61kHZVwOt2xq8xLLRPsBqWTUNf2BTP7Pj+M+VEZlbAO19mvhcTJNSKYArAeevzYXg/CNM7hCDVkPde0NrUiy9ZMxgJJnbhzOBoBej0vDoajlmTqQiGV7j5yqsPZC5uVjUAssbJTJHtwcALbGRqahgOA4QuSLMOQIpqUOLTZFBrEBZkAEZIzFkQ9BicV09DawNA+SLoCriqA8DSIphcCpyvSD6A4hqJF5kW6gogKxsAuE2r+ACiduc2uE5FbffJFRDl3f8YwCrLZn7Pk0ynnxHb6jvcRuA3XdCMg/pZH8cjvF9H+TzdzrQKhuk/1QU9waCf8vZjgIjF8Ex/iYVYcWUAgEXpT6lmewCw7XySAHCXNwD4P8FqDADmnY83ACidJJcDgCzuWwJAip7HFQBWu09fyTsBQDr3nQAgo/s2AJDUfdqtidwhN2TcV68AZHdfGgAKuK8LADXcFx0DkGih61cBqOS+VgWgmPVaAOC/s28MAM6HuvYAUPsq+9vd/bC1ng8Ac+67W+/6Bo1I4bvrdTWRy31CBWy6Yd1XRwFw75quDmDf/fbWujXdjwLWHwLQ1jMBfOR+lMn6QwDUHiKrtQ5o95kV8ND9KJz4GwE8cb+t3wKgrWeOAe0+swL+6373ORsB+LqPnyM/FvP2lbCm+5C5YeFOkETWD9jcFPf/+Y+R7t3ee98l+cR9nVNfqO6LvARwPpXi1JvCDAAoFHI8CNviCIj/w6x3UkiCJUryKsMq19Ukdp8luecDWGKtWu6T7ekCmpoFLTxmUSMRaW5LedgSqauLw+K2lB3b/SHDgCjyOiAWbVrMByBdAQdOu0KpU/IbAxZea38dlAJyuXVAnDJFwf01Y8DylsT+gUHE/QUVsLUlsWdg0HF/tgLOtCQ+fF3B75+jJpvt6PjLPvEzlpwAnmw0KRv9kyyDziS5aWg1NQCyGgBZDYCsBkBWAyCrAZDVAMhqAGQ1gIurPyShnALxBn+TAAAAAElFTkSuQmCC" width="96" height="96" alt="MarkTB[43]"></td>
 <td class="num"><b>43</b><br><code>0xD2</code><br>U+F0D2</td>
@@ -149,7 +150,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x11</td>
 <td class="num">5</td>
 <td style="font-size:12px">500KFS-0003.smc〈경상도아리랑〉 第25小节 note dx=0 dy=-13 · note start=360 dur=180<br>500KFS-0043.smc〈방아타령〉 第6小节 measure dx=167 dy=-39<br>500KFS-0069.smc〈잦은 방아타령〉 第4小节 measure dx=4 dy=-39<br>500KFS-0069.smc〈잦은 방아타령〉 第9小节 measure dx=171 dy=-40</td>
-</tr>
+<td class="ans"><div><b>名称:</b> 数字2</div><div><b>备注:</b> 拍号用的字体</div></td><td class="ansimg"><span class="mut">—（无对应元素/无官方图）</span></td></tr>
 <tr>
 <td class="glyph"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACUElEQVR4nO2aAXLCQAzEOKb///L2BzRQLrJ90gNgkOxLyGQleQjHE/xuMQCPGwBjABgDwBgAxgAwBoAxAIwBYAwA8/MowFpr34cXf9g1fANS2/7wAClvv0SAtfP8qQ8f4OTxnxygCzMDpMn4jw3QiIEB0mf8BwZIK/t8gHX2PSgf4PDxHxUgDe2PCtCU54wLQHqOvxvAM+EIStvxHxKgNc/uF4B0Hn83gKf3EZTm4987QD61X+r5BxMAVLAq2W+8Aflo/KvZZwL830Km2G+8ATPsAwGQ8V9V7ffbgMyy3y/AMPt3B/injrw5/vXtd9qATLTfJkCG2r81wMdSMtd+gw3IaPsNAsy2f1+Az9TknfHvaL/0BuQA+6UDnGD/pgAfCMrl8W9tv+gG5Bj7dwTY52j1t19xA3Jt/GfY3x7gXU05zH6tDch59vcGeMtUjrRfZQNyqv2NAb4ua020X2IDcmH8p9rfFeC6r/R/ubPxBuR4+1sCXBx/7ZMboP1dAQZfLedsgOO/K8CV8dc+uQHa3xjgz/HX/sYA2m/8KOJwvhDA8S+9AR79ewO8Hn/t7w2gfTKA9skA2q97Efbc3x7gxfhrf3sA7ZMBtE8G0D4ZQPub8GEczDr8vagX3HNH5wbAGADGADAGgDEAjAFgDABjgA5/xHDWt/8J1vnVbgCMAWAMAGMAGAPAGADGADAGgDEAjAFgDABjABgDwBgAxgAwBoAxAIwBYAwAYwAYA8AYAMYAMD3eCxqMGwBjABgDwBgAxgAwBoAxAIwBYAwAY4AHyy8O2LUCfzy9qgAAAABJRU5ErkJggg==" width="96" height="96" alt="MarkTB[45]"></td>
 <td class="num"><b>45</b><br><code>0xD4</code><br>U+F0D4</td>
@@ -158,7 +159,7 @@ ol{margin:6px 0 6px 22px}li{margin:6px 0}
 <td>dy<0 x5</td>
 <td class="num">2</td>
 <td style="font-size:12px">500KFS-0071.smc〈정방산성가〉 第8小节 measure dx=171 dy=-32<br>500KFS-0071.smc〈정방산성가〉 第12小节 measure dx=113 dy=-30<br>500KFS-0071.smc〈정방산성가〉 第40小节 measure dx=106 dy=-30<br>500KFS-0071.smc〈정방산성가〉 第56小节 measure dx=100 dy=-31</td>
-</tr>
+<td class="ans"><div><b>名称:</b> 数字4</div><div><b>备注:</b> 拍号用的字体</div></td><td class="ansimg"><span class="mut">—（无对应元素/无官方图）</span></td></tr>
 </table>
 <h2>3. 重点疑问：500KFS-0041.smc〈바다의 노래〉 的「&gt; 形记号」</h2>
 <div class="warn">您提到该文件里看着像 <code>&gt;</code> 的力度记号中，<b>有一个其实是延音记号</b>。这个文件恰好同时出现索引 13 与索引 29，而两者的字形轮廓差别很大（见下）。请对照程序画面确认：<b>同一索引是否会在不同位置被画成不同符号</b>，还是「&gt; 形」与「延音」本来就是两个索引。</div>
